@@ -1,6 +1,7 @@
-### Hi there 👋
+### Hi there, I'm Gabi 👋
 
-I am Gabrielle, 16yo programming enthusiast. I live in Brazil, and welcome to my github profile!
+I am Gabrielle, a 16yo Software Developer. Welcome to my GitHub!
 
 - 🔭 I’m currently working on personal projects and studying!
-- 👀 Interesting in FP and Math.
+- ❤ I like functional programming and kotlin
+- 🇧🇷 I was born in Minas Gerais, Brazil
