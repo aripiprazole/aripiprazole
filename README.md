@@ -1,6 +1,6 @@
 ### Hi there, I'm Gabi 👋
 
-I am Gabrielle, a 16yo Software Developer. Welcome to my GitHub!
+I am Gabrielle, a 16yo Software Developer. Welcome to my GitHub! 🙂
 
 - 😀 My pronouns are `she/her`
 - 🔭 I’m currently working on personal projects
