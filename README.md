@@ -6,3 +6,4 @@ I am Gabrielle, a 16yo Software Developer. Welcome to my GitHub!
 - ❤ I like functional programming and kotlin
 - 🇧🇷 I was born in Minas Gerais, Brazil
 - 💡 My main language is Kotlin
+- 📮 Reach me out at <a href="mailto:hello@devgabi.me">hello@devgabi.me</a>
