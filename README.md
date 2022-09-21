@@ -4,7 +4,7 @@ I am Gabrielle, a 16yo Software Developer. Welcome to my GitHub! 🙂
 
 - 🔭 I’m currently working on personal projects
 - ❤ I like functional programming
-- 🇧🇷 I was born in Minas Gerais, Brazil
+- 🇧🇷 I'm from Minas Gerais, Brasil
 - 😀 My pronouns are `she/her`
 - 💡 My main language is Kotlin
 - 📮 Reach me out at <a href="mailto:hello@devgabi.me">hello@devgabi.me</a>
