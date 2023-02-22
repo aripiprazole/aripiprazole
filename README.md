@@ -1,5 +1,5 @@
 <div>
-  <img align="left" height="150px" src="profile.png" alt="Profile picture">
+  <img align="left" height="160px" src="profile.png" alt="Profile picture">
 
   <h3>Hi there, I'm Gabi 👋</h3>
   Hi, my name is Gabrielle and I'm a 17 year old transgender girl who is on the autism spectrum. I enjoy coding in Kotlin as my primary language and I have a passion for creating compilers. I'm a problem solver who loves to tackle complex challenges and find unique solutions. I'm a team player and I'm always willing to collaborate with others to achieve common goals. I'm a forward-thinker and I'm always looking for ways to improve existing technologies and create innovative solutions. I'm a big believer in using technology to make the world a better place and I'm always looking for ways to make a positive impact.
