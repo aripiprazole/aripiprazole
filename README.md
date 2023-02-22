@@ -1,6 +1,20 @@
 ### Hi there, I'm Gabi 👋
-
-I'm Gabrielle(a chemical compound), a 17yo Software Developer. Welcome to my GitHub! 🙂
+<table border="0">
+ <tr>
+    <td><b style="font-size:30px">Title</b></td>
+    <td><b style="font-size:30px">Title 2</b></td>
+ </tr>
+ <tr>
+    <td>Lorem ipsum ...</td>
+    <td>Lorem ipsum ...</td>
+ </tr>
+</table>
+<div>
+  <div style="display: flex; align-items: flex-start;">
+    <div><img src="https://en.gravatar.com/userimage/218614621/4b261f260b012a2fd0e85d5b14744807.png" alt="Profile picture"></div>
+    <div>I'm Gabrielle(a chemical compound), a 17yo Software Developer. Welcome to my GitHub! 🙂</div>
+  </div>
+</div>
 
 - 🕰 My elimination half-time is 75 hours (active metabolite is 94 hours)
 - 🔭 I’m currently working on personal projects
