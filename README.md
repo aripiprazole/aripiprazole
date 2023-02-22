@@ -10,6 +10,10 @@ I'm Gabrielle(a chemical compound), a 17yo Software Developer. Welcome to my Git
 - 💡 My main language is Kotlin
 - 📮 Reach me out at <a href="mailto:hello@devgabi.me">hello@devgabi.me</a>
 
+Meet my friends
+
+- [DΣXƬЯӨΛMPΉΣƬΛMIПΣ](https://github.com/dextroamphetamine)
+
 [GitLab](https://gitlab.com/atomoxetine) |
 [Twitter](https://twitter.com/gabrielleeg1) |
 [Instagram](https://www.instagram.com/gabrielle1guim) |
