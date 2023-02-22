@@ -2,10 +2,10 @@
   <img align="left" height="160px" src="profile.png" alt="Profile picture">
 
   <h3>Hi there, I'm Gabi 👋</h3>
-  Hi, my name is Gabrielle and I'm a 17 year old transgender girl who is on the autism spectrum. I enjoy coding in Kotlin as my primary language and I have a passion for creating compilers. I'm a problem solver who loves to tackle complex challenges and find unique solutions. I'm a team player and I'm always willing to collaborate with others to achieve common goals. I'm a forward-thinker and I'm always looking for ways to improve existing technologies and create innovative solutions. I'm a big believer in using technology to make the world a better place and I'm always looking for ways to make a positive impact.
 
- <br>
- <br>
+  Greetings, my name is Gabrielle. I'm a 17-year-old transgender girl on the autism spectrum. My primary language is Kotlin, and I enjoy crafting compilers. I have a talent for problem-solving, and I relish the opportunity to take on intricate challenges and find one-of-a-kind solutions. Collaboration is essential to me, and I am always happy to work with others to achieve shared objectives. I am an innovative thinker and constantly on the lookout for ways to enhance current technologies and invent new ones. I am a firm believer in using technology to create a better world, and I always look for methods to have a constructive impact.
+  <br>
+  <br>
 </div>
 
 - 🕰 My elimination half-time is 75 hours (active metabolite is 94 hours)
