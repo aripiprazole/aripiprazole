@@ -13,6 +13,7 @@ I'm Gabrielle(a chemical compound), a 17yo Software Developer. Welcome to my Git
 Meet my friends
 
 - [DΣXƬЯӨΛMPΉΣƬΛMIПΣ](https://github.com/dextroamphetamine)
+- [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
 
 [GitLab](https://gitlab.com/atomoxetine) |
 [Twitter](https://twitter.com/gabrielleeg1) |
