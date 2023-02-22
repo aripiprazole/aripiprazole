@@ -1,19 +1,11 @@
-### Hi there, I'm Gabi 👋
-<table border="0">
- <tr>
-    <td><b style="font-size:30px">Title</b></td>
-    <td><b style="font-size:30px">Title 2</b></td>
- </tr>
- <tr>
-    <td>Lorem ipsum ...</td>
-    <td>Lorem ipsum ...</td>
- </tr>
-</table>
 <div>
-  <div style="display: flex; align-items: flex-start;">
-    <div><img src="https://en.gravatar.com/userimage/218614621/4b261f260b012a2fd0e85d5b14744807.png" alt="Profile picture"></div>
-    <div>I'm Gabrielle(a chemical compound), a 17yo Software Developer. Welcome to my GitHub! 🙂</div>
-  </div>
+  <img align="left" height="150px" src="profile.jpg" alt="Profile picture">
+
+  <h3>Hi there, I'm Gabi 👋</h3>
+  Hi, my name is Gabrielle and I'm a 17 year old transgender girl who is on the autism spectrum. I enjoy coding in Kotlin as my primary language and I have a passion for creating compilers. I'm a problem solver who loves to tackle complex challenges and find unique solutions. I'm a team player and I'm always willing to collaborate with others to achieve common goals. I'm a forward-thinker and I'm always looking for ways to improve existing technologies and create innovative solutions. I'm a big believer in using technology to make the world a better place and I'm always looking for ways to make a positive impact.
+
+ <br>
+ <br>
 </div>
 
 - 🕰 My elimination half-time is 75 hours (active metabolite is 94 hours)
