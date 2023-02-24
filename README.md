@@ -20,6 +20,7 @@ Meet my friends:
 
 - [DΣXƬЯӨΛMPΉΣƬΛMIПΣ](https://github.com/dextroamphetamine)
 - [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
+- [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
 
 [GitLab](https://gitlab.com/atomoxetine) |
 [Twitter](https://twitter.com/gabrielleeg1) |
