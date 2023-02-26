@@ -25,6 +25,6 @@ Meet my friends:
 [GitLab](https://gitlab.com/atomoxetine) |
 [Twitter](https://twitter.com/algebraic_gabi) |
 [Instagram](https://www.instagram.com/gabrielle1guim) |
-[Medium](https://medium.com/@gabrielleeg1) |
+[Medium](https://medium.com/@aripiprazole) |
 [Linkedin](https://www.linkedin.com/in/gabrielle-guimar%C3%A3es-1aa393233/) |
 [Wikipedia](https://en.wikipedia.org/wiki/Aripiprazole)
