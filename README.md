@@ -8,13 +8,13 @@
 </div>
 
 - 🕰 My elimination half-time is 75 hours (active metabolite is 94 hours)
-- 💻 Here's my personal [website](https://devgabi.me)
+- 💻 Here's my personal [website](https://gabx.io)
 - 🔭 I’m currently working on personal projects
 - ❤ I like [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
 - 🇧🇷 I'm from [Minas Gerais, Brasil](https://en.wikipedia.org/wiki/Minas_Gerais)
 - 😀 My pronouns are `she/her`
 - 💡 My main language is [Kotlin](https://kotlinlang.org/)
-- 📮 Reach me out at <a href="mailto:hello@devgabi.me">hello@devgabi.me</a>
+- 📮 Reach me out at <a href="mailto:you@gabx.io">you@gabx.io</a>
 
 Meet my friends:
 
