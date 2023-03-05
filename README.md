@@ -18,7 +18,6 @@
 
 Meet my friends:
 
-- [DΣXƬЯӨΛMPΉΣƬΛMIПΣ](https://github.com/dextroamphetamine)
 - [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
 - [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
 
