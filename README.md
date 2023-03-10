@@ -21,7 +21,7 @@ Meet my friends:
 - [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
 - [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
 
-[GitLab](https://gitlab.com/atomoxetine) |
+[GitLab](https://gitlab.com/lurasidone) |
 [Twitter](https://twitter.com/algebraic_gabi) |
 [Instagram](https://www.instagram.com/gabrielle1guim) |
 [Medium](https://medium.com/@aripiprazole) |
