@@ -16,7 +16,7 @@
 - 💡 My main language is [Kotlin](https://kotlinlang.org/)
 - 📮 Reach me out at <a href="mailto:you@gabx.io">you@gabx.io</a>
 
-Meet my friends:
+**~** Meet my friends:
 
 - [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
 - [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
