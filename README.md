@@ -14,7 +14,7 @@
 - 🇧🇷 I'm from [Minas Gerais, Brasil](https://en.wikipedia.org/wiki/Minas_Gerais)
 - 😀 My pronouns are `she/her`
 - 💡 My main language is [Kotlin](https://kotlinlang.org/)
-- 📮 Reach me out at <a href="mailto:you@gabx.io">you@gabx.io</a>
+- 📮 Reach me out at <a href="mailto:aripiprazole@algebraic.dev">you@gabx.io</a>
 
 **~** Meet my friends:
 
