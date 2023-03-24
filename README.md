@@ -23,7 +23,7 @@
 
 [GitLab](https://gitlab.com/lurasidone) |
 [Twitter](https://twitter.com/algebraic_gabi) |
-[Instagram](https://www.instagram.com/gabrielle1guim) |
+[Instagram](https://www.instagram.com/algebraic.gabi) |
 [Medium](https://medium.com/@aripiprazole) |
 [Linkedin](https://www.linkedin.com/in/gabrielle-guimar%C3%A3es-1aa393233/) |
 [Wynncraft](https://wynncraft.com/stats/player/Brexpiprazole) |
