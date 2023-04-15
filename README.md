@@ -20,6 +20,7 @@
 
 - [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
 - [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
+- [ɒᴎiƹɒmoɿqɿo|ɔ](https://github.com/clorpromazina)
 
 [GitLab](https://gitlab.com/lurasidone) |
 [Twitter](https://twitter.com/algebraic_gabi) |
