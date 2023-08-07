@@ -32,6 +32,7 @@
 
 [GitLab](https://gitlab.com/lurasidone) |
 [Twitter](https://twitter.com/algebraic_gabi) |
+[Blue Sky](https://bsky.app/profile/aripiprazole.dev) |
 [Instagram](https://www.instagram.com/algebraic.gabi) |
 [Medium](https://medium.com/@aripiprazole) |
 [Linkedin](https://www.linkedin.com/in/gabrielle-guimar%C3%A3es-1aa393233/) |
