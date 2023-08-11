@@ -20,6 +20,7 @@
 - 📖 [Writing a Minecraft Protocol implementation in Kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42)
 - 🧪 [Defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e)
 - 🧮 [Writing an Equation Solver](https://github.com/aripiprazole/eq)
+- ⭐ [GADT-like types in Rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp)
 - 🏳️‍⚧️ [Rebasing old commits for trans people](https://aripiprazole.medium.com/rebasing-old-commits-for-trans-people-3740d1bc1157)
 - 🧪 [Writing Haskell in Kotlin](https://github.com/aripiprazole/ekko/tree/main/docs)
 
