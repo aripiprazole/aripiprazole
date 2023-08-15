@@ -21,6 +21,7 @@
 - 🧪 [Defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e)
 - 🧮 [Writing an Equation Solver](https://dev.to/aripiprazole/writing-an-equation-solver-6b2)
 - ⭐ [GADT-like types in Rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp)
+- � [Complete and Easy implementation in Rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856) 
 - 🏳️‍⚧️ [Rebasing old commits for trans people](https://aripiprazole.medium.com/rebasing-old-commits-for-trans-people-3740d1bc1157)
 - 🧪 [Writing Haskell in Kotlin](https://github.com/aripiprazole/ekko/tree/main/docs)
 
