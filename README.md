@@ -13,7 +13,7 @@
 - ❤ I like [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
 - 🇧🇷 I'm from [Minas Gerais, Brasil](https://en.wikipedia.org/wiki/Minas_Gerais)
 - 😀 My pronouns are `she/her`
-- 💡 My main language is [Kotlin](https://kotlinlang.org/)
+- 💡 My main language are [Kotlin](https://kotlinlang.org/) and [Rust](https://www.rust-lang.org/)
 - 📮 Reach me out at <a href="mailto:aripiprazole@algebraic.dev">you@gabx.io</a>
 
 **~** works:
