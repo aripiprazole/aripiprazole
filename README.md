@@ -27,9 +27,7 @@
 
 **~** meet my friends:
 
-- [ꋫ꒓ꀗꍟ꓅ꋫꁒꂑꁹꍟ](https://github.com/arketamine)
 - [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
-- [ɒᴎiƹɒmoɿqɿo|ɔ](https://github.com/clorpromazina)
 - [ðê§†råÐïðl](https://github.com/oestradiol)
 
 [GitLab](https://gitlab.com/lurasidone) |
@@ -37,6 +35,6 @@
 [Blue Sky](https://bsky.app/profile/aripiprazole.dev) |
 [Instagram](https://www.instagram.com/algebraic.gabi) |
 [Medium](https://medium.com/@aripiprazole) |
-[Linkedin](https://www.linkedin.com/in/gabrielle-guimar%C3%A3es-1aa393233/) |
+[Linkedin](https://www.linkedin.com/in/gabrielle-guimaraes-oliveira) |
 [Wynncraft](https://wynncraft.com/stats/player/Brexpiprazole) |
 [Wikipedia](https://en.wikipedia.org/wiki/Aripiprazole)
