@@ -29,6 +29,7 @@
 
 - [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
 - [ðê§†råÐïðl](https://github.com/oestradiol)
+- [𝖕𝖊𝖗𝖔𝖘𝖕𝖎𝖗𝖔𝖓𝖊](https://github.com/perospirone)
 
 [GitLab](https://gitlab.com/lurasidone) |
 [Twitter](https://twitter.com/algebraic_gabi) |
