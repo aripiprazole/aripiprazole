@@ -32,9 +32,9 @@
 - [𝖕𝖊𝖗𝖔𝖘𝖕𝖎𝖗𝖔𝖓𝖊](https://github.com/perospirone)
 
 [GitLab](https://gitlab.com/lurasidone) |
-[Twitter](https://twitter.com/algebraic_gabi) |
+[Twitter](https://twitter.com/io_gabx) |
 [Blue Sky](https://bsky.app/profile/aripiprazole.dev) |
-[Instagram](https://www.instagram.com/algebraic.gabi) |
+[Instagram](https://www.instagram.com/io.gabx) |
 [Medium](https://medium.com/@aripiprazole) |
 [Linkedin](https://www.linkedin.com/in/gabrielle-guimaraes-oliveira) |
 [Wynncraft](https://wynncraft.com/stats/player/Brexpiprazole) |
