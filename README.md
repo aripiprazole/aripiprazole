@@ -3,7 +3,7 @@
 
   <h3>Hi there, I'm Gabi 👋</h3>
 
-  Greetings, my name is Gabrielle. I'm a 17-year-old transgender girl on the autism spectrum. My primary language is Kotlin, and I enjoy crafting compilers. I have a talent for problem-solving, and I relish the opportunity to take on intricate challenges and find one-of-a-kind solutions. Collaboration is essential to me, and I am always happy to work with others to achieve shared objectives. I am an innovative thinker and constantly on the lookout for ways to enhance current technologies and invent new ones. I am a firm believer in using technology to create a better world, and I always look for methods to have a constructive impact.
+  Greetings, my name is Gabrielle. I'm a 17-year-old transgender girl on the autism spectrum. My primary language is Clojure, and I enjoy crafting compilers. I have a talent for problem-solving, and I relish the opportunity to take on intricate challenges and find one-of-a-kind solutions. Collaboration is essential to me, and I am always happy to work with others to achieve shared objectives. I am an innovative thinker and constantly on the lookout for ways to enhance current technologies and invent new ones. I am a firm believer in using technology to create a better world, and I always look for methods to have a constructive impact.
   <br>
 </div>
 
@@ -13,8 +13,8 @@
 - ❤ I like [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
 - 🇧🇷 I'm from [Minas Gerais, Brasil](https://en.wikipedia.org/wiki/Minas_Gerais)
 - 😀 My pronouns are `she/her`
-- 💡 My main language are [Kotlin](https://kotlinlang.org/) and [Rust](https://www.rust-lang.org/)
-- 📮 Reach me out at <a href="mailto:aripiprazole@algebraic.dev">you@gabx.io</a>
+- 💡 My main languages are [Clojure](https://clojure.org/) and [Rust](https://www.rust-lang.org/)
+- 📮 Reach me out at <a href="mailto:you@gabx.io">you@gabx.io</a>
 
 **~** works:
 - 📖 [Writing a Minecraft Protocol implementation in Kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42)
