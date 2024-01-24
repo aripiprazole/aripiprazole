@@ -3,7 +3,7 @@
 
   <h3>Hi there, I'm Gabi 👋</h3>
 
-  Greetings, I'm Gabrielle, a 17-year-old [transgender](https://en.wikipedia.org/wiki/Transgender) girl who's all about the coding life, especially in [Clojure](https://clojure.org) and functional programming languages. Compiler crafting is my jam, and I've got this knack for solving problems – the trickier, the better! Collaboration is my secret sauce, and I'm always up for teaming up to crush some goals. I'm a wild thinker, forever on the lookout for cool ways to upgrade existing tech or invent something totally new. Firm believer in using tech for good and making a positive impact. Oh, and by the way, I roll on the [autism spectrum](https://en.wikipedia.org/wiki/Autism_spectrum)!
+  Greetings, I'm Gabrielle, a 17-year-old [transgender](https://en.wikipedia.org/wiki/Transgender) girl who's all about the coding life, especially in [Clojure](https://clojure.org) and functional programming languages. [Type Theory](https://en.wikipedia.org/wiki/Type_theory) and crafting [compilers](https://en.wikipedia.org/wiki/Compiler) are in my jam, and I've got this knack for solving problems – the trickier, the better! Collaboration is my secret sauce, and I'm always up for teaming up to crush some goals. I'm a wild thinker, forever on the lookout for cool ways to upgrade existing tech or invent something totally new. Firm believer in using tech for good and making a positive impact. Oh, and by the way, I roll on the [autism spectrum](https://en.wikipedia.org/wiki/Autism_spectrum)!
   <br>
 </div>
 
