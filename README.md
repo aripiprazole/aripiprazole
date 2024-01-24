@@ -3,7 +3,7 @@
 
   <h3>Hi there, I'm Gabi 👋</h3>
 
-  Greetings, my name is Gabrielle. I'm a 17-year-old transgender girl on the autism spectrum. My primary language is [Clojure](https://clojure.org), and I enjoy crafting compilers. I have a talent for problem-solving, and I relish the opportunity to take on intricate challenges and find one-of-a-kind solutions. Collaboration is essential to me, and I am always happy to work with others to achieve shared objectives. I am an innovative thinker and constantly on the lookout for ways to enhance current technologies and invent new ones. I am a firm believer in using technology to create a better world, and I always look for methods to have a constructive impact.
+  Hey there, I'm Gabrielle, a 17-year-old [transgender](https://en.wikipedia.org/wiki/Transgender) girl who's all about the coding life, especially in [Clojure](https://clojure.org) and functional programming languages. Compiler crafting is my jam, and I've got this knack for solving problems – the trickier, the better! Collaboration is my secret sauce, and I'm always up for teaming up to crush some goals. I'm a wild thinker, forever on the lookout for cool ways to upgrade existing tech or invent something totally new. Firm believer in using tech for good and making a positive impact. Oh, and by the way, I roll on the [autism spectrum](https://en.wikipedia.org/wiki/Autism_spectrum)!
   <br>
 </div>
 
