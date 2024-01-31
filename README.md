@@ -11,7 +11,7 @@
 - 💻 Here's my personal [website](https://gabx.io)
 - 🔭 I’m currently working on personal projects
 - ❤ I like [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
-- 🇧🇷 I'm from [Minas Gerais, Brasil](https://en.wikipedia.org/wiki/Minas_Gerais) but currently living on [São Paulo](https://en.wikipedia.org/wiki/S%C3%A3o_Paulo)
+- 🇧🇷 I'm from [Minas Gerais](https://en.wikipedia.org/wiki/Minas_Gerais) but currently living on [São Paulo](https://en.wikipedia.org/wiki/S%C3%A3o_Paulo)
 - 😀 My pronouns are [she/her](https://en.pronouns.page/@aripiprazole)
 - 💡 My main languages are [Clojure](https://clojure.org/) and [Rust](https://www.rust-lang.org/)
 - 📮 Reach me out at <a href="mailto:you@gabx.io">you@gabx.io</a>
