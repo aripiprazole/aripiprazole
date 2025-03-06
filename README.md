@@ -22,7 +22,7 @@
 - 🧮 [writing an equation solver](https://dev.to/aripiprazole/writing-an-equation-solver-6b2)
 - ⭐ [gadt-like types in rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp)
 - � [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856) 
-- 🏳️‍⚧️ [rebasing old commits for trans people](https://aripiprazole.medium.com/rebasing-old-commits-for-trans-people-3740d1bc1157)
+- 🏳️‍⚧️ [rebasing old commits for people](https://aripiprazole.medium.com/rebasing-old-commits-for-trans-people-3740d1bc1157)
 - 🧪 [writing haskell in kotlin](https://github.com/aripiprazole/ekko/tree/main/docs)
 
 **~** meet my friends:
