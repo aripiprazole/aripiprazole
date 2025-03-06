@@ -33,7 +33,6 @@
 
 [gitlab](https://gitlab.com/lurasidone) |
 [twitter](https://twitter.com/io_gabx) |
-[bsky](https://bsky.app/profile/aripiprazole.dev) |
 [instagram](https://www.instagram.com/io.gabx) |
 [medium](https://medium.com/@aripiprazole) |
 [linkedin](https://www.linkedin.com/in/gabrielle-guimaraes-oliveira) |
