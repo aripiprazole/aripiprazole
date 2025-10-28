@@ -29,10 +29,8 @@
 - [ðê§†råÐïðl](https://github.com/oestradiol)
 - [𝖕𝖊𝖗𝖔𝖘𝖕𝖎𝖗𝖔𝖓𝖊](https://github.com/perospirone)
 
-[gitlab](https://gitlab.com/lurasidone) |
 [twitter](https://twitter.com/io_gabx) |
 [instagram](https://www.instagram.com/io.gabx) |
 [medium](https://medium.com/@aripiprazole) |
 [linkedin](https://www.linkedin.com/in/gabrielle-guimaraes-oliveira) |
-[wynncraft](https://wynncraft.com/stats/player/Brexpiprazole) |
-[wikipedia](https://en.wikipedia.org/wiki/Aripiprazole)
+[wynncraft](https://wynncraft.com/stats/player/Brexpiprazole)
