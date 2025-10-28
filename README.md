@@ -12,7 +12,6 @@
 - 🔭 i’m currently working on personal projects
 - ❤ i like [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
 - 🇧🇷 i'm from [minas gerais](https://en.wikipedia.org/wiki/Minas_Gerais) but currently living on [são paulo](https://en.wikipedia.org/wiki/S%C3%A3o_Paulo)
-- 😀 my pronouns are [she/her](https://en.pronouns.page/@aripiprazole)
 - 💡 my main languages are [clojure](https://clojure.org/) and [rust](https://www.rust-lang.org/)
 - 📮 reach me out at <a href="mailto:you@gabx.io">you@gabx.io</a>
 
