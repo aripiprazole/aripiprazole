@@ -23,14 +23,8 @@
 - � [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856) 
 - 🧪 [writing haskell in kotlin](https://github.com/aripiprazole/ekko/tree/main/docs)
 
-**~** meet my friends:
-
-- [ąէօʍօ×ҽէìղҽ](https://github.com/atomoxetine)
-- [ðê§†råÐïðl](https://github.com/oestradiol)
-- [𝖕𝖊𝖗𝖔𝖘𝖕𝖎𝖗𝖔𝖓𝖊](https://github.com/perospirone)
-
 [twitter](https://twitter.com/io_gabx) |
-[instagram](https://www.instagram.com/io.gabx) |
+[instagram](https://instagram.com/io.gabx) |
 [medium](https://medium.com/@aripiprazole) |
 [linkedin](https://www.linkedin.com/in/gabrielle-guimaraes-oliveira) |
 [wynncraft](https://wynncraft.com/stats/player/Brexpiprazole)
