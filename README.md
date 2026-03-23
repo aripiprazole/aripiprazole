@@ -25,5 +25,4 @@
 
 [x](https://x.com/io_gabx) |
 [medium](https://medium.com/@aripiprazole) |
-[linkedin](https://www.linkedin.com/in/gabrielle-guimaraes-oliveira) |
-[wynncraft](https://wynncraft.com/stats/player/Brexpiprazole)
+[linkedin](https://www.linkedin.com/in/aripiprazole)
