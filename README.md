@@ -1,5 +1,5 @@
 <div>
-  <img align="left" height="160px" src="profile.png" alt="Profile picture">
+  <img align="left" height="160px" src="avatar.jpg" alt="Profile picture">
 
   <h3>hi there, i'm gabi 👋</h3>
 
