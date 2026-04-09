@@ -3,11 +3,10 @@
 
   <h3>hi there, i'm gabi 👋</h3>
 
-  greetings, i'm gabrielle, a 19-year-old girl who's all about the coding life, especially in [clojure](https://clojure.org) and functional programming languages. [type theory](https://en.wikipedia.org/wiki/Type_theory) and crafting [compilers](https://en.wikipedia.org/wiki/Compiler) are in my jam, and i've got this knack for solving problems – the trickier, the better! collaboration is my secret sauce, and i'm always up for teaming up to crush some goals. i'm a wild thinker, forever on the lookout for cool ways to upgrade existing tech or invent something totally new. firm believer in using tech for good and making a positive impact.
+  greetings, i'm gabrielle, a person living in this world apparently. i like rust and compilers
   <br>
 </div>
 
-- 🕰 my elimination half-time is 75 hours (active metabolite is 94 hours)
 - 💻 here's my personal [website](https://gabx.io)
 - 🔭 i’m currently working on personal projects
 - ❤ i like [functional programming](https://en.wikipedia.org/wiki/Functional_programming)
