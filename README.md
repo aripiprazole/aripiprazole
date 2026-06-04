@@ -1,9 +1,7 @@
 <div>
   <img align="left" height="160px" src="avatar.jpg" alt="Profile picture">
 
-  <h3>hi there, i'm gabi 👋</h3>
-
-  greetings, i'm gabrielle, a person living in this world apparently. i like rust and compilers
+  <h3>hey there 👋</h3>
   <br>
 </div>
 
