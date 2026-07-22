@@ -1,0 +1,221 @@
+.Popover_container__PCQDO{position:relative}
+.Popover_arrow__xoQRf{border-left:.8rem solid transparent;border-right:.8rem solid transparent;border-top:.8rem solid var(--background-color);top:100%;left:calc(50% - 2.4rem);background:transparent}
+.Popover_arrow__xoQRf,.Popover_arrow__xoQRf:before{width:.8rem;height:.8rem;position:absolute;cursor:pointer}
+.Popover_arrow__xoQRf:before{top:-.8rem;left:-2.2rem;content:" ";padding:1.8rem}
+.Popover_popover__2Q3cW{position:absolute;bottom:calc(100% + 1.5rem);left:calc(-15.5rem + 50%);transform-origin:bottom;transition:transform .1s;background:var(--background-color);display:flex;flex-direction:column;column-gap:1rem;border-radius:1rem;box-shadow:0 6.25px 10px 0 rgba(0,0,0,.3);height:0;max-height:0;width:0;opacity:0;transform:scaleY(0);overflow-y:hidden}
+.Popover_open__G_kAf{height:auto;max-height:none;width:auto;min-width:31rem;opacity:1;transform:scaleY(1);overflow-y:initial}
+.Popover_content__OZ_rr{width:31rem;margin:1.5rem;display:flex;gap:1.2rem;overflow-x:hidden;overflow-y:visible;z-index:2}
+.Popover_content__OZ_rr>img{width:5rem;height:5rem;border-radius:1rem;z-index:3}
+.Popover_info__uzOml{display:flex;flex-direction:column;gap:.5rem;overflow:hidden;flex:1 1;z-index:2}
+.Popover_info__uzOml>*{text-overflow:clip;min-width:15rem}
+.Popover_info__uzOml footer{padding-top:1rem;display:flex;justify-content:flex-end}
+.Popover_info__uzOml header{display:flex;flex-direction:column}
+.Popover_info__uzOml header>p:before{content:"~";margin-right:.1rem}
+.Popover_info__uzOml header>p{display:flex;gap:.5rem;font-style:italic;font-size:.9rem;color:var(--text-color)}
+.Popover_info__uzOml header>p a{display:flex;gap:.5rem}
+.Popover_info__uzOml header>h3{font-size:1rem;font-weight:600;color:var(--text-color)}
+.Popover_content__OZ_rr main img{width:2.5rem}
+.Popover_content__OZ_rr main ul{display:flex;flex-wrap:wrap;gap:.5rem}
+.Popover_readMore__OS7jI{color:var(--text-color);font-weight:700;transition:.3s;display:flex;align-items:center;gap:.5rem}
+.Popover_readMore__OS7jI:hover{filter:opacity(.8)}
+.Popover_divider__8mCr3{height:1px;width:90%;margin:0 auto;background:var(--text-color);opacity:.5;display:flex}
+.Popover_items__4M1tE>span:not(:empty):not(:last-child){display:block;border-bottom:1px solid var(--text-color)}
+.Psychonaut_container__aFg7j{position:relative}
+.Psychonaut_arrow__Xu89Y{border-left:.8rem solid transparent;border-right:.8rem solid transparent;border-top:.8rem solid var(--background-color);top:100%;left:calc(50% - 2.4rem);background:transparent}
+.Psychonaut_arrow__Xu89Y,.Psychonaut_arrow__Xu89Y:before{width:.8rem;height:.8rem;position:absolute;cursor:pointer}
+.Psychonaut_arrow__Xu89Y:before{top:-.8rem;left:-2.2rem;content:" ";padding:1.8rem}
+.Psychonaut_popover__3bgaH{position:absolute;bottom:calc(100% + 1.5rem);left:calc(-15.5rem + 50%);transform-origin:bottom;transition:transform .1s;background:var(--background-color);display:flex;flex-direction:column;column-gap:1rem;border-radius:1rem;box-shadow:0 6.25px 10px 0 rgba(0,0,0,.3);height:0;max-height:0;width:0;opacity:0;transform:scaleY(0);overflow-y:hidden}
+.Psychonaut_open__nSnV_{height:auto;max-height:none;width:auto;min-width:31rem;opacity:1;transform:scaleY(1);overflow-y:initial}
+.Psychonaut_content__fXSk4{width:31rem;margin:1.5rem;display:flex;gap:1.2rem;overflow-x:hidden;overflow-y:visible;z-index:2}
+.Psychonaut_content__fXSk4>img{width:5rem;height:5rem;border-radius:1rem;z-index:3}
+.Psychonaut_info__L58_0{display:flex;flex-direction:column;gap:.5rem;overflow:hidden;flex:1 1;z-index:2}
+.Psychonaut_info__L58_0>*{text-overflow:clip;min-width:15rem}
+.Psychonaut_info__L58_0 footer{padding-top:1rem;display:flex;justify-content:flex-end}
+.Psychonaut_info__L58_0 header{display:flex;flex-direction:column}
+.Psychonaut_info__L58_0 header>p:before{content:"~";margin-right:.1rem}
+.Psychonaut_info__L58_0 header>p{display:flex;gap:.5rem;font-style:italic;font-size:.9rem;color:var(--text-color)}
+.Psychonaut_info__L58_0 header>p a{display:flex;gap:.5rem}
+.Psychonaut_info__L58_0 header>h3{font-size:1rem;font-weight:600;color:var(--text-color)}
+.Psychonaut_content__fXSk4 main img{width:2.5rem}
+.Psychonaut_content__fXSk4 main ul{display:flex;flex-wrap:wrap;gap:.5rem}
+.Psychonaut_readMore__BMnfa{color:var(--text-color);font-weight:700;transition:.3s;display:flex;align-items:center;gap:.5rem}
+.Psychonaut_readMore__BMnfa:hover{filter:opacity(.8)}
+.Psychonaut_divider__bAbHb{height:1px;width:90%;margin:0 auto;background:var(--text-color);opacity:.5;display:flex}
+.Psychonaut_items__L0_Eu>span:not(:empty):not(:last-child){display:block;border-bottom:1px solid var(--text-color)}
+.Psychonaut_content__fXSk4>img{background:#fefefe;padding:.5rem}
+.Psychonaut_info__L58_0 footer{justify-content:flex-start}
+.Psychonaut_info__L58_0 header{gap:.5rem}
+.Psychonaut_commonNames__3pyhD{display:flex;flex-wrap:wrap;row-gap:.1rem;column-gap:.3rem}
+.Psychonaut_commonNames__3pyhD li{color:#fefefe;background:#f83;padding:.2rem 1rem;border-radius:.5rem}
+.Psychonaut_classes__yn74P{display:flex;flex-wrap:wrap;row-gap:.1rem;column-gap:.3rem}
+.Psychonaut_classes__yn74P li{color:#fefefe;background:#4e33ff;padding:.1rem 1rem;border-radius:.5rem}
+.Psychonaut_roas__ap2K3{display:flex;flex-wrap:wrap;row-gap:.1rem;column-gap:.3rem}
+.Psychonaut_roas__ap2K3 li{color:#fefefe;background:#f38;padding:.1rem 1rem;border-radius:.5rem}
+.Github_container__O_ju_{position:relative}
+.Github_arrow__ODjrf{border-left:.8rem solid transparent;border-right:.8rem solid transparent;border-top:.8rem solid var(--background-color);top:100%;left:calc(50% - 2.4rem);background:transparent}
+.Github_arrow__ODjrf,.Github_arrow__ODjrf:before{width:.8rem;height:.8rem;position:absolute;cursor:pointer}
+.Github_arrow__ODjrf:before{top:-.8rem;left:-2.2rem;content:" ";padding:1.8rem}
+.Github_popover__Iyqi0{position:absolute;bottom:calc(100% + 1.5rem);left:calc(-15.5rem + 50%);transform-origin:bottom;transition:transform .1s;background:var(--background-color);display:flex;flex-direction:column;column-gap:1rem;border-radius:1rem;box-shadow:0 6.25px 10px 0 rgba(0,0,0,.3);height:0;max-height:0;width:0;opacity:0;transform:scaleY(0);overflow-y:hidden}
+.Github_open__BVb0d{height:auto;max-height:none;width:auto;min-width:31rem;opacity:1;transform:scaleY(1);overflow-y:initial}
+.Github_content__R6GOy{width:31rem;margin:1.5rem;display:flex;gap:1.2rem;overflow-x:hidden;overflow-y:visible;z-index:2}
+.Github_content__R6GOy>img{width:5rem;height:5rem;border-radius:1rem;z-index:3}
+.Github_info__rJob8{display:flex;flex-direction:column;gap:.5rem;overflow:hidden;flex:1 1;z-index:2}
+.Github_info__rJob8>*{text-overflow:clip;min-width:15rem}
+.Github_info__rJob8 footer{padding-top:1rem;display:flex;justify-content:flex-end}
+.Github_info__rJob8 header{display:flex;flex-direction:column}
+.Github_info__rJob8 header>p:before{content:"~";margin-right:.1rem}
+.Github_info__rJob8 header>p{display:flex;gap:.5rem;font-style:italic;font-size:.9rem;color:var(--text-color)}
+.Github_info__rJob8 header>p a{display:flex;gap:.5rem}
+.Github_info__rJob8 header>h3{font-size:1rem;font-weight:600;color:var(--text-color)}
+.Github_content__R6GOy main img{width:2.5rem}
+.Github_content__R6GOy main ul{display:flex;flex-wrap:wrap;gap:.5rem}
+.Github_readMore__sghrc{color:var(--text-color);font-weight:700;transition:.3s;display:flex;align-items:center;gap:.5rem}
+.Github_readMore__sghrc:hover{filter:opacity(.8)}
+.Github_divider__uOwF5{height:1px;width:90%;margin:0 auto;background:var(--text-color);opacity:.5;display:flex}
+.Github_items__BBaJf>span:not(:empty):not(:last-child){display:block;border-bottom:1px solid var(--text-color)}
+
+/*!
+ * My personal blog and portfolio website
+ * Copyright (C) 2023  Gabrielle Guimarães
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */.Medications_container__l0RYG{display:flex;flex-direction:column;gap:1rem;min-width:50%}
+.Medications_container__l0RYG>h3{color:var(--text-color)}
+@media(max-width:35rem){.Medications_container__l0RYG>h3{display:none}
+}
+.Medications_medication__i80h_{display:flex;color:var(--text-color);gap:1rem;align-items:center}
+.Medications_medication__i80h_ a{display:flex;align-items:center;gap:.5rem;color:var(--text-color);text-decoration:none;transition:.3s}
+.Medications_medication__i80h_ a:hover{filter:opacity(.8)}
+.Medications_medication__i80h_ h4{text-transform:capitalize}
+.Medications_icon__wrTms{background:#fefefe;height:2.2rem;width:2.2rem;display:flex;align-items:center;padding:.1rem;position:relative;border:1px solid var(--light-mode-border);border-radius:20%;overflow:hidden}
+.Medications_icon__wrTms>img{height:1.875rem}
+.Gitlab_container__QuRob{position:relative}
+.Gitlab_arrow__PGiHw{border-left:.8rem solid transparent;border-right:.8rem solid transparent;border-top:.8rem solid var(--background-color);top:100%;left:calc(50% - 2.4rem);background:transparent}
+.Gitlab_arrow__PGiHw,.Gitlab_arrow__PGiHw:before{width:.8rem;height:.8rem;position:absolute;cursor:pointer}
+.Gitlab_arrow__PGiHw:before{top:-.8rem;left:-2.2rem;content:" ";padding:1.8rem}
+.Gitlab_popover__pMPGo{position:absolute;bottom:calc(100% + 1.5rem);left:calc(-15.5rem + 50%);transform-origin:bottom;transition:transform .1s;background:var(--background-color);display:flex;flex-direction:column;column-gap:1rem;border-radius:1rem;box-shadow:0 6.25px 10px 0 rgba(0,0,0,.3);height:0;max-height:0;width:0;opacity:0;transform:scaleY(0);overflow-y:hidden}
+.Gitlab_open__xtvBn{height:auto;max-height:none;width:auto;min-width:31rem;opacity:1;transform:scaleY(1);overflow-y:initial}
+.Gitlab_content__iZwSQ{width:31rem;margin:1.5rem;display:flex;gap:1.2rem;overflow-x:hidden;overflow-y:visible;z-index:2}
+.Gitlab_content__iZwSQ>img{width:5rem;height:5rem;border-radius:1rem;z-index:3}
+.Gitlab_info__De_nl{display:flex;flex-direction:column;gap:.5rem;overflow:hidden;flex:1 1;z-index:2}
+.Gitlab_info__De_nl>*{text-overflow:clip;min-width:15rem}
+.Gitlab_info__De_nl footer{padding-top:1rem;display:flex;justify-content:flex-end}
+.Gitlab_info__De_nl header{display:flex;flex-direction:column}
+.Gitlab_info__De_nl header>p:before{content:"~";margin-right:.1rem}
+.Gitlab_info__De_nl header>p{display:flex;gap:.5rem;font-style:italic;font-size:.9rem;color:var(--text-color)}
+.Gitlab_info__De_nl header>p a{display:flex;gap:.5rem}
+.Gitlab_info__De_nl header>h3{font-size:1rem;font-weight:600;color:var(--text-color)}
+.Gitlab_content__iZwSQ main img{width:2.5rem}
+.Gitlab_content__iZwSQ main ul{display:flex;flex-wrap:wrap;gap:.5rem}
+.Gitlab_readMore__R6dl8{color:var(--text-color);font-weight:700;transition:.3s;display:flex;align-items:center;gap:.5rem}
+.Gitlab_readMore__R6dl8:hover{filter:opacity(.8)}
+.Gitlab_divider__1G4ip{height:1px;width:90%;margin:0 auto;background:var(--text-color);opacity:.5;display:flex}
+.Gitlab_items__KiQd0>span:not(:empty):not(:last-child){display:block;border-bottom:1px solid var(--text-color)}
+.Wynncraft_container__bqS80{position:relative}
+.Wynncraft_arrow__5Qh_h{border-left:.8rem solid transparent;border-right:.8rem solid transparent;border-top:.8rem solid var(--background-color);top:100%;left:calc(50% - 2.4rem);background:transparent}
+.Wynncraft_arrow__5Qh_h,.Wynncraft_arrow__5Qh_h:before{width:.8rem;height:.8rem;position:absolute;cursor:pointer}
+.Wynncraft_arrow__5Qh_h:before{top:-.8rem;left:-2.2rem;content:" ";padding:1.8rem}
+.Wynncraft_popover__3W4BL{position:absolute;bottom:calc(100% + 1.5rem);left:calc(-15.5rem + 50%);transform-origin:bottom;transition:transform .1s;background:var(--background-color);display:flex;flex-direction:column;column-gap:1rem;border-radius:1rem;box-shadow:0 6.25px 10px 0 rgba(0,0,0,.3);height:0;max-height:0;width:0;opacity:0;transform:scaleY(0);overflow-y:hidden}
+.Wynncraft_open__SpULX{height:auto;max-height:none;width:auto;min-width:31rem;opacity:1;transform:scaleY(1);overflow-y:initial}
+.Wynncraft_content__Xt7ac{width:31rem;margin:1.5rem;display:flex;gap:1.2rem;overflow-x:hidden;overflow-y:visible;z-index:2}
+.Wynncraft_content__Xt7ac>img{width:5rem;height:5rem;border-radius:1rem;z-index:3}
+.Wynncraft_info__rQ9Yp{display:flex;flex-direction:column;gap:.5rem;overflow:hidden;flex:1 1;z-index:2}
+.Wynncraft_info__rQ9Yp>*{text-overflow:clip;min-width:15rem}
+.Wynncraft_info__rQ9Yp footer{padding-top:1rem;display:flex;justify-content:flex-end}
+.Wynncraft_info__rQ9Yp header{display:flex;flex-direction:column}
+.Wynncraft_info__rQ9Yp header>p:before{content:"~";margin-right:.1rem}
+.Wynncraft_info__rQ9Yp header>p{display:flex;gap:.5rem;font-style:italic;font-size:.9rem;color:var(--text-color)}
+.Wynncraft_info__rQ9Yp header>p a{display:flex;gap:.5rem}
+.Wynncraft_info__rQ9Yp header>h3{font-size:1rem;font-weight:600;color:var(--text-color)}
+.Wynncraft_content__Xt7ac main img{width:2.5rem}
+.Wynncraft_content__Xt7ac main ul{display:flex;flex-wrap:wrap;gap:.5rem}
+.Wynncraft_readMore__mG9ty{color:var(--text-color);font-weight:700;transition:.3s;display:flex;align-items:center;gap:.5rem}
+.Wynncraft_readMore__mG9ty:hover{filter:opacity(.8)}
+.Wynncraft_divider__UdABc{height:1px;width:90%;margin:0 auto;background:var(--text-color);opacity:.5;display:flex}
+.Wynncraft_items__zv99o>span:not(:empty):not(:last-child){display:block;border-bottom:1px solid var(--text-color)}
+.Wynncraft_info__rQ9Yp{--text-color:#fefefe!important}
+.Wynncraft_background__O_ZtB{position:absolute;top:0;bottom:0;right:0;left:0;width:100%;height:calc(100% + .8rem);z-index:-1;border-radius:1rem}
+
+/*!
+ * My personal blog and portfolio website
+ * Copyright (C) 2023  Gabrielle Guimarães
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */.Sidebar_container__Nmhbu{display:flex;flex-direction:column;flex-grow:revert;min-width:21.25rem}
+.Sidebar_profile__IuT9L{max-width:21.25rem;max-height:21.25rem;min-width:20.625rem;min-height:20.625rem}
+.Sidebar_profile__IuT9L>img{width:100%;height:100%;border:1.2px solid var(--light-mode-border);border-radius:1.8rem}
+@media(max-width:35rem){.Sidebar_profile__IuT9L{min-width:2.5rem;min-height:2.5rem;max-width:100%;max-height:100%}
+}
+.Sidebar_wrapper__rH2x2{margin:0 auto;display:flex;flex-direction:column;gap:2rem}
+@media(max-width:55rem){.Sidebar_wrapper__rH2x2{width:100%;flex-direction:row}
+}
+@media(max-width:35rem){.Sidebar_wrapper__rH2x2{flex-direction:column}
+}
+
+/*!
+ * My personal blog and portfolio website
+ * Copyright (C) 2023  Gabrielle Guimarães
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */.Root_container__i9rYA{display:flex;width:100%;height:100%;justify-content:center;min-width:25.625rem;background:var(--background-color)}
+.Root_main__rKWpL{width:100%;max-width:80rem;display:flex;gap:3rem;margin:auto;padding:10rem 2rem;position:relative;z-index:2;background:transparent}
+@media(max-width:55rem){.Root_main__rKWpL{flex-direction:column}
+}
+@media(max-width:35rem){.Root_main__rKWpL{padding:4rem 2rem}
+}
+.Root_content__NQXv4{display:flex;flex-direction:column;gap:3rem;min-width:30rem;color:var(--text-color)}
+.Root_content__NQXv4>*{width:100%}
+.Root_content__NQXv4>p{font-size:1.2rem;text-align:justify}
+.Root_content__NQXv4>h1{font-size:2rem}
+@media(max-width:55rem){.Root_content__NQXv4{min-width:revert}
+}
+.Social_container__fsRz0{display:flex;gap:2rem;flex-wrap:wrap;justify-content:flex-end}
+.Social_container__fsRz0 a{cursor:pointer;display:flex;align-items:center;color:var(--text-color);transition:.3s}
+.Social_container__fsRz0 a:hover{filter:opacity(.8)}
+.Footer_container__FlbTf{display:flex;justify-content:flex-end;align-items:center;width:100%}
+@media(max-width:568px){.Footer_container__FlbTf{flex-direction:column;gap:1.5rem;align-items:flex-end;justify-content:flex-end}
+}
+.Work_container__mVRRR{display:flex;flex-direction:column;gap:1rem}
+.Work_container__mVRRR>h2{font-size:1.5rem}
+.Work_container__mVRRR>p{font-size:1.2rem;margin-bottom:1.5rem;text-align:justify}
+.Work_readMore__rRNXo{color:var(--text-color);font-weight:700;padding:.5rem 0;transition:.3s}
+.Work_readMore__rRNXo:hover{filter:opacity(.8)}
+.Work_articles___LOj2{display:flex;flex-direction:column;gap:1rem}
+.Work_work__TQl_2{display:flex;gap:1rem}
+.Work_work__TQl_2 main{display:flex;flex-direction:column;gap:.2rem}
+.Work_work__TQl_2 main a{display:flex;align-items:center;gap:.5rem}
+.Work_work__TQl_2 main p{color:var(--text-color-dimmed);text-align:justify}
+.Work_icon__lEMwR{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;height:6.8rem}

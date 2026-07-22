@@ -1,0 +1,25 @@
+/*!
+ * My personal blog and portfolio website
+ * Copyright (C) 2023  Gabrielle Guimarães
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+:root{color-scheme:light;--background-color:#fefefe;--text-color:#1a1a1a;--text-color-dimmed:#1c1c1c;--light-mode-border:#1c1c1c}
+*{margin:0;padding:0;box-sizing:border-box}
+*,button,input,optgroup,option,select,textarea{font-family:JetBrains Mono,monospace;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body,html{background:var(--background-color);height:100%;width:100%;min-width:390px;font-size:13px}
+#root{background:var(--background-color);min-height:100%;width:100%;min-width:390px;font-size:13px}
+:focus{border:none;outline:none}
+a{text-decoration:none}
+li,ul{list-style:none}

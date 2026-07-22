@@ -1,0 +1,1774 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hi, I'm Gabi!</title>
+    <link rel="icon" href="https://gabx.io/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com/"
+      crossorigin="true"
+    />
+    <meta
+      name="description"
+      content="My name is Gabrielle and I am a 19-year-old software engineer with a passion for functional programming and the Kotlin programming language. In my free time, I enjoy playing Minecraft and working on projects related to compilers. I am excited to share my skills and experience with others in the field."
+    />
+    <meta property="og:title" content="Hi, I&#39;m Gabi! 👋" />
+    <meta
+      property="og:description"
+      content="My name is Gabrielle and I am a 19-year-old software engineer with a passion for functional programming and the Kotlin programming language. In my free time, I enjoy playing Minecraft and working on projects related to compilers. I am excited to share my skills and experience with others in the field."
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/aripiprazole/aripiprazole/main/profile.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <link rel="stylesheet" href="45303dd7ac930ccd.css" />
+    <link rel="stylesheet" href="b0960ec2f9149860.css" />
+    <style>
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8lqxjPg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxjPg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8FqtjPg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8L6tjPg.woff)
+          format("woff");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD2OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD_OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD4OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+          U+03A3-03FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD0OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+          U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+          U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD1OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+          U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+          U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD7OwGtT0rU.woff2)
+          format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD2OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD_OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD4OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+          U+03A3-03FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD0OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+          U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+          U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD1OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+          U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+          U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD7OwGtT0rU.woff2)
+          format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD2OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD_OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD4OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+          U+03A3-03FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD0OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+          U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+          U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD1OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+          U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+          U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD7OwGtT0rU.woff2)
+          format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD2OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+          U+FE2E-FE2F;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD_OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD4OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+          U+03A3-03FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD0OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+          U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+          U+1EA0-1EF9, U+20AB;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD1OwGtT0rU3BE.woff2)
+          format("woff2");
+        unicode-range:
+          U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+          U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+          U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/jetbrainsmono/v20/tDbV2o-flEEny0FZhsfKu5WU4xD7OwGtT0rU.woff2)
+          format("woff2");
+        unicode-range:
+          U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+          U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="Root_container__i9rYA">
+        <main class="Root_main__rKWpL">
+          <div class="Sidebar_container__Nmhbu">
+            <div class="Sidebar_wrapper__rH2x2">
+              <div class="Sidebar_profile__IuT9L">
+                <img
+                  alt="Gabrielle Guimarães"
+                  loading="eager"
+                  width="680"
+                  height="680"
+                  decoding="async"
+                  src="profile.jpg"
+                />
+              </div>
+              <div class="Medications_container__l0RYG">
+                <h3>Meet the other compounds! 🙂</h3>
+                <div class="Medications_medication__i80h_">
+                  ~
+                  <div class="Medications_icon__wrTms">
+                    <img
+                      alt="aripiprazole"
+                      loading="lazy"
+                      width="36"
+                      height="36"
+                      decoding="async"
+                      src="aripiprazole.jpg"
+                    />
+                  </div>
+                  <div class="Popover_container__PCQDO">
+                    <a href="https://github.com/aripiprazole"
+                      >aripiprazole<svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                        ></path>
+                        <path
+                          d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div
+                        class="Popover_arrow__xoQRf"
+                        style="left: 108.354px"
+                      ></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                        ><span
+                          ><div class="Github_content__R6GOy">
+                            <img />
+                            <div class="Github_info__rJob8">
+                              <header><h3></h3></header>
+                              <main></main>
+                              <footer>
+                                <a
+                                  href="https://github.com/aripiprazole"
+                                  class="Github_readMore__sghrc"
+                                  ><svg
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                      points="15 3 21 3 21 9"
+                                    ></polyline>
+                                    <line
+                                      x1="10"
+                                      y1="14"
+                                      x2="21"
+                                      y2="3"
+                                    ></line></svg
+                                  >Read more</a
+                                >
+                              </footer>
+                            </div>
+                          </div></span
+                        ></span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="Medications_medication__i80h_">
+                  ~
+                  <div class="Medications_icon__wrTms">
+                    <img
+                      alt="atomoxetine"
+                      loading="lazy"
+                      width="36"
+                      height="36"
+                      decoding="async"
+                      src="atomoxetine.jpg"
+                    />
+                  </div>
+                  <div class="Popover_container__PCQDO">
+                    <a href="https://github.com/atomoxetine"
+                      >atomoxetine<svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                        ></path>
+                        <path
+                          d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div
+                        class="Popover_arrow__xoQRf"
+                        style="left: 112.25px"
+                      ></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                        ><span
+                          ><div class="Github_content__R6GOy">
+                            <img />
+                            <div class="Github_info__rJob8">
+                              <header><h3></h3></header>
+                              <main></main>
+                              <footer>
+                                <a
+                                  href="https://github.com/atomoxetine"
+                                  class="Github_readMore__sghrc"
+                                  ><svg
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                      points="15 3 21 3 21 9"
+                                    ></polyline>
+                                    <line
+                                      x1="10"
+                                      y1="14"
+                                      x2="21"
+                                      y2="3"
+                                    ></line></svg
+                                  >Read more</a
+                                >
+                              </footer>
+                            </div>
+                          </div></span
+                        ></span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="Medications_medication__i80h_">
+                  ~
+                  <div class="Medications_icon__wrTms">
+                    <img
+                      alt="oestradiol"
+                      loading="lazy"
+                      width="36"
+                      height="36"
+                      decoding="async"
+                      src="perospirone.jpg"
+                    />
+                  </div>
+                  <div class="Popover_container__PCQDO">
+                    <a href="https://github.com/oestradiol"
+                      >oestradiol<svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                        ></path>
+                        <path
+                          d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div
+                        class="Popover_arrow__xoQRf"
+                        style="left: 116.156px"
+                      ></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                        ><span
+                          ><div class="Github_content__R6GOy">
+                            <img />
+                            <div class="Github_info__rJob8">
+                              <header><h3></h3></header>
+                              <main></main>
+                              <footer>
+                                <a
+                                  href="https://github.com/oestradiol"
+                                  class="Github_readMore__sghrc"
+                                  ><svg
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                      points="15 3 21 3 21 9"
+                                    ></polyline>
+                                    <line
+                                      x1="10"
+                                      y1="14"
+                                      x2="21"
+                                      y2="3"
+                                    ></line></svg
+                                  >Read more</a
+                                >
+                              </footer>
+                            </div>
+                          </div></span
+                        ></span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="Medications_medication__i80h_">
+                  ~
+                  <div class="Medications_icon__wrTms">
+                    <img
+                      alt="perospirone"
+                      loading="lazy"
+                      width="36"
+                      height="36"
+                      decoding="async"
+                      src="perospirone.jpg"
+                    />
+                  </div>
+                  <div class="Popover_container__PCQDO">
+                    <a href="https://github.com/perospirone"
+                      >perospirone<svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="1em"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                        ></path>
+                        <path
+                          d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div
+                        class="Popover_arrow__xoQRf"
+                        style="left: 112.25px"
+                      ></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                        ><span
+                          ><div class="Github_content__R6GOy">
+                            <img />
+                            <div class="Github_info__rJob8">
+                              <header><h3></h3></header>
+                              <main></main>
+                              <footer>
+                                <a
+                                  href="https://github.com/perospirone"
+                                  class="Github_readMore__sghrc"
+                                  ><svg
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                      points="15 3 21 3 21 9"
+                                    ></polyline>
+                                    <line
+                                      x1="10"
+                                      y1="14"
+                                      x2="21"
+                                      y2="3"
+                                    ></line></svg
+                                  >Read more</a
+                                >
+                              </footer>
+                            </div>
+                          </div></span
+                        ></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="Root_content__NQXv4">
+            <h1>Hi, I'm Gabi! 👋</h1>
+            <p>
+              My name is Gabrielle and I am a 19-year-old software
+              engineer with a passion for functional programming and the
+              Kotlin programming language. In my free time, I enjoy
+              playing Minecraft and working on projects related to
+              compilers. I am excited to share my skills and experience
+              with others in the field.
+            </p>
+            <div class="Work_container__mVRRR">
+              <h2>My projects 🧪</h2>
+              <p>
+                I'm passionate about compilers, type theory, the Minecraft
+                protocol, and Hindley Milner! These topics perfectly blend
+                my love for programming and problem-solving. Compilers
+                transform code into machine code, while Hindley Milner
+                adds elegance and safety to the process. Tinkering with
+                the Minecraft protocol to optimize and customize gameplay
+                is a joy. I love pushing the boundaries of programming and
+                seeking new challenges!
+              </p>
+              <ul class="Work_articles___LOj2">
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Plank</h3>
+                      <p>
+                        A functional programming language with a focus on
+                        simplicity and ease of use. Plank is a statically
+                        typed language with a syntax similar to Kotlin,
+                        and a compiler written in Kotlin...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://github.com/aripiprazole/plank"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Trazodone</h3>
+                      <p>
+                        A LLVM backend for HVM that runs just-in-time
+                        compilation, and abstract the codegen into
+                        multiple steps to be easy to generate LLVM, Rust,
+                        or any target, and has a built-in evaluator...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://github.com/aripiprazole/trazodone"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Asena</h3>
+                      <p>
+                        Incremental/single-pass based compiler,the API can
+                        be either used for Single-Pass Compilingand for
+                        building LSP, orthings that would need incremental
+                        pipelines. Its a study project of mine for
+                        studying incremental compilers and
+                        package-managers...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://github.com/aripiprazole/asena"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Lura</h3>
+                      <p>
+                        The Lura compiler is the continuation of Asena, it
+                        aims an incremental and query-based compiler with
+                        focus in a new tooling toolkit.
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://lurasidone.vercel.app/"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="34"
+                          width="34"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"
+                          ></path>
+                          <path
+                            d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Andesite</h3>
+                      <p>
+                        A library for Minecraft protocol development that
+                        makes easier to develop servers and stuff directly
+                        with the protocol, like a minecraft server with
+                        void, or even a proxy...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://github.com/aripiprazole/andesite"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="34"
+                          width="34"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <polygon
+                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                          ></polygon>
+                        </svg>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Bupropion</h3>
+                      <p>
+                        Bupropion is a library based on Miette error
+                        handling that provides a way to handle errors in a
+                        functional way, and it is very similar to Rust
+                        error handling and Ariadne too. It is a beautiful
+                        way to present your errors...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://crates.io/crates/bupropion"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+              </ul>
+            </div>
+            <div class="Work_container__mVRRR">
+              <h2>My work ️❤️️</h2>
+              <p>
+                I specialize in web site and working with the Minecraft
+                protocol. With years of experience in software
+                development, I have a passion for creating efficient and
+                reliable tools for programming and game development. Let's
+                bring your ideas to life!
+              </p>
+              <ul class="Work_articles___LOj2">
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="34"
+                          width="34"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"
+                          ></path>
+                          <path
+                            d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>
+                        Writing a Minecraft Protocol implementation in
+                        Kotlin
+                      </h3>
+                      <p>
+                        A Minecraft Server/Protocol project is very cool
+                        to practice concurrency, and tooling stuff, which
+                        is very cool and useful nowadays...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://medium.com/@gabrielleeg1/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Defunctionalization</h3>
+                      <p>
+                        Defunctionalization is a way to transform
+                        higher-order functions in closures, that can be
+                        compiled in a lower level like LLVM, C, or even
+                        directly on Machine Code. For this task, we can
+                        use Closure...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://aripiprazole.medium.com/defunctionalization-5fd03b21813e"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <svg
+                          stroke="currentColor"
+                          fill="currentColor"
+                          stroke-width="0"
+                          viewBox="0 0 16 16"
+                          height="34"
+                          width="34"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm5 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm-5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm.79-5.373c.112-.078.26-.17.444-.275L3.524 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282c.024-.203.065-.37.123-.498a1.38 1.38 0 0 1 .252-.37 1.94 1.94 0 0 1 .346-.298zm2.167 0c.113-.078.262-.17.445-.275L5.692 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282a1.75 1.75 0 0 1 .118-.492c.058-.13.144-.254.257-.375a1.94 1.94 0 0 1 .346-.3z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>
+                        Rebasing old commits for people who has changed
+                        their name
+                      </h3>
+                      <p>
+                        Hello, my name is Gabrielle, and I’ve changed my
+                        name, so here I want to present some techniques to
+                        rebase your old commits into new ones with your
+                        new name...
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://aripiprazole.medium.com/rebasing-old-commits-for-trans-people-3740d1bc1157"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="34"
+                          width="34"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <rect
+                            x="4"
+                            y="4"
+                            width="16"
+                            height="16"
+                            rx="2"
+                            ry="2"
+                          ></rect>
+                          <rect x="9" y="9" width="6" height="6"></rect>
+                          <line x1="9" y1="1" x2="9" y2="4"></line>
+                          <line x1="15" y1="1" x2="15" y2="4"></line>
+                          <line x1="9" y1="20" x2="9" y2="23"></line>
+                          <line x1="15" y1="20" x2="15" y2="23"></line>
+                          <line x1="20" y1="9" x2="23" y2="9"></line>
+                          <line x1="20" y1="14" x2="23" y2="14"></line>
+                          <line x1="1" y1="9" x2="4" y2="9"></line>
+                          <line x1="1" y1="14" x2="4" y2="14"></line>
+                        </svg>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Writing an Equation Solver</h3>
+                      <p>
+                        Writing an Equation Solver is a process that is
+                        made of: parsing, equating/unifying and
+                        rewriting.It is a powerful project that allows us
+                        to learn more about logic and functional
+                        programming.
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://github.com/aripiprazole/eq"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>
+                        Driving Complete and Easy Bidirectional
+                        Typechecking for Higher-Rank Polymorphism in Rust
+                      </h3>
+                      <p>
+                        The main goal of this article is to make some
+                        comments about mb64 implementation of the Complete
+                        and Easy.. paper, but implementing it in pure rust
+                        code, and some optimizations, like de bruijin
+                        levels and indexes!
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>GADT-like types in Rust</h3>
+                      <p>
+                        I think that GADTs are a very powerful feature of
+                        Haskell, and I would like tohave something similar
+                        in Rust. I think this is the closestthing to GADTs
+                        in Rust.
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+                <li>
+                  <article class="Work_work__TQl_2">
+                    <div class="Work_icon__lEMwR">
+                      <div>
+                        <div
+                          style="
+                            width: 34px;
+                            height: 34px;
+                            display: flex;
+                            font-size: 34px;
+                            font-weight: bolder;
+                            align-items: center;
+                            justify-content: center;
+                            user-select: none;
+                          "
+                        >
+                          <span>λ</span>
+                        </div>
+                      </div>
+                    </div>
+                    <main>
+                      <h3>Writing Haskell in Kotlin</h3>
+                      <p>
+                        Talks about implementing a Haskell-like
+                        interpreter in Kotlin. That comes from writing the
+                        parser, type system, context resolving to the
+                        interpreter. The goal of this article, is to show
+                        a short introduction to compilers... (STILL
+                        INCOMPLETE)
+                      </p>
+                      <a
+                        class="Work_readMore__rRNXo"
+                        href="https://github.com/aripiprazole/ekko/tree/main/docs"
+                        ><svg
+                          stroke="currentColor"
+                          fill="none"
+                          stroke-width="2"
+                          viewBox="0 0 24 24"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                          ></path>
+                          <polyline points="15 3 21 3 21 9"></polyline>
+                          <line
+                            x1="10"
+                            y1="14"
+                            x2="21"
+                            y2="3"
+                          ></line></svg
+                        >Read more</a
+                      >
+                    </main>
+                  </article>
+                </li>
+              </ul>
+            </div>
+            <footer class="Footer_container__FlbTf">
+              <ul class="Social_container__fsRz0">
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://www.linkedin.com/in/aripiprazole"
+                      aria-label="Go to Gabi&#39;s linkedin"
+                      ><svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                        ></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle></svg
+                    ></a>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://aripiprazole.medium.com/"
+                      aria-label="Go to Gabi&#39;s medium"
+                      ><svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <desc></desc>
+                        <path
+                          stroke="none"
+                          d="M0 0h24v24H0z"
+                          fill="none"
+                        ></path>
+                        <rect
+                          x="4"
+                          y="4"
+                          width="16"
+                          height="16"
+                          rx="2"
+                        ></rect>
+                        <path d="M8 9h1l3 3l3 -3h1"></path>
+                        <line x1="8" y1="15" x2="10" y2="15"></line>
+                        <line x1="14" y1="15" x2="16" y2="15"></line>
+                        <line x1="9" y1="9" x2="9" y2="15"></line>
+                        <line x1="15" y1="9" x2="15" y2="15"></line></svg
+                    ></a>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://github.com/aripiprazole"
+                      aria-label="Go to Gabi&#39;s github"
+                      ><svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div class="Popover_arrow__xoQRf"></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span
+                          ><div class="Github_content__R6GOy">
+                            <img />
+                            <div class="Github_info__rJob8">
+                              <header><h3></h3></header>
+                              <main></main>
+                              <footer>
+                                <a
+                                  href="https://github.com/aripiprazole"
+                                  class="Github_readMore__sghrc"
+                                  ><svg
+                                    stroke="currentColor"
+                                    fill="none"
+                                    stroke-width="2"
+                                    viewBox="0 0 24 24"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    height="1em"
+                                    width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                    ></path>
+                                    <polyline
+                                      points="15 3 21 3 21 9"
+                                    ></polyline>
+                                    <line
+                                      x1="10"
+                                      y1="14"
+                                      x2="21"
+                                      y2="3"
+                                    ></line></svg
+                                  >Read more</a
+                                >
+                              </footer>
+                            </div>
+                          </div></span
+                        ></span
+                      >
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://gitlab.com/lurasidone"
+                      aria-label="Go to Gabi&#39;s lurasidone"
+                      ><svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div class="Popover_arrow__xoQRf"></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                      ></span>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://instagram.com/io.gabx"
+                      aria-label="Go to Gabi&#39;s instagram"
+                      ><svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <rect
+                          x="2"
+                          y="2"
+                          width="20"
+                          height="20"
+                          rx="5"
+                          ry="5"
+                        ></rect>
+                        <path
+                          d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                        ></path>
+                        <line
+                          x1="17.5"
+                          y1="6.5"
+                          x2="17.51"
+                          y2="6.5"
+                        ></line></svg
+                    ></a>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://twitter.com/io_gabx"
+                      aria-label="Go to Gabi&#39;s twitter"
+                      ><svg
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                        ></path></svg
+                    ></a>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://wynncraft.com/stats/player/Brexpiprazole"
+                      aria-label="Go to Gabi&#39;s wynncraft"
+                      ><svg
+                        width="28px"
+                        height="28px"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 27 28"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M6.5 3L1.5 8L7 19.5L5 23.5H8.5L10.5 26L13 21L17.5 24.5L20 22.5L21.5 12L25.5 8L20 7.5L16.5 16L15 13.5L10.5 16L6.5 3Z"
+                          stroke-linejoin="round"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div class="Popover_arrow__xoQRf"></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                      ></span>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="Popover_container__PCQDO">
+                    <a
+                      href="https://en.wikipedia.org/wiki/Aripiprazole"
+                      aria-label="Go to Gabi&#39;s psychonaut"
+                      ><svg
+                        stroke="currentColor"
+                        fill="currentColor"
+                        stroke-width="0"
+                        viewBox="0 0 512 512"
+                        height="28px"
+                        width="28px"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M433.814 68.664c-2.74.05-5.495.423-8.242 1.152-8.47 2.25-15.3 7.512-20.44 14.49C292.905 120.865 186.494 154.58 75.276 190.4c-39.714 12.79-64.6 51.163-53.006 86.784 11.597 35.62 54.342 52.277 94.035 39.277l-.002.002c109.41-35.827 214.424-69.036 325.12-104.656.56.212 1.13.39 1.694.58-2.62 2.935-4.226 6.796-4.226 11.04 0 9.164 7.43 16.593 16.594 16.593 9.165 0 16.596-7.43 16.596-16.593 0-4.32-1.664-8.24-4.367-11.192 12.75-4.865 21.353-16.866 25.535-30.898 4.547-15.257 4.504-33.654-.584-52.48-5.088-18.828-14.327-34.77-25.94-45.712-8.712-8.206-19.263-13.79-30.175-14.43-.91-.052-1.822-.07-2.736-.054zm.497 18.68c.455-.007.914.005 1.377.035 5.567.358 11.818 3.34 18.22 9.37 8.535 8.04 16.44 21.165 20.716 36.986 3.622 13.4 4 26.397 2.012 36.852h-52.783c-3.517-6.207-6.512-13.352-8.622-21.158-4.276-15.822-4.046-31.094-.716-42.266 3.33-11.172 9.122-17.497 15.855-19.285 1.262-.336 2.578-.517 3.94-.536zm-38.414 17.043c-3.815 14.734-3.516 32.133 1.29 49.92 1.544 5.707 3.472 11.143 5.728 16.26h-151.22c-64.405 20.742-125.856 40.507-163.35 52.59-23.24 7.486-35.353 27.407-30.406 42.593 4.946 15.188 26.582 24.333 49.75 16.75 66.89-21.89 199.01-64.39 302.822-97.803 3.76 5.807 7.998 10.967 12.62 15.323.066.06.135.118.2.18-104.876 33.753-241.66 77.74-309.83 100.05-30.827 10.09-64.424-1.334-73.344-28.72-8.92-27.385 11.603-56.22 42.438-66.155 68.055-21.93 208.2-66.996 313.302-100.988zm59.58 180.205c-16.948 63.255-40.507 54.472-40.507 91.5 0 22.36 18.146 40.508 40.507 40.508 22.36 0 40.507-18.147 40.507-40.508 0-39.97-23.256-27.12-40.507-91.5z"
+                        ></path></svg
+                    ></a>
+                    <div class="Popover_popover__2Q3cW">
+                      <div class="Popover_arrow__xoQRf"></div>
+                      <span class="Popover_items__4M1tE"
+                        ><span></span
+                      ></span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </footer>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
