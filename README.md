@@ -29,6 +29,8 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 - [gadt-like types in rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp) -- gadts are useful, and gats are too, why not combine both?
 - [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856) -- mutable implementation of bidirectional type system
 
+hmu at [you@gabx.io](mailto:you@gabx) and lets have a rapid chess match :)
+
 [twitter](https://x.com/io_gabx) |
 [medium](https://medium.com/@aripiprazole) | [chess](https://www.chess.com/member/iogabx) |
 [linkedin](https://www.linkedin.com/in/aripiprazole)
