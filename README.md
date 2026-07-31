@@ -1,5 +1,5 @@
 <div>
-  <img align="left" height="160px" src="avatar.jpg" alt="Profile picture">
+  <img align="left" height="160px" src="public/profile.png" alt="Profile picture">
 
   <h3>hey adventurer</h3>
   <br>
@@ -7,13 +7,15 @@
 
 software engineer, amateur chess player, somewhat autistic and an inherently curious human being, always pursuing new knowledgement. i deeply despise cowardness and complacentness and i'm fascinated by how our world works, growing up with computers led me to believe the best way to understand it is through computer science and math, which evolved into a passion towards PLT, compilers and DSLs.
 
+### public stuff
+
 [zed unicode](https://zed.dev/extensions/unicode)
 [commune ai subspace](https://github.com/commune-ai/subspace)
 [woovi java sdk](https://github.com/woovibr/java-sdk)
 [kind language server](https://marketplace.visualstudio.com/items?itemname=kind-language-server.eszopiclone)
 [trazodone](https://github.com/aripiprazole/trazodone)
 
-### cool stuff
+### other cool stuff
 
 - [rinha de compiler](https://github.com/aripiprazole/rinha-de-compiler) -- online hackathon about compilers
 - [andesite](https://github.com/aripiprazole/andesite) -- minecraft protocol lib with [kotlinx.serialization](https://github.com/kotlin/kotlinx.serialization)
