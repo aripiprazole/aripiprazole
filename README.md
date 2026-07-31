@@ -13,13 +13,13 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 [kind language server](https://marketplace.visualstudio.com/items?itemname=kind-language-server.eszopiclone)
 [trazodone](https://github.com/aripiprazole/trazodone)
 
-## cool stuff
+### cool stuff
 
 - [rinha de compiler](https://github.com/aripiprazole/rinha-de-compiler) -- online hackathon about compilers
 - [andesite](https://github.com/aripiprazole/andesite) -- minecraft protocol lib with [kotlinx.serialization](https://github.com/kotlin/kotlinx.serialization)
 - [bupropion](https://github.com/aripiprazole/bupropion) -- opnionated frontend for [miette](https://crates.io/crates/miette)
 
-**~** works:
+### writings
 
 - 📖 [writing a minecraft protocol implementation in kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42)
 - 🧪 [defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e)
