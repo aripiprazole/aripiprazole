@@ -110,7 +110,8 @@ const writing = [
   {
     name: "equation-solver",
     title: "writing an equation solver",
-    description: "writing a basic equation solver using basic first-order logi",
+    description:
+      "writing a basic equation solver using basic first-order logic",
     url: "https://github.com/aripiprazole/eq",
   },
   {
