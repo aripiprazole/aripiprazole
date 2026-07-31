@@ -29,6 +29,6 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 - [gadt-like types in rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp)
 - [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856)
 
-[x](https://x.com/io_gabx) |
+[twitter](https://x.com/io_gabx) |
 [medium](https://medium.com/@aripiprazole) | [chess](https://www.chess.com/member/iogabx) |
 [linkedin](https://www.linkedin.com/in/aripiprazole)
