@@ -9,6 +9,7 @@ export type PanelLayout =
 	| Readonly<{
 			kind: 'split';
 			axis: SplitAxis;
+			ratio?: '3:1';
 			first: PanelLayout;
 			second: PanelLayout;
 	  }>;

@@ -14,9 +14,22 @@ export type CommandAction = Readonly<{
 	behavior: CommandActionBehavior;
 }>;
 
+export type FilePresentation =
+	| Readonly<{
+			kind: 'html';
+			html: string;
+	  }>
+	| Readonly<{
+			kind: 'image';
+			src: string;
+			alt: string;
+			borderRadius: number;
+	  }>;
+
 export type FileChunk = Readonly<{
 	bytes: Uint8Array;
 	actions: readonly CommandAction[];
+	presentation?: FilePresentation;
 }>;
 
 export type FileDescriptorOperation = 'read' | 'write' | 'close';

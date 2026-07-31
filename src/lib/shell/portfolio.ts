@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import linksMarkdown from "../../../links.md?raw";
+
 import {
   AbsolutePathSchema,
   CommandActionSchema,
@@ -24,6 +26,14 @@ export const PortfolioFileSeedSchema = z
     path: AbsolutePathSchema,
     content: z.string(),
     actions: z.array(CommandActionSchema).max(16).default([]),
+    asset: z
+      .object({
+        kind: z.literal("png"),
+        src: z.string().startsWith("/").max(2_048),
+        alt: z.string().max(240),
+      })
+      .strict()
+      .optional(),
     modifiedAt: z.iso.datetime(),
   })
   .strict();
@@ -66,13 +76,7 @@ const projects = [
       "Incremental/single-pass based compiler,the API can be either used for Single-Pass Compilingand for building LSP, orthings that would need incremental pipelines. Its a study project of mine for studying incremental compilers and package-managers...",
     url: "https://github.com/aripiprazole/asena",
   },
-  {
-    name: "lura",
-    title: "Lura",
-    description:
-      "The Lura compiler is the continuation of Asena, it aims an incremental and query-based compiler with focus in a new tooling toolkit.",
-    url: "https://lurasidone.vercel.app/",
-  },
+
   {
     name: "andesite",
     title: "Andesite",
@@ -142,27 +146,6 @@ const writing = [
   },
 ] as const;
 
-const accounts = [
-  { name: "aripiprazole", url: "https://github.com/aripiprazole" },
-  { name: "atomoxetine", url: "https://github.com/atomoxetine" },
-  { name: "oestradiol", url: "https://github.com/oestradiol" },
-  { name: "perospirone", url: "https://github.com/perospirone" },
-] as const;
-
-const links = [
-  { name: "linkedin", url: "https://www.linkedin.com/in/aripiprazole" },
-  { name: "medium", url: "https://aripiprazole.medium.com/" },
-  { name: "github", url: "https://github.com/aripiprazole" },
-  { name: "gitlab", url: "https://gitlab.com/lurasidone" },
-  { name: "instagram", url: "https://instagram.com/io.gabx" },
-  { name: "twitter", url: "https://twitter.com/io_gabx" },
-  {
-    name: "wynncraft",
-    url: "https://wynncraft.com/stats/player/Brexpiprazole",
-  },
-  { name: "aripiprazole", url: "https://en.wikipedia.org/wiki/Aripiprazole" },
-] as const;
-
 const projectFiles = projects.map((project) => ({
   kind: "file" as const,
   path: asAbsolutePath(`/app/projects/${project.name}.txt`),
@@ -191,34 +174,6 @@ const writingFiles = writing.map((article) => ({
   modifiedAt: seedModifiedAt,
 }));
 
-const accountFiles = accounts.map((account) => ({
-  kind: "file" as const,
-  path: asAbsolutePath(`/app/accounts/${account.name}.txt`),
-  content: `${account.name}\n${account.url}\n`,
-  actions: [
-    {
-      label: "curl account URL",
-      command: `curl ${account.url}`,
-      behavior: "prefill" as const,
-    },
-  ],
-  modifiedAt: seedModifiedAt,
-}));
-
-const linkFiles = links.map((link) => ({
-  kind: "file" as const,
-  path: asAbsolutePath(`/app/links/${link.name}.txt`),
-  content: `${link.name}\n${link.url}\n`,
-  actions: [
-    {
-      label: "curl link URL",
-      command: `curl ${link.url}`,
-      behavior: "prefill" as const,
-    },
-  ],
-  modifiedAt: seedModifiedAt,
-}));
-
 export const portfolioSeed: readonly PortfolioSeedEntry[] =
   PortfolioSeedSchema.parse([
     {
@@ -238,16 +193,6 @@ export const portfolioSeed: readonly PortfolioSeedEntry[] =
       modifiedAt: seedModifiedAt,
     },
     {
-      kind: "directory",
-      path: asAbsolutePath("/app/accounts"),
-      modifiedAt: seedModifiedAt,
-    },
-    {
-      kind: "directory",
-      path: asAbsolutePath("/app/links"),
-      modifiedAt: seedModifiedAt,
-    },
-    {
       kind: "file",
       path: asAbsolutePath("/app/README.md"),
       content: readme,
@@ -255,19 +200,21 @@ export const portfolioSeed: readonly PortfolioSeedEntry[] =
     },
     {
       kind: "file",
-      path: asAbsolutePath("/app/contact.txt"),
-      content: "reach me out at you@gabx.io\n",
-      actions: [
-        {
-          label: "show social links",
-          command: "ls links",
-          behavior: "execute",
-        },
-      ],
+      path: asAbsolutePath("/app/links.md"),
+      content: linksMarkdown,
+      modifiedAt: seedModifiedAt,
+    },
+    {
+      kind: "file",
+      path: asAbsolutePath("/app/profile.png"),
+      content: "",
+      asset: {
+        kind: "png",
+        src: "/profile.png",
+        alt: "Pixel-art portrait of Gabrielle",
+      },
       modifiedAt: seedModifiedAt,
     },
     ...projectFiles,
     ...writingFiles,
-    ...accountFiles,
-    ...linkFiles,
   ]);

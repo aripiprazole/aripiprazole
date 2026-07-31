@@ -417,7 +417,18 @@
           {#each entry.chunks as output (output.id)}
             {@const linkedOutput = inlineAction(output)}
             <div class:stderr={output.stream === "stderr"} class="output-block">
-              <pre>{#if linkedOutput}{linkedOutput.before}<button
+              {#if output.revealed && output.presentation?.kind === "html"}
+                <div class="terminal-html">{@html output.presentation.html}</div>
+              {:else if output.revealed && output.presentation?.kind === "image"}
+                <figure class="terminal-image-frame">
+                  <img
+                    src={output.presentation.src}
+                    alt={output.presentation.alt}
+                    style={`border-radius: ${output.presentation.borderRadius}px`}
+                  />
+                </figure>
+              {:else}
+                <pre>{#if linkedOutput}{linkedOutput.before}<button
                     class="terminal-link"
                     type="button"
                     onclick={() => activate(linkedOutput.action)}
@@ -426,6 +437,7 @@
                   >{linkedOutput.after}{:else}{output.visibleText}{#if terminalState.cursor.kind === "output" && terminalState.cursor.chunkId === output.id}<span
                       class="terminal-cursor output-cursor"
                       aria-hidden="true"></span>{/if}{/if}</pre>
+              {/if}
 
               {#if output.revealed && output.actions.length > 0 && linkedOutput === null}
                 <div class="command-actions" aria-label="Suggested commands">

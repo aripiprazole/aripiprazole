@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { portfolioRoot, portfolioSeed } from './portfolio';
-import type { PortfolioSeedEntry } from './portfolio';
+import type { PortfolioFileSeed, PortfolioSeedEntry } from './portfolio';
 import {
 	asAbsolutePath,
 	createFileDescriptorError,
@@ -45,10 +45,15 @@ type Waiter = () => void;
 const freezeChunk = (input: unknown): FileChunk => {
 	const parsed = FileChunkSchema.parse(input);
 	const actions = parsed.actions.map((action) => Object.freeze({ ...action }));
+	const presentation =
+		parsed.presentation === undefined
+			? undefined
+			: Object.freeze({ ...parsed.presentation });
 
 	return Object.freeze({
 		bytes: parsed.bytes.slice(),
-		actions: Object.freeze(actions)
+		actions: Object.freeze(actions),
+		...(presentation === undefined ? {} : { presentation })
 	});
 };
 
@@ -341,9 +346,14 @@ export const createPipe = (
 			const capacityCost = Math.max(1, byteCount);
 			const bytes = chunk.bytes.slice(offset, offset + byteCount);
 			const actions = firstFragment ? chunk.actions : [];
+			const presentation = firstFragment ? chunk.presentation : undefined;
 
 			queue.push({
-				chunk: freezeChunk({ bytes, actions }),
+				chunk: freezeChunk({
+					bytes,
+					actions,
+					...(presentation === undefined ? {} : { presentation })
+				}),
 				capacityCost
 			});
 			bufferedCapacity += capacityCost;
@@ -486,6 +496,7 @@ export type VirtualFileStat = Readonly<{
 }>;
 
 export type VirtualDirectoryEntry = VirtualFileStat;
+export type VirtualPngAsset = NonNullable<PortfolioFileSeed['asset']>;
 
 export type VirtualFileSystem = Readonly<{
 	initialDirectory: AbsolutePath;
@@ -496,6 +507,10 @@ export type VirtualFileSystem = Readonly<{
 		path: string
 	) => Promise<readonly VirtualDirectoryEntry[]>;
 	open: (cwd: AbsolutePath, path: string) => Promise<FileDescriptor>;
+	readPngAsset: (
+		cwd: AbsolutePath,
+		path: string
+	) => Promise<VirtualPngAsset | null>;
 }>;
 
 export const createFileSystemError = (error: FileSystemError): FileSystemError =>
@@ -658,10 +673,28 @@ const open = async (cwd: AbsolutePath, path: string): Promise<FileDescriptor> =>
 	]);
 };
 
+const readPngAsset = async (
+	cwd: AbsolutePath,
+	path: string
+): Promise<VirtualPngAsset | null> => {
+	const file = getNode(cwd, path, 'open');
+	if (file.kind === 'directory') {
+		throw createFileSystemError({
+			kind: 'is-directory',
+			operation: 'open',
+			path: file.path,
+			message: `is a directory: ${path}`
+		});
+	}
+
+	return file.asset ?? null;
+};
+
 export const filesystem: VirtualFileSystem = {
 	initialDirectory: portfolioRoot,
 	resolve,
 	stat,
 	readDirectory,
-	open
+	open,
+	readPngAsset
 };

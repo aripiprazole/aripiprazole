@@ -185,7 +185,8 @@ describe('virtual portfolio tree', () => {
 			'README.md',
 			'accounts',
 			'contact.txt',
-			'links',
+			'links.md',
+			'profile.png',
 			'projects',
 			'writing'
 		]);
@@ -222,13 +223,20 @@ describe('virtual portfolio tree', () => {
 		).rejects.toMatchObject({ kind: 'bad-file-descriptor' });
 	});
 
-	test('preserves every portfolio collection', async () => {
+	test('preserves every portfolio collection and exposes the PNG asset', async () => {
 		const collectionSizes = await Promise.all(
-			['projects', 'writing', 'accounts', 'links'].map(async (path) =>
+			['projects', 'writing', 'accounts'].map(async (path) =>
 				(await filesystem.readDirectory(filesystem.initialDirectory, path)).length
 			)
 		);
 
-		expect(collectionSizes).toEqual([6, 7, 4, 8]);
+		expect(collectionSizes).toEqual([6, 7, 4]);
+		expect(
+			await filesystem.readPngAsset(filesystem.initialDirectory, 'profile.png')
+		).toEqual({
+			kind: 'png',
+			src: '/profile.png',
+			alt: 'Pixel-art portrait of Gabrielle'
+		});
 	});
 });

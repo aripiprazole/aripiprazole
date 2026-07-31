@@ -36,7 +36,7 @@
 </script>
 
 {#if node.kind === 'split'}
-	<div class="panel-split" data-axis={node.axis}>
+	<div class="panel-split" data-axis={node.axis} data-ratio={node.ratio}>
 		<PanelLayout
 			node={node.first}
 			{controllers}

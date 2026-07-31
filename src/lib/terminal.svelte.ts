@@ -13,6 +13,7 @@ import type {
 	CommandAction,
 	ExitCode,
 	FileChunk,
+	FilePresentation,
 	TerminalStream
 } from './shell/types';
 
@@ -30,6 +31,7 @@ export type TerminalOutputChunk = {
 	text: string;
 	visibleText: string;
 	actions: readonly CommandAction[];
+	presentation?: FilePresentation;
 	revealed: boolean;
 };
 
@@ -197,9 +199,15 @@ export const createTerminalController = (
 		entry: TerminalEntry,
 		stream: TerminalStream,
 		text: string,
-		actions: readonly CommandAction[]
+		actions: readonly CommandAction[],
+		presentation?: FilePresentation
 	): void => {
-		if (disposed || (text.length === 0 && actions.length === 0)) return;
+		if (
+			disposed ||
+			(text.length === 0 && actions.length === 0 && presentation === undefined)
+		) {
+			return;
+		}
 
 		const pendingOutput: TerminalOutputChunk = {
 			id: nextChunkId++,
@@ -207,6 +215,7 @@ export const createTerminalController = (
 			text,
 			visibleText: '',
 			actions,
+			...(presentation === undefined ? {} : { presentation }),
 			revealed: false
 		};
 		entry.chunks.push(pendingOutput);
@@ -221,15 +230,17 @@ export const createTerminalController = (
 				state.phase = 'typing-output';
 				state.cursor = { kind: 'output', chunkId: output.id };
 
-				await animateText(
-					output.text,
-					(visible) => {
-						output.visibleText = visible;
-						state.scrollVersion += 1;
-					},
-					outputDelayMs,
-					maximumOutputAnimationMs
-				);
+				if (output.presentation === undefined) {
+					await animateText(
+						output.text,
+						(visible) => {
+							output.visibleText = visible;
+							state.scrollVersion += 1;
+						},
+						outputDelayMs,
+						maximumOutputAnimationMs
+					);
+				}
 
 				if (disposed) return;
 				output.revealed = true;
@@ -299,7 +310,8 @@ export const createTerminalController = (
 				entry,
 				stream,
 				decoders[stream].decode(fileChunk.bytes, { stream: true }),
-				fileChunk.actions
+				fileChunk.actions,
+				fileChunk.presentation
 			);
 		};
 

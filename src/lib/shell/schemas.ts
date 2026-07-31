@@ -37,10 +37,28 @@ export const CommandActionSchema = z
 	})
 	.strict();
 
+export const FilePresentationSchema = z.discriminatedUnion('kind', [
+	z
+		.object({
+			kind: z.literal('html'),
+			html: z.string().max(131_072)
+		})
+		.strict(),
+	z
+		.object({
+			kind: z.literal('image'),
+			src: z.string().startsWith('/').max(2_048),
+			alt: z.string().max(240),
+			borderRadius: z.number().int().min(0).max(512)
+		})
+		.strict()
+]);
+
 export const FileChunkSchema = z
 	.object({
 		bytes: z.instanceof(Uint8Array),
-		actions: z.array(CommandActionSchema).max(16).default([])
+		actions: z.array(CommandActionSchema).max(16).default([]),
+		presentation: FilePresentationSchema.optional()
 	})
 	.strict();
 
