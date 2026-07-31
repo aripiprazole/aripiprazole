@@ -1,5 +1,5 @@
 <div>
-  <img align="left" height="160px" src="public/profile.png" alt="Profile picture">
+  <img align="left" height="160px" src="public/profile.png" alt="Profile picture" style="border-radius: 8px;">
 
   <h3>hey adventurer</h3>
   <br>
@@ -23,11 +23,11 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 
 ### writings
 
-- 📖 [writing a minecraft protocol implementation in kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42)
-- 🧪 [defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e)
-- 🧮 [writing an equation solver](https://dev.to/aripiprazole/writing-an-equation-solver-6b2)
-- ⭐ [gadt-like types in rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp)
-- � [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856)
+- [writing a minecraft protocol implementation in kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42)
+- [defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e)
+- [writing an equation solver](https://dev.to/aripiprazole/writing-an-equation-solver-6b2)
+- [gadt-like types in rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp)
+- [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856)
 
 [x](https://x.com/io_gabx) |
 [medium](https://medium.com/@aripiprazole) | [chess](https://www.chess.com/member/iogabx) |
