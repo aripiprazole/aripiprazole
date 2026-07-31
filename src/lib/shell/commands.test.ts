@@ -85,15 +85,15 @@ describe("cat", () => {
     expect(execution.stderr).toEqual([]);
   });
 
-  test("reads README.md without adding non-terminal controls", async () => {
-    const execution = await execute("cat README.md");
+  test("renders the website README Markdown without terminal controls", async () => {
+    const execution = await execute("cat readme.md");
 
     expect(execution.result.exitCode).toBe(asExitCode(0));
     expect(textOf(execution.stdout)).toContain(
       "software engineer, amateur chess player",
     );
-    expect(textOf(execution.stdout)).toContain("hobbie projects 🧪");
     expect(actionsOf(execution.stdout)).toEqual([]);
+    expect(execution.stdout[0]?.presentation?.kind).toBe("html");
     expect(execution.stderr).toEqual([]);
   });
 
@@ -131,7 +131,7 @@ describe("cat", () => {
 
     await expect(command.run(context)).rejects.toBe(unexpected);
 
-    const execution = await execute("cat README.md");
+    const execution = await execute("cat readme.md");
     expect(execution.result.exitCode).toBe(asExitCode(1));
     expect(textOf(execution.stderr)).toBe("cat: unexpected open failure\n");
   });
@@ -216,7 +216,7 @@ describe("ls", () => {
     expect(output).toContain("  4.0K Jul 31 00:00 ../\n");
     expect(output).not.toMatch(/(?:^|\s)[dl-][rwx-]{9}(?:\s|$)/m);
     expect(output).not.toContain("gabi");
-    expect(output).toContain("README.md\n");
+    expect(output).toContain("readme.md\n");
     expect(output.split("\n").filter(Boolean)).toHaveLength(10);
     expect(actions).toHaveLength(5);
     expect(actions).toContainEqual({

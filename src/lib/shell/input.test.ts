@@ -18,12 +18,12 @@ const labels = async (
 
 describe("shell input analysis", () => {
   test("classifies commands, arguments, options, strings, pipes, and invalid syntax", () => {
-    const tokens = analyzeShellInput('cat "README.md" | ls -la projects/$bad');
+    const tokens = analyzeShellInput('cat "readme.md" | ls -la projects/$bad');
 
     expect(tokens.map(({ kind, text }) => [kind, text])).toEqual([
       ["command", "cat"],
       ["plain", " "],
-      ["string", '"README.md"'],
+      ["string", '"readme.md"'],
       ["plain", " "],
       ["pipe", "|"],
       ["plain", " "],
@@ -83,7 +83,7 @@ describe("shell completion", () => {
       expect.arrayContaining(["--all", "--long", "--one-per-line", "-a", "-l"]),
     );
     expect(afterSeparator.some((label) => label.startsWith("-"))).toBe(false);
-    expect(afterSeparator).toContain("README.md");
+    expect(afterSeparator).toContain("readme.md");
   });
 
   test("filters virtual paths by command operand kind", async () => {
@@ -91,12 +91,12 @@ describe("shell completion", () => {
     const cd = await labels("cd ");
     const ls = await labels("ls ");
 
-    expect(cat).toContain("README.md");
+    expect(cat).toContain("readme.md");
     expect(cat).not.toContain("projects/");
     expect(cd).toContain("projects/");
-    expect(cd).not.toContain("README.md");
+    expect(cd).not.toContain("readme.md");
     expect(ls).toEqual(
-      expect.arrayContaining(["README.md", "projects/", "--all"]),
+      expect.arrayContaining(["readme.md", "projects/", "--all"]),
     );
     expect(await labels("png pro")).toEqual(["profile.png"]);
     expect(await labels("png -")).toEqual(["--", "--radius", "-r"]);
@@ -106,9 +106,9 @@ describe("shell completion", () => {
     expect(await labels("cat writing/gad")).toEqual([
       "writing/gadt-like-types-in-rust.txt",
     ]);
-    expect(await labels("cat ./RE")).toEqual(["./README.md"]);
+    expect(await labels("cat ./RE")).toEqual(["./readme.md"]);
     expect(await labels("cat ~/con")).toEqual([]);
-    expect(await labels("cat /app/RE")).toEqual(["/app/README.md"]);
+    expect(await labels("cat /app/RE")).toEqual(["/app/readme.md"]);
 
     const parent = await completeShellInput(
       "cd ../",
@@ -126,13 +126,13 @@ describe("shell completion", () => {
       filesystem.initialDirectory,
     );
     const readme = candidates.find(
-      (candidate) => candidate.label === "README.md",
+      (candidate) => candidate.label === "readme.md",
     );
 
     expect(readme).toEqual({
       kind: "file",
-      label: "README.md",
-      draft: "cat README.md | pwd",
+      label: "readme.md",
+      draft: "cat readme.md | pwd",
       cursor: 13,
     });
   });

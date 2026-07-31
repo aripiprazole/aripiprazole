@@ -1,6 +1,8 @@
 import { z } from "zod";
 
-import linksMarkdown from "../../../links.md?raw";
+import readmeMarkdown from "../../../assets/readme.md?raw";
+import linksMarkdown from "../../../assets/links.md?raw";
+import worksMarkdown from "../../../assets/works.md?raw";
 
 import {
   AbsolutePathSchema,
@@ -51,98 +53,77 @@ export type PortfolioDirectorySeed = z.infer<
 export type PortfolioFileSeed = z.infer<typeof PortfolioFileSeedSchema>;
 export type PortfolioSeedEntry = z.infer<typeof PortfolioSeedEntrySchema>;
 
-const readme = `software engineer, amateur chess player, somewhat autistic and an inherently curious human being. i write fun code for work, and working code for fun, always pursuing new knowledgement. i deeply despise cowardness and complacentness and i'm fascinated by how our world works, and growing up with computers led me to believe the best way to understand it is through computer science and math, which evolved into a passion towards programming language theory, compilers and DSLs.
-`;
-
 const projects = [
   {
     name: "plank",
     title: "Plank",
-    description:
-      "A functional programming language with a focus on simplicity and ease of use. Plank is a statically typed language with a syntax similar to Kotlin, and a compiler written in Kotlin...",
+    description: "functional programming language",
     url: "https://github.com/aripiprazole/plank",
   },
   {
     name: "trazodone",
     title: "Trazodone",
-    description:
-      "A LLVM backend for HVM that runs just-in-time compilation, and abstract the codegen into multiple steps to be easy to generate LLVM, Rust, or any target, and has a built-in evaluator...",
+    description: "llvm just in time compiler for hvm",
     url: "https://github.com/aripiprazole/trazodone",
   },
   {
     name: "asena",
     title: "Asena",
-    description:
-      "Incremental/single-pass based compiler,the API can be either used for Single-Pass Compilingand for building LSP, orthings that would need incremental pipelines. Its a study project of mine for studying incremental compilers and package-managers...",
+    description: "incremental compiler",
     url: "https://github.com/aripiprazole/asena",
   },
 
   {
     name: "andesite",
     title: "Andesite",
-    description:
-      "A library for Minecraft protocol development that makes easier to develop servers and stuff directly with the protocol, like a minecraft server with void, or even a proxy...",
+    description: "minecraft protocol",
     url: "https://github.com/aripiprazole/andesite",
   },
   {
     name: "bupropion",
     title: "Bupropion",
-    description:
-      "Bupropion is a library based on Miette error handling that provides a way to handle errors in a functional way, and it is very similar to Rust error handling and Ariadne too. It is a beautiful way to present your errors...",
+    description: "opinionated frontend for miette",
     url: "https://crates.io/crates/bupropion",
+  },
+  {
+    name: "zed unicode",
+    title: "zed unicode",
+    description: "zed unicode",
+    url: "https://zed.dev/extensions/unicode",
   },
 ] as const;
 
 const writing = [
   {
     name: "minecraft-protocol-in-kotlin",
-    title: "Writing a Minecraft Protocol implementation in Kotlin",
-    description:
-      "A Minecraft Server/Protocol project is very cool to practice concurrency, and tooling stuff, which is very cool and useful nowadays...",
+    title: "writing a minecraft protocol server implementation in kotlin",
+    description: "minecraft server protocol in kotlin with coroutines",
     url: "https://medium.com/@gabrielleeg1/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42",
   },
   {
     name: "defunctionalization",
-    title: "Defunctionalization",
+    title: "defunctionalization",
     description:
-      "Defunctionalization is a way to transform higher-order functions in closures, that can be compiled in a lower level like LLVM, C, or even directly on Machine Code. For this task, we can use Closure...",
+      "transforming closures into top level functions using closure conversion algorithm",
     url: "https://aripiprazole.medium.com/defunctionalization-5fd03b21813e",
   },
   {
-    name: "rebasing-after-a-name-change",
-    title: "Rebasing old commits for people who has changed their name",
-    description:
-      "Hello, my name is Gabrielle, and I’ve changed my name, so here I want to present some techniques to rebase your old commits into new ones with your new name...",
-    url: "https://aripiprazole.medium.com/rebasing-old-commits-for-trans-people-3740d1bc1157",
-  },
-  {
     name: "equation-solver",
-    title: "Writing an Equation Solver",
-    description:
-      "Writing an Equation Solver is a process that is made of: parsing, equating/unifying and rewriting.It is a powerful project that allows us to learn more about logic and functional programming.",
+    title: "writing an equation solver",
+    description: "writing a basic equation solver using basic first-order logi",
     url: "https://github.com/aripiprazole/eq",
   },
   {
     name: "higher-rank-polymorphism-in-rust",
-    title:
-      "Driving Complete and Easy Bidirectional Typechecking for Higher-Rank Polymorphism in Rust",
-    description:
-      "The main goal of this article is to make some comments about mb64 implementation of the Complete and Easy.. paper, but implementing it in pure rust code, and some optimizations, like de bruijin levels and indexes!",
+    title: "writing a bidirectional type system in rust",
+    description: "mutable implementation of bidirectional type system",
     url: "https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856",
   },
   {
     name: "gadt-like-types-in-rust",
-    title: "GADT-like types in Rust",
-    description:
-      "I think that GADTs are a very powerful feature of Haskell, and I would like tohave something similar in Rust. I think this is the closestthing to GADTs in Rust.",
+    title: "gadt-like types in Rust",
+    description: "gadts are useful, and gats are too, why not combine both?",
     url: "https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp",
-  },
-  {
-    name: "haskell-in-kotlin",
-    title: "Writing Haskell in Kotlin",
-    description:
-      "Talks about implementing a Haskell-like interpreter in Kotlin. That comes from writing the parser, type system, context resolving to the interpreter. The goal of this article, is to show a short introduction to compilers... (STILL INCOMPLETE)",
-    url: "https://github.com/aripiprazole/ekko/tree/main/docs",
   },
 ] as const;
 
@@ -194,8 +175,14 @@ export const portfolioSeed: readonly PortfolioSeedEntry[] =
     },
     {
       kind: "file",
-      path: asAbsolutePath("/app/README.md"),
-      content: readme,
+      path: asAbsolutePath("/app/readme.md"),
+      content: readmeMarkdown,
+      modifiedAt: seedModifiedAt,
+    },
+    {
+      kind: "file",
+      path: asAbsolutePath("/app/works.md"),
+      content: worksMarkdown,
       modifiedAt: seedModifiedAt,
     },
     {
@@ -211,7 +198,7 @@ export const portfolioSeed: readonly PortfolioSeedEntry[] =
       asset: {
         kind: "png",
         src: "/profile.png",
-        alt: "Pixel-art portrait of Gabrielle",
+        alt: "pixelart portrait of gabi",
       },
       modifiedAt: seedModifiedAt,
     },

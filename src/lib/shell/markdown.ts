@@ -18,22 +18,30 @@ const safeLink = (value: string): string | null => {
 };
 
 const renderInline = (source: string): string => {
-	const link = /\[([^\]]+)\]\(([^)\s]+)\)/gu;
+	const inline = /(`+)(.+?)\1|\[([^\]]+)\]\(([^)\s]+)\)/gu;
 	let html = '';
 	let offset = 0;
 
-	for (const match of source.matchAll(link)) {
+	for (const match of source.matchAll(inline)) {
 		const index = match.index;
-		const label = match[1];
-		const target = match[2];
-		if (index === undefined || label === undefined || target === undefined) continue;
+		if (index === undefined) continue;
 
 		html += escapeHtml(source.slice(offset, index));
-		const href = safeLink(target);
-		html +=
-			href === null
-				? escapeHtml(label)
-				: `<a href="${escapeHtml(href)}" target="_blank" rel="noreferrer noopener">${escapeHtml(label)}</a>`;
+		const delimiter = match[1];
+		const code = match[2];
+		if (delimiter !== undefined && code !== undefined) {
+			html += `<code>${escapeHtml(code)}</code>`;
+		} else {
+			const label = match[3];
+			const target = match[4];
+			if (label === undefined || target === undefined) continue;
+
+			const href = safeLink(target);
+			html +=
+				href === null
+					? escapeHtml(label)
+					: `<a href="${escapeHtml(href)}" target="_blank" rel="noreferrer noopener">${escapeHtml(label)}</a>`;
+		}
 		offset = index + match[0].length;
 	}
 

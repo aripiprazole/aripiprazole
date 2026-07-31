@@ -46,7 +46,11 @@
     return id;
   }
 
-  const contentPanelId = createPanel(undefined, ["cat README.md", "ls -la"]);
+  const contentPanelId = createPanel(undefined, [
+    "cat readme.md",
+    "cat works.md",
+    "ls -la",
+  ]);
   const profilePanelId = createPanel(undefined, [
     "png --radius 18 profile.png",
     "cat links.md",
@@ -246,5 +250,10 @@
       onDragPointerEnd={dragPointerEnd}
       onMoveByKeyboard={moveByKeyboard}
     />
+    <footer class="workspace-footer" aria-label="terminal controls">
+      <span
+        ><kbd>tab</kbd> / <kbd>shift+tab</kbd> complete - drag and drop panels</span
+      >
+    </footer>
   </div>
 </main>
