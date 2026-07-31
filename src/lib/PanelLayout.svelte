@@ -1,7 +1,11 @@
 <script lang="ts">
 	import PanelLayout from '$lib/PanelLayout.svelte';
 	import TerminalPanel from '$lib/TerminalPanel.svelte';
-	import type { PanelId, PanelLayout as Layout } from '$lib/panel-layout';
+	import {
+		hasNarrowPriority,
+		type PanelId,
+		type PanelLayout as Layout
+	} from '$lib/panel-layout';
 	import type { TerminalController } from '$lib/terminal.svelte';
 
 	type Props = Readonly<{
@@ -41,10 +45,12 @@
 		data-axis={node.axis}
 		data-ratio={node.ratio}
 		data-narrow-flow={node.narrowFlow}
+		data-narrow-priority={hasNarrowPriority(node) ? 'first' : undefined}
 	>
 		<div
 			class="panel-slot"
 			data-panel-sizing={node.first.kind === 'panel' ? (node.first.sizing ?? 'fill') : undefined}
+			data-narrow-priority={hasNarrowPriority(node.first) ? 'first' : undefined}
 		>
 			<PanelLayout
 				node={node.first}
@@ -64,6 +70,7 @@
 		<div
 			class="panel-slot"
 			data-panel-sizing={node.second.kind === 'panel' ? (node.second.sizing ?? 'fill') : undefined}
+			data-narrow-priority={hasNarrowPriority(node.second) ? 'first' : undefined}
 		>
 			<PanelLayout
 				node={node.second}

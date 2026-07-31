@@ -80,6 +80,9 @@ const panelLeaves = (layout: PanelLayout): readonly PanelLeaf[] => {
 	return [...panelLeaves(layout.first), ...panelLeaves(layout.second)];
 };
 
+export const hasNarrowPriority = (layout: PanelLayout): boolean =>
+	panelLeaves(layout).some((leaf) => leaf.narrowPriority === 'first');
+
 const replacePanelLeaves = (
 	layout: PanelLayout,
 	leaves: readonly PanelLeaf[],
@@ -111,39 +114,6 @@ export const movePanel = (
 	if (source === undefined) return layout;
 	leaves.splice(Math.min(targetIndex, leaves.length), 0, source);
 	return replacePanelLeaves(layout, leaves, { value: 0 });
-};
-
-export const prioritizePanel = (
-	layout: PanelLayout,
-	targetId: PanelId
-): PanelLayout => {
-	const firstId = panelIds(layout)[0];
-	return firstId === undefined || firstId === targetId
-		? layout
-		: movePanel(layout, targetId, firstId);
-};
-
-export const prioritizeNarrowPanel = (layout: PanelLayout): PanelLayout => {
-	if (layout.kind === 'panel') return layout;
-
-	const firstHasPriority = panelLeaves(layout.first).some(
-		(leaf) => leaf.narrowPriority === 'first'
-	);
-	if (firstHasPriority) {
-		const first = prioritizeNarrowPanel(layout.first);
-		return first === layout.first ? layout : { ...layout, first };
-	}
-
-	const secondHasPriority = panelLeaves(layout.second).some(
-		(leaf) => leaf.narrowPriority === 'first'
-	);
-	if (!secondHasPriority) return layout;
-
-	return {
-		...layout,
-		first: prioritizeNarrowPanel(layout.second),
-		second: layout.first
-	};
 };
 
 export const nextSplitAxis = (axis: SplitAxis): SplitAxis =>

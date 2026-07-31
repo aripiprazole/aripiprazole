@@ -2,12 +2,11 @@ import { describe, expect, test } from 'bun:test';
 
 import {
 	closePanel,
+	hasNarrowPriority,
 	movePanel,
 	nextSplitAxis,
 	panelIds,
 	panelLeaf,
-	prioritizeNarrowPanel,
-	prioritizePanel,
 	splitPanel
 } from './panel-layout';
 
@@ -101,45 +100,24 @@ describe('panel layout', () => {
 		expect(moved.second).toBe(content);
 	});
 
-	test('prioritizes the profile for narrow rendering without changing the source layout', () => {
+	test('identifies the branch containing the narrow-priority panel', () => {
+		const profile = panelLeaf('profile', { narrowPriority: 'first' });
 		const layout = {
 			kind: 'split' as const,
 			axis: 'horizontal' as const,
 			first: panelLeaf('content'),
-			second: panelLeaf('profile', { narrowPriority: 'first' })
+			second: {
+				kind: 'split' as const,
+				axis: 'vertical' as const,
+				first: profile,
+				second: panelLeaf('socials')
+			}
 		};
 
-		expect(panelIds(prioritizeNarrowPanel(layout))).toEqual([
-			'profile',
-			'content'
-		]);
-		expect(panelIds(layout)).toEqual(['content', 'profile']);
-		expect(prioritizeNarrowPanel(layout).kind).toBe('split');
-		expect(prioritizeNarrowPanel(panelLeaf('content'))).toEqual(
-			panelLeaf('content')
-		);
-		expect(prioritizePanel(layout, 'missing')).toBe(layout);
-	});
-
-	test('moves the profile branch first while keeping its nested socials panel alongside it', () => {
-		const profileGroup = {
-			kind: 'split' as const,
-			axis: 'vertical' as const,
-			first: panelLeaf('profile', { narrowPriority: 'first' }),
-			second: panelLeaf('socials')
-		};
-		const layout = {
-			kind: 'split' as const,
-			axis: 'horizontal' as const,
-			first: panelLeaf('content'),
-			second: profileGroup
-		};
-		const narrow = prioritizeNarrowPanel(layout);
-
-		expect(panelIds(narrow)).toEqual(['profile', 'socials', 'content']);
-		if (narrow.kind !== 'split') throw new Error('expected a split layout');
-		expect(narrow.first).toBe(profileGroup);
-		expect(panelIds(layout)).toEqual(['content', 'profile', 'socials']);
+		expect(hasNarrowPriority(layout)).toBe(true);
+		expect(hasNarrowPriority(layout.first)).toBe(false);
+		expect(hasNarrowPriority(layout.second)).toBe(true);
+		expect(hasNarrowPriority(profile)).toBe(true);
 	});
 
 	test('leaves the tree untouched when a requested panel is absent', () => {

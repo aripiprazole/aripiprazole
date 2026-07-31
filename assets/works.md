@@ -12,4 +12,4 @@
 - [andesite](https://github.com/aripiprazole/andesite) -- minecraft protocol lib with [kotlinx.serialization](https://github.com/kotlin/kotlinx.serialization)
 - [bupropion](https://github.com/aripiprazole/bupropion) -- opnionated frontend for [miette](https://crates.io/crates/miette)
 
-tip: check out more at `cd writings/` or `cd works/` and download my resume [here](https://github.com/aripiprazole/aripiprazole/blob/main/assets/resume.jpg)
+tip: check out more at `cd writings/` or `cd works/` and download my resume [here](https://github.com/aripiprazole/aripiprazole/blob/main/public/resume.pdf)

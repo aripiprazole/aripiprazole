@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
+  import { onDestroy } from "svelte";
 
   import PanelLayout from "$lib/PanelLayout.svelte";
   import {
@@ -8,7 +8,6 @@
     nextSplitAxis,
     panelIds,
     panelLeaf,
-    prioritizeNarrowPanel,
     splitPanel,
     type PanelId,
     type PanelLayout as Layout,
@@ -85,7 +84,6 @@
       }),
     },
   });
-  let narrowLayout = $state(false);
   let activePanelId = $state<PanelId>(contentPanelId);
   let nextAxis = $state<SplitAxis>("horizontal");
   let pointerDrag = $state<PointerDrag | null>(null);
@@ -95,9 +93,6 @@
   );
   let dropTargetPanelId = $derived(
     pointerDrag?.active ? pointerDrag.targetId : null,
-  );
-  let renderedLayout = $derived(
-    narrowLayout ? prioritizeNarrowPanel(layout) : layout,
   );
 
   function splitFrom(sourceId: PanelId): void {
@@ -244,15 +239,6 @@
     for (const controller of controllers.values()) controller.dispose();
   });
 
-  onMount(() => {
-    const mediaQuery = window.matchMedia("(max-width: 64rem)");
-    const updateLayoutMode = (): void => {
-      narrowLayout = mediaQuery.matches;
-    };
-    updateLayoutMode();
-    mediaQuery.addEventListener("change", updateLayoutMode);
-    return () => mediaQuery.removeEventListener("change", updateLayoutMode);
-  });
 </script>
 
 <svelte:window onkeydown={globalKeydown} />
@@ -260,7 +246,7 @@
 <main class="terminal-page">
   <div class="terminal-workspace" aria-label="interactive portfolio terminals">
     <PanelLayout
-      node={renderedLayout}
+      node={layout}
       {controllers}
       {panelCount}
       {activePanelId}
