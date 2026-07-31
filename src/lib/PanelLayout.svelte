@@ -42,7 +42,10 @@
 		data-ratio={node.ratio}
 		data-narrow-flow={node.narrowFlow}
 	>
-		<div class="panel-slot">
+		<div
+			class="panel-slot"
+			data-panel-sizing={node.first.kind === 'panel' ? (node.first.sizing ?? 'fill') : undefined}
+		>
 			<PanelLayout
 				node={node.first}
 				{controllers}
@@ -58,7 +61,10 @@
 				{onMoveByKeyboard}
 			/>
 		</div>
-		<div class="panel-slot">
+		<div
+			class="panel-slot"
+			data-panel-sizing={node.second.kind === 'panel' ? (node.second.sizing ?? 'fill') : undefined}
+		>
 			<PanelLayout
 				node={node.second}
 				{controllers}

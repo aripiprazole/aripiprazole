@@ -79,7 +79,7 @@
         label: "profile terminal",
       }),
       second: panelLeaf(linksPanelId, {
-        sizing: "intrinsic",
+        sizing: "fill",
         mode: "output-only",
         label: "socials terminal",
       }),
