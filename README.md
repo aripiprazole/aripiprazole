@@ -20,6 +20,7 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 - [rinha de compiler](https://github.com/aripiprazole/rinha-de-compiler) -- online hackathon about compilers
 - [andesite](https://github.com/aripiprazole/andesite) -- minecraft protocol lib with [kotlinx.serialization](https://github.com/kotlin/kotlinx.serialization)
 - [bupropion](https://github.com/aripiprazole/bupropion) -- opnionated frontend for [miette](https://crates.io/crates/miette)
+- [niques](https://github.com/aripiprazole/niques) -- not so cool, but still there
 
 ### writings
 
