@@ -377,9 +377,7 @@
   data-mode={mode}
   data-sizing={sizing}
   aria-label={`${label} at ${terminalState.cwd}`}
-  onfocusin={() => {
-    if (mode === "interactive") onActivate(id);
-  }}
+  onfocusin={() => onActivate(id)}
 >
   <header class="panel-heading">
     <button
@@ -414,9 +412,7 @@
   <div class="terminal">
     <div
       class="terminal-transcript"
-      onpointerdown={() => {
-        if (mode === "interactive") onActivate(id);
-      }}
+      onpointerdown={() => onActivate(id)}
       role={mode === "interactive" ? "log" : undefined}
       aria-live={mode === "interactive" ? "off" : undefined}
       aria-busy={terminalState.phase !== "idle"}
@@ -560,6 +556,15 @@
             </div>
           {/if}
         </div>
+      {:else if terminalState.phase === "idle" && mode === "output-only" && canClose}
+        <button
+          class="process-finish"
+          type="button"
+          aria-label={`finish process in ${label}`}
+          aria-keyshortcuts="Control+C"
+          title="finish process · ctrl+c"
+          onclick={() => onClose(id)}
+        >[ click <kbd>ctrl c</kbd> to finish process ]</button>
       {/if}
     </div>
   </div>

@@ -14,6 +14,7 @@
     type SplitAxis,
   } from "$lib/panel-layout";
   import type { AbsolutePath } from "$lib/shell/types";
+  import { terminalShortcutAction } from "$lib/terminal-shortcuts";
   import {
     createTerminalController,
     type TerminalController,
@@ -107,7 +108,7 @@
   }
 
   const activatePanel = (id: PanelId): void => {
-    if (!outputOnlyPanelIds.has(id) && controllers.has(id)) activePanelId = id;
+    if (controllers.has(id)) activePanelId = id;
   };
 
   const cancelPointerDrag = (): void => {
@@ -214,23 +215,34 @@
       return;
     }
 
-    if (!event.ctrlKey) return;
     const key = event.key.toLowerCase();
-    if (key !== "c" && key !== "l") return;
-
-    if (key === "c") {
+    let copying = false;
+    if (event.ctrlKey && key === "c") {
       const selection = window.getSelection()?.toString() ?? "";
       const target = event.target;
       const inputHasSelection =
         target instanceof HTMLInputElement &&
         (target.selectionStart ?? 0) !== (target.selectionEnd ?? 0);
-      if (selection.length > 0 || inputHasSelection) return;
+      copying = selection.length > 0 || inputHasSelection;
     }
 
     const controller = controllers.get(activePanelId);
     if (controller === undefined) return;
+    const action = terminalShortcutAction({
+      key,
+      ctrlKey: event.ctrlKey,
+      repeat: event.repeat,
+      copying,
+      mode: outputOnlyPanelIds.has(activePanelId)
+        ? "output-only"
+        : "interactive",
+      canClose: panelCount > 1,
+    });
+    if (action === null) return;
+
     event.preventDefault();
-    if (key === "c") controller.abortActiveCommand();
+    if (action === "finish") closeTerminal(activePanelId);
+    else if (action === "interrupt") controller.abortActiveCommand();
     else controller.clearTranscript();
   };
 

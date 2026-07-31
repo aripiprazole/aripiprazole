@@ -366,6 +366,36 @@ input:focus-visible {
 	margin-top: 1rem;
 }
 
+.terminal-transcript > .process-finish {
+	display: block;
+	width: fit-content;
+	max-width: 100%;
+	margin: 1rem 0 0;
+	padding: 0.4rem 0;
+	color: var(--muted);
+	font: inherit;
+	font-size: 0.78rem;
+	line-height: 1.5;
+	text-align: left;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
+.process-finish kbd {
+	color: var(--ink);
+	font: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--line);
+	text-underline-offset: 0.16em;
+}
+
+.process-finish:hover,
+.process-finish:hover kbd {
+	color: var(--accent);
+	text-decoration-color: currentcolor;
+}
+
 .prompt-composer .active-prompt {
 	align-items: center;
 	margin-top: 0;
