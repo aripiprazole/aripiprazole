@@ -1,3 +1,22 @@
 .idea
 .vscode
 .DS_Store
+
+# Dependencies
+node_modules
+.pnpm-store
+
+# SvelteKit
+.svelte-kit
+build
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+.direnv
