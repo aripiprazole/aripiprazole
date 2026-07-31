@@ -56,32 +56,32 @@ export type PortfolioSeedEntry = z.infer<typeof PortfolioSeedEntrySchema>;
 const projects = [
   {
     name: "plank",
-    title: "Plank",
+    title: "plank",
     description: "functional programming language",
     url: "https://github.com/aripiprazole/plank",
   },
   {
     name: "trazodone",
-    title: "Trazodone",
+    title: "trazodone",
     description: "llvm just in time compiler for hvm",
     url: "https://github.com/aripiprazole/trazodone",
   },
   {
     name: "asena",
-    title: "Asena",
+    title: "asena",
     description: "incremental compiler",
     url: "https://github.com/aripiprazole/asena",
   },
 
   {
     name: "andesite",
-    title: "Andesite",
+    title: "andesite",
     description: "minecraft protocol",
     url: "https://github.com/aripiprazole/andesite",
   },
   {
     name: "bupropion",
-    title: "Bupropion",
+    title: "bupropion",
     description: "opinionated frontend for miette",
     url: "https://crates.io/crates/bupropion",
   },

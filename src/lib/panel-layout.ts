@@ -1,20 +1,36 @@
 export type PanelId = string;
 export type SplitAxis = 'horizontal' | 'vertical';
+export type PanelSizing = 'fill' | 'intrinsic';
+export type PanelMode = 'interactive' | 'output-only';
+
+export type PanelLeafOptions = Readonly<{
+	sizing?: PanelSizing;
+	mode?: PanelMode;
+	narrowPriority?: 'first';
+	label?: string;
+}>;
+
+export type PanelLeaf = Readonly<{
+	kind: 'panel';
+	id: PanelId;
+}> &
+	PanelLeafOptions;
 
 export type PanelLayout =
-	| Readonly<{
-			kind: 'panel';
-			id: PanelId;
-	  }>
+	| PanelLeaf
 	| Readonly<{
 			kind: 'split';
 			axis: SplitAxis;
 			ratio?: '3:1';
+			narrowFlow?: 'wrap';
 			first: PanelLayout;
 			second: PanelLayout;
 	  }>;
 
-export const panelLeaf = (id: PanelId): PanelLayout => ({ kind: 'panel', id });
+export const panelLeaf = (
+	id: PanelId,
+	options: PanelLeafOptions = {}
+): PanelLeaf => ({ kind: 'panel', id, ...options });
 
 export const panelIds = (layout: PanelLayout): readonly PanelId[] => {
 	if (layout.kind === 'panel') return [layout.id];
@@ -59,18 +75,23 @@ export const closePanel = (
 	return second === layout.second ? layout : { ...layout, second };
 };
 
-const replacePanelIds = (
+const panelLeaves = (layout: PanelLayout): readonly PanelLeaf[] => {
+	if (layout.kind === 'panel') return [layout];
+	return [...panelLeaves(layout.first), ...panelLeaves(layout.second)];
+};
+
+const replacePanelLeaves = (
 	layout: PanelLayout,
-	ids: readonly PanelId[],
+	leaves: readonly PanelLeaf[],
 	position: { value: number }
 ): PanelLayout => {
 	if (layout.kind === 'panel') {
-		const id = ids[position.value++];
-		return id === undefined || id === layout.id ? layout : panelLeaf(id);
+		const leaf = leaves[position.value++];
+		return leaf ?? layout;
 	}
 
-	const first = replacePanelIds(layout.first, ids, position);
-	const second = replacePanelIds(layout.second, ids, position);
+	const first = replacePanelLeaves(layout.first, leaves, position);
+	const second = replacePanelLeaves(layout.second, leaves, position);
 	return first === layout.first && second === layout.second
 		? layout
 		: { ...layout, first, second };
@@ -81,15 +102,48 @@ export const movePanel = (
 	sourceId: PanelId,
 	targetId: PanelId
 ): PanelLayout => {
-	const ids = [...panelIds(layout)];
-	const sourceIndex = ids.indexOf(sourceId);
-	const targetIndex = ids.indexOf(targetId);
+	const leaves = [...panelLeaves(layout)];
+	const sourceIndex = leaves.findIndex((leaf) => leaf.id === sourceId);
+	const targetIndex = leaves.findIndex((leaf) => leaf.id === targetId);
 	if (sourceIndex < 0 || targetIndex < 0 || sourceIndex === targetIndex) return layout;
 
-	const [source] = ids.splice(sourceIndex, 1);
+	const [source] = leaves.splice(sourceIndex, 1);
 	if (source === undefined) return layout;
-	ids.splice(Math.min(targetIndex, ids.length), 0, source);
-	return replacePanelIds(layout, ids, { value: 0 });
+	leaves.splice(Math.min(targetIndex, leaves.length), 0, source);
+	return replacePanelLeaves(layout, leaves, { value: 0 });
+};
+
+export const prioritizePanel = (
+	layout: PanelLayout,
+	targetId: PanelId
+): PanelLayout => {
+	const firstId = panelIds(layout)[0];
+	return firstId === undefined || firstId === targetId
+		? layout
+		: movePanel(layout, targetId, firstId);
+};
+
+export const prioritizeNarrowPanel = (layout: PanelLayout): PanelLayout => {
+	if (layout.kind === 'panel') return layout;
+
+	const firstHasPriority = panelLeaves(layout.first).some(
+		(leaf) => leaf.narrowPriority === 'first'
+	);
+	if (firstHasPriority) {
+		const first = prioritizeNarrowPanel(layout.first);
+		return first === layout.first ? layout : { ...layout, first };
+	}
+
+	const secondHasPriority = panelLeaves(layout.second).some(
+		(leaf) => leaf.narrowPriority === 'first'
+	);
+	if (!secondHasPriority) return layout;
+
+	return {
+		...layout,
+		first: prioritizeNarrowPanel(layout.second),
+		second: layout.first
+	};
 };
 
 export const nextSplitAxis = (axis: SplitAxis): SplitAxis =>

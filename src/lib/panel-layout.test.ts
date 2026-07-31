@@ -6,6 +6,8 @@ import {
 	nextSplitAxis,
 	panelIds,
 	panelLeaf,
+	prioritizeNarrowPanel,
+	prioritizePanel,
 	splitPanel
 } from './panel-layout';
 
@@ -75,6 +77,69 @@ describe('panel layout', () => {
 			'one',
 			'two'
 		]);
+	});
+
+	test('moves panel sizing, mode, priority, and label with its identity', () => {
+		const content = panelLeaf('content');
+		const profile = panelLeaf('profile', {
+			sizing: 'intrinsic',
+			mode: 'output-only',
+			narrowPriority: 'first',
+			label: 'profile terminal'
+		});
+		const layout = {
+			kind: 'split' as const,
+			axis: 'horizontal' as const,
+			first: content,
+			second: profile
+		};
+		const moved = movePanel(layout, 'profile', 'content');
+
+		expect(panelIds(moved)).toEqual(['profile', 'content']);
+		if (moved.kind !== 'split') throw new Error('expected a split layout');
+		expect(moved.first).toBe(profile);
+		expect(moved.second).toBe(content);
+	});
+
+	test('prioritizes the profile for narrow rendering without changing the source layout', () => {
+		const layout = {
+			kind: 'split' as const,
+			axis: 'horizontal' as const,
+			first: panelLeaf('content'),
+			second: panelLeaf('profile', { narrowPriority: 'first' })
+		};
+
+		expect(panelIds(prioritizeNarrowPanel(layout))).toEqual([
+			'profile',
+			'content'
+		]);
+		expect(panelIds(layout)).toEqual(['content', 'profile']);
+		expect(prioritizeNarrowPanel(layout).kind).toBe('split');
+		expect(prioritizeNarrowPanel(panelLeaf('content'))).toEqual(
+			panelLeaf('content')
+		);
+		expect(prioritizePanel(layout, 'missing')).toBe(layout);
+	});
+
+	test('moves the profile branch first while keeping its nested socials panel alongside it', () => {
+		const profileGroup = {
+			kind: 'split' as const,
+			axis: 'vertical' as const,
+			first: panelLeaf('profile', { narrowPriority: 'first' }),
+			second: panelLeaf('socials')
+		};
+		const layout = {
+			kind: 'split' as const,
+			axis: 'horizontal' as const,
+			first: panelLeaf('content'),
+			second: profileGroup
+		};
+		const narrow = prioritizeNarrowPanel(layout);
+
+		expect(panelIds(narrow)).toEqual(['profile', 'socials', 'content']);
+		if (narrow.kind !== 'split') throw new Error('expected a split layout');
+		expect(narrow.first).toBe(profileGroup);
+		expect(panelIds(layout)).toEqual(['content', 'profile', 'socials']);
 	});
 
 	test('leaves the tree untouched when a requested panel is absent', () => {

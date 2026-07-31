@@ -2,7 +2,11 @@
   import { onMount, tick } from "svelte";
 
   import HighlightedCommand from "$lib/HighlightedCommand.svelte";
-  import type { PanelId } from "$lib/panel-layout";
+  import type {
+    PanelId,
+    PanelMode,
+    PanelSizing,
+  } from "$lib/panel-layout";
   import {
     completeShellInput,
     cycleCompletionIndex,
@@ -11,6 +15,7 @@
   } from "$lib/shell/input";
   import type { CommandAction } from "$lib/shell/types";
   import type {
+    SubmissionSource,
     TerminalController,
     TerminalOutputChunk,
   } from "$lib/terminal.svelte";
@@ -28,6 +33,9 @@
   type Props = Readonly<{
     id: PanelId;
     controller: TerminalController;
+    mode: PanelMode;
+    sizing: PanelSizing;
+    label: string;
     active: boolean;
     canClose: boolean;
     dragging: boolean;
@@ -43,6 +51,9 @@
   let {
     id,
     controller,
+    mode,
+    sizing,
+    label,
     active,
     canClose,
     dragging,
@@ -58,8 +69,6 @@
   let terminalState = $derived(controller.state);
   let inputElement = $state<HTMLInputElement>();
   let completionRailElement = $state<HTMLElement>();
-  let transcriptElement = $state<HTMLElement>();
-  let followTail = $state(true);
   let inputSelectionStart = $state(0);
   let inputSelectionEnd = $state(0);
   let inputScrollLeft = $state(0);
@@ -69,12 +78,28 @@
   let completionDismissed = $state(false);
   let completionRequest = 0;
   let applyingCompletion = false;
+  let completionListId = $derived(`terminal-completions-${id}`);
+  let activeCompletionOptionId = $derived(
+    activeCompletionIndex === null
+      ? undefined
+      : `${completionListId}-option-${activeCompletionIndex}`,
+  );
 
-  const scrollToPrompt = (behavior: ScrollBehavior = "smooth"): void => {
-    const element = transcriptElement;
-    if (element === undefined) return;
-    element.scrollTo({ top: element.scrollHeight, behavior });
-    followTail = true;
+  const documentFollowsTail = (): boolean =>
+    document.documentElement.scrollHeight - window.scrollY - window.innerHeight <
+    72;
+
+  const submitAndReveal = (
+    command: string,
+    source: SubmissionSource,
+  ): void => {
+    const shouldReveal = documentFollowsTail();
+    const startingScrollY = window.scrollY;
+    void controller.submitCommand(command, source).then(async () => {
+      if (!shouldReveal || Math.abs(window.scrollY - startingScrollY) > 2) return;
+      await tick();
+      inputElement?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
   };
 
   const focusInput = async (force = false): Promise<void> => {
@@ -164,17 +189,20 @@
     completionSession = null;
     completionCandidates = [];
     activeCompletionIndex = null;
-    void controller.submitCommand(command, "keyboard");
+    submitAndReveal(command, "keyboard");
   };
 
   const activate = (action: CommandAction): void => {
-    controller.activateCommandAction(action);
-    if (action.behavior === "prefill") {
-      resetCompletionInteraction();
-      inputSelectionStart = action.command.length;
-      inputSelectionEnd = action.command.length;
-      void positionInput(action.command.length);
+    if (action.behavior === "execute") {
+      submitAndReveal(action.command, "action");
+      return;
     }
+
+    controller.activateCommandAction(action);
+    resetCompletionInteraction();
+    inputSelectionStart = action.command.length;
+    inputSelectionEnd = action.command.length;
+    void positionInput(action.command.length);
   };
 
   const inlineAction = (output: TerminalOutputChunk): InlineAction | null => {
@@ -287,13 +315,6 @@
     inputScrollLeft = inputElement?.scrollLeft ?? 0;
   };
 
-  const trackScroll = (): void => {
-    const element = transcriptElement;
-    if (element === undefined) return;
-    followTail =
-      element.scrollHeight - element.scrollTop - element.clientHeight < 72;
-  };
-
   const dragHandleKeydown = (event: KeyboardEvent): void => {
     if (!event.altKey) return;
     if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
@@ -306,13 +327,9 @@
   };
 
   $effect(() => {
-    terminalState.scrollVersion;
-    if (!followTail) return;
-    void tick().then(() => scrollToPrompt("instant"));
-  });
-
-  $effect(() => {
-    if (active && terminalState.phase === "idle") void focusInput();
+    if (mode === "interactive" && active && terminalState.phase === "idle") {
+      void focusInput();
+    }
   });
 
   $effect(() => {
@@ -326,6 +343,7 @@
     const request = ++completionRequest;
 
     if (
+      mode !== "interactive" ||
       phase !== "idle" ||
       draft.trim().length === 0 ||
       selectionStart !== selectionEnd ||
@@ -356,15 +374,20 @@
   data-active={active}
   data-dragging={dragging}
   data-drop-target={dropTarget}
-  aria-label={`Terminal at ${terminalState.cwd}`}
-  onfocusin={() => onActivate(id)}
+  data-mode={mode}
+  data-sizing={sizing}
+  aria-label={`${label} at ${terminalState.cwd}`}
+  onfocusin={() => {
+    if (mode === "interactive") onActivate(id);
+  }}
 >
   <header class="panel-heading">
     <button
       class="panel-drag-handle"
       type="button"
-      aria-label={`Move terminal at ${terminalState.cwd}. Use Alt and arrow keys to reorder.`}
-      title="Drag to reorder · Alt+Arrow to move"
+      aria-label={`move ${label} at ${terminalState.cwd}. use alt and arrow keys to reorder.`}
+      aria-keyshortcuts="Alt+ArrowLeft Alt+ArrowRight Alt+ArrowUp Alt+ArrowDown"
+      title="drag to reorder · alt+arrow to move"
       onpointerdown={(event) => onDragPointerDown(event, id)}
       onpointermove={onDragPointerMove}
       onpointerup={onDragPointerEnd}
@@ -378,8 +401,8 @@
       type="button"
       disabled={!canClose}
       aria-label={canClose
-        ? `Close terminal at ${terminalState.cwd}`
-        : "The last terminal cannot be closed"}
+        ? `close ${label} at ${terminalState.cwd}`
+        : `the last ${label} cannot be closed`}
       onpointerdown={(event) => event.stopPropagation()}
       onclick={(event) => {
         event.stopPropagation();
@@ -391,11 +414,11 @@
   <div class="terminal">
     <div
       class="terminal-transcript"
-      bind:this={transcriptElement}
-      onpointerdown={() => onActivate(id)}
-      onscroll={trackScroll}
-      role="log"
-      aria-live="off"
+      onpointerdown={() => {
+        if (mode === "interactive") onActivate(id);
+      }}
+      role={mode === "interactive" ? "log" : undefined}
+      aria-live={mode === "interactive" ? "off" : undefined}
       aria-busy={terminalState.phase !== "idle"}
     >
       {#each terminalState.transcript as entry (entry.id)}
@@ -469,7 +492,7 @@
             <span class="terminal-cursor" aria-hidden="true"></span>
           {/if}
         </div>
-      {:else if terminalState.phase === "idle"}
+      {:else if terminalState.phase === "idle" && mode === "interactive"}
         <div class="prompt-composer">
           <form class="prompt-row active-prompt" onsubmit={submit}>
             <label class="prompt-prefix" for={`terminal-command-${id}`}>
@@ -494,7 +517,14 @@
                 onclick={selectInput}
                 onscroll={scrollInput}
                 type="text"
-                aria-label="Command"
+                role="combobox"
+                aria-label={`command in ${label} at ${terminalState.cwd}`}
+                aria-autocomplete="list"
+                aria-expanded={completionCandidates.length > 0}
+                aria-controls={completionCandidates.length > 0
+                  ? completionListId
+                  : undefined}
+                aria-activedescendant={activeCompletionOptionId}
                 autocomplete="off"
                 autocapitalize="none"
                 spellcheck="false"
@@ -504,34 +534,39 @@
           </form>
 
           {#if completionCandidates.length > 0}
-            <nav
+            <div
               class="completion-rail"
               bind:this={completionRailElement}
-              aria-label="Command completions"
+              id={completionListId}
+              role="listbox"
+              aria-label={`command completions for ${label}`}
             >
               {#each completionCandidates as candidate, index (`${candidate.kind}:${candidate.label}:${candidate.draft}`)}
                 <button
+                  id={`${completionListId}-option-${index}`}
                   type="button"
+                  role="option"
                   class="completion-option"
                   data-kind={candidate.kind}
                   data-active={activeCompletionIndex === index}
-                  aria-current={activeCompletionIndex === index
-                    ? "true"
-                    : undefined}
-                  aria-label={`Complete ${candidate.label}`}
+                  aria-selected={activeCompletionIndex === index}
+                  aria-label={`complete ${candidate.label}`}
+                  tabindex={-1}
                   onpointerdown={(event) => event.preventDefault()}
                   onclick={() => insertCompletion(candidate)}
                   >{candidate.label}</button
                 >
               {/each}
-            </nav>
+            </div>
           {/if}
         </div>
       {/if}
     </div>
   </div>
 
-  <p class="screen-reader-status" aria-live="polite">
-    {terminalState.announcement}
-  </p>
+  {#if mode === "interactive"}
+    <p class="screen-reader-status" aria-live="polite">
+      {terminalState.announcement}
+    </p>
+  {/if}
 </section>

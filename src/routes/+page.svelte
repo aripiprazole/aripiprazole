@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onDestroy } from "svelte";
+  import { onDestroy, onMount } from "svelte";
 
   import PanelLayout from "$lib/PanelLayout.svelte";
   import {
@@ -8,6 +8,7 @@
     nextSplitAxis,
     panelIds,
     panelLeaf,
+    prioritizeNarrowPanel,
     splitPanel,
     type PanelId,
     type PanelLayout as Layout,
@@ -53,15 +54,38 @@
   ]);
   const profilePanelId = createPanel(undefined, [
     "png --radius 18 profile.png",
-    "cat links.md",
+  ]);
+  const linksPanelId = createPanel(undefined, ["cat links.md"]);
+  const outputOnlyPanelIds = new Set<PanelId>([
+    profilePanelId,
+    linksPanelId,
   ]);
   let layout = $state<Layout>({
     kind: "split",
     axis: "horizontal",
     ratio: "3:1",
-    first: panelLeaf(contentPanelId),
-    second: panelLeaf(profilePanelId),
+    first: panelLeaf(contentPanelId, {
+      sizing: "fill",
+      label: "portfolio terminal",
+    }),
+    second: {
+      kind: "split",
+      axis: "vertical",
+      narrowFlow: "wrap",
+      first: panelLeaf(profilePanelId, {
+        sizing: "intrinsic",
+        mode: "output-only",
+        narrowPriority: "first",
+        label: "profile terminal",
+      }),
+      second: panelLeaf(linksPanelId, {
+        sizing: "intrinsic",
+        mode: "output-only",
+        label: "socials terminal",
+      }),
+    },
   });
+  let narrowLayout = $state(false);
   let activePanelId = $state<PanelId>(contentPanelId);
   let nextAxis = $state<SplitAxis>("horizontal");
   let pointerDrag = $state<PointerDrag | null>(null);
@@ -71,6 +95,9 @@
   );
   let dropTargetPanelId = $derived(
     pointerDrag?.active ? pointerDrag.targetId : null,
+  );
+  let renderedLayout = $derived(
+    narrowLayout ? prioritizeNarrowPanel(layout) : layout,
   );
 
   function splitFrom(sourceId: PanelId): void {
@@ -85,7 +112,7 @@
   }
 
   const activatePanel = (id: PanelId): void => {
-    if (controllers.has(id)) activePanelId = id;
+    if (!outputOnlyPanelIds.has(id) && controllers.has(id)) activePanelId = id;
   };
 
   const cancelPointerDrag = (): void => {
@@ -171,7 +198,7 @@
       current.targetId !== null
     ) {
       layout = movePanel(layout, current.sourceId, current.targetId);
-      activePanelId = current.sourceId;
+      activatePanel(current.sourceId);
     }
     cancelPointerDrag();
   };
@@ -182,7 +209,7 @@
     const target = ids[index + direction];
     if (index < 0 || target === undefined) return;
     layout = movePanel(layout, id, target);
-    activePanelId = id;
+    activatePanel(id);
   };
 
   const globalKeydown = (event: KeyboardEvent): void => {
@@ -216,14 +243,24 @@
     cancelPointerDrag();
     for (const controller of controllers.values()) controller.dispose();
   });
+
+  onMount(() => {
+    const mediaQuery = window.matchMedia("(max-width: 64rem)");
+    const updateLayoutMode = (): void => {
+      narrowLayout = mediaQuery.matches;
+    };
+    updateLayoutMode();
+    mediaQuery.addEventListener("change", updateLayoutMode);
+    return () => mediaQuery.removeEventListener("change", updateLayoutMode);
+  });
 </script>
 
 <svelte:window onkeydown={globalKeydown} />
 
 <main class="terminal-page">
-  <div class="terminal-workspace" aria-label="Interactive portfolio terminals">
+  <div class="terminal-workspace" aria-label="interactive portfolio terminals">
     <PanelLayout
-      node={layout}
+      node={renderedLayout}
       {controllers}
       {panelCount}
       {activePanelId}
@@ -237,9 +274,8 @@
       onMoveByKeyboard={moveByKeyboard}
     />
     <footer class="workspace-footer" aria-label="terminal controls">
-      <span
-        ><kbd>tab</kbd> / <kbd>shift+tab</kbd> complete - drag and drop panels</span
-      >
+      <span><kbd>tab</kbd> / <kbd>shift+tab</kbd> complete</span>
+      <span>drag and drop panels</span>
     </footer>
   </div>
 </main>

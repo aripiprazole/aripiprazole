@@ -36,35 +36,44 @@
 </script>
 
 {#if node.kind === 'split'}
-	<div class="panel-split" data-axis={node.axis} data-ratio={node.ratio}>
-		<PanelLayout
-			node={node.first}
-			{controllers}
-			{panelCount}
-			{activePanelId}
-			{draggingPanelId}
-			{dropTargetPanelId}
-			{onActivate}
-			{onClose}
-			{onDragPointerDown}
-			{onDragPointerMove}
-			{onDragPointerEnd}
-			{onMoveByKeyboard}
-		/>
-		<PanelLayout
-			node={node.second}
-			{controllers}
-			{panelCount}
-			{activePanelId}
-			{draggingPanelId}
-			{dropTargetPanelId}
-			{onActivate}
-			{onClose}
-			{onDragPointerDown}
-			{onDragPointerMove}
-			{onDragPointerEnd}
-			{onMoveByKeyboard}
-		/>
+	<div
+		class="panel-split"
+		data-axis={node.axis}
+		data-ratio={node.ratio}
+		data-narrow-flow={node.narrowFlow}
+	>
+		<div class="panel-slot">
+			<PanelLayout
+				node={node.first}
+				{controllers}
+				{panelCount}
+				{activePanelId}
+				{draggingPanelId}
+				{dropTargetPanelId}
+				{onActivate}
+				{onClose}
+				{onDragPointerDown}
+				{onDragPointerMove}
+				{onDragPointerEnd}
+				{onMoveByKeyboard}
+			/>
+		</div>
+		<div class="panel-slot">
+			<PanelLayout
+				node={node.second}
+				{controllers}
+				{panelCount}
+				{activePanelId}
+				{draggingPanelId}
+				{dropTargetPanelId}
+				{onActivate}
+				{onClose}
+				{onDragPointerDown}
+				{onDragPointerMove}
+				{onDragPointerEnd}
+				{onMoveByKeyboard}
+			/>
+		</div>
 	</div>
 {:else}
 	{@const controller = controllers.get(node.id)}
@@ -73,6 +82,9 @@
 			<TerminalPanel
 				id={node.id}
 				{controller}
+				mode={node.mode ?? 'interactive'}
+				sizing={node.sizing ?? 'fill'}
+				label={node.label ?? node.id.replace('-', ' ')}
 				active={activePanelId === node.id}
 				canClose={panelCount > 1}
 				dragging={draggingPanelId === node.id}
