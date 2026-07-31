@@ -24,7 +24,7 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 ### writings
 
 - [writing a minecraft protocol implementation in kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42) -- minecraft server protocol in kotlin with coroutines
-- [defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e) -- https://aripiprazole.medium.com/defunctionalization-5fd03b21813e
+- [defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e) -- transforming closures into top level functions using closure conversion algorithm
 - [writing an equation solver](https://dev.to/aripiprazole/writing-an-equation-solver-6b2) -- writing a basic equation solver using basic first-order logic
 - [gadt-like types in rust](https://dev.to/aripiprazole/gadt-like-types-in-rust-4hcp) -- gadts are useful, and gats are too, why not combine both?
 - [driving complete and easy implementation in rust](https://dev.to/aripiprazole/driving-complete-and-easy-bidirectional-typechecking-for-higher-rank-polymorphism-in-rust-4856) -- mutable implementation of bidirectional type system
