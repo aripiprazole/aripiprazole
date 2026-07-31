@@ -218,20 +218,6 @@
   });
 </script>
 
-<svelte:head>
-  <title>$</title>
-  <meta
-    name="description"
-    content="Gabrielle's interactive terminal portfolio: explore projects, writing, accounts, and links through a small browser shell."
-  />
-  <meta property="og:title" content="$" />
-  <meta
-    property="og:description"
-    content="A software engineer's portfolio presented as an interactive browser terminal."
-  />
-  <link rel="icon" href="https://gabx.io/favicon.ico" />
-</svelte:head>
-
 <svelte:window onkeydown={globalKeydown} />
 
 <main class="terminal-page">
