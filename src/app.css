@@ -616,7 +616,7 @@ input:focus-visible {
 }
 
 .terminal-html code {
-  padding: 0.08em 0.35em;
+  padding: 0.04em 0.3em;
   color: var(--prompt);
   font: inherit;
   font-weight: 500;

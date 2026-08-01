@@ -1,13 +1,15 @@
 <div>
   <img align="left" height="160px" src="public/profile.png" alt="Profile picture" style="border-radius: 8px;">
 
-  <h3>hey adventurer</h3>
+  <h3># hey adventurer</h3>
   <br>
 </div>
 
 software engineer, amateur chess player, somewhat autistic and an inherently curious human being. by being fascinated by how our world works and growing up with computers led me to be always searching for new stuff to learn about computers and math.
 
-### public stuff
+<br>
+
+### \#\# public stuff
 
 [zed unicode](https://zed.dev/extensions/unicode)
 [commune ai subspace](https://github.com/commune-ai/subspace)
@@ -15,14 +17,14 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 [kind language server](https://marketplace.visualstudio.com/items?itemname=kind-language-server.eszopiclone)
 [trazodone](https://github.com/aripiprazole/trazodone)
 
-### other cool stuff
+### \#\# other cool stuff
 
 - [rinha de compiler](https://github.com/aripiprazole/rinha-de-compiler) -- online hackathon about compilers
 - [andesite](https://github.com/aripiprazole/andesite) -- minecraft protocol lib with [kotlinx.serialization](https://github.com/kotlin/kotlinx.serialization)
 - [bupropion](https://github.com/aripiprazole/bupropion) -- opnionated frontend for [miette](https://crates.io/crates/miette)
 - [niques](https://github.com/aripiprazole/niques) -- not so cool, but still there
 
-### writings
+### \#\# writings
 
 - [writing a minecraft protocol implementation in kotlin](https://aripiprazole.medium.com/writing-a-minecraft-protocol-implementation-in-kotlin-9276c584bd42) -- minecraft server protocol in kotlin with coroutines
 - [defunctionalization](https://aripiprazole.medium.com/defunctionalization-5fd03b21813e) -- transforming closures into top level functions using closure conversion algorithm
