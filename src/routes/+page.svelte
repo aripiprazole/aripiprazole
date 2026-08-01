@@ -42,6 +42,7 @@
       initialCwd,
       startupCommands,
       onSplit: () => splitFrom(id),
+      onExit: () => closeTerminal(id),
     });
     controllers.set(id, controller);
     return id;
@@ -83,7 +84,7 @@
     },
   });
   let activePanelId = $state<PanelId>(contentPanelId);
-  let nextAxis = $state<SplitAxis>("horizontal");
+  let nextAxis = $state<SplitAxis>("vertical");
   let pointerDrag = $state<PointerDrag | null>(null);
   let panelCount = $derived(panelIds(layout).length);
   let draggingPanelId = $derived(

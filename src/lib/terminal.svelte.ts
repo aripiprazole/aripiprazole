@@ -77,6 +77,7 @@ export type TerminalControllerOptions = Readonly<{
 	initialCwd?: AbsolutePath;
 	startupCommands?: readonly string[];
 	onSplit?: (cwd: AbsolutePath) => void;
+	onExit?: () => void;
 }>;
 
 export type TerminalController = Readonly<{
@@ -351,6 +352,12 @@ export const createTerminalController = (
 
 		if (result.effects.some((effect) => effect.kind === 'split')) {
 			options.onSplit?.(state.cwd);
+		}
+		if (result.effects.some((effect) => effect.kind === 'clear')) {
+			clearTranscript();
+		}
+		if (result.effects.some((effect) => effect.kind === 'exit')) {
+			options.onExit?.();
 		}
 	};
 

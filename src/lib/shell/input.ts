@@ -420,9 +420,16 @@ export const completeShellInput = async (
 		(word) => word.index > 0 && word.end <= start
 	);
 	const optionsEnabled = !priorArguments.some((word) => word.value === '--');
+	const commandOperandAlreadyPresent =
+		command.completion.operand === 'command' &&
+		priorArguments.some((word) => word.value !== '--');
 	const suggestions: ShellCompletionCandidate[] = [];
 
-	if (optionsEnabled && (prefix.length === 0 || prefix.startsWith('-'))) {
+	if (
+		!commandOperandAlreadyPresent &&
+		optionsEnabled &&
+		(prefix.length === 0 || prefix.startsWith('-'))
+	) {
 		suggestions.push(
 			...optionCandidates(
 				source,
@@ -451,6 +458,14 @@ export const completeShellInput = async (
 				))
 			);
 		}
+	}
+
+	if (
+		command.completion.operand === 'command' &&
+		!commandOperandAlreadyPresent &&
+		(optionsEnabled ? !prefix.startsWith('-') : true)
+	) {
+		suggestions.push(...commandCandidates(source, start, end, prefix));
 	}
 
 	return suggestions.sort((left, right) => left.label.localeCompare(right.label));

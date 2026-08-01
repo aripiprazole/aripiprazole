@@ -1,8 +1,8 @@
 export const terminalSuggestions = [
-  "type `cd writings/` to read my blogposts",
-  "type `cd projects/` to browse my projects",
-  "type `ls -la` to look around",
-  "type `split` to open another terminal",
+  "cd writings/",
+  "cd projects/",
+  "ls -la",
+  "split",
 ] as const;
 
 export type TypewriterDirection = "write" | "erase";

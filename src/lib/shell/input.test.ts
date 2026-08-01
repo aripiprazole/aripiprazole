@@ -66,13 +66,16 @@ describe("shell completion", () => {
     expect(await labels("")).toEqual([
       "cat",
       "cd",
+      "clear",
       "curl",
+      "exit",
       "ls",
+      "man",
       "png",
       "pwd",
       "split",
     ]);
-    expect(await labels("cat | c")).toEqual(["cat", "cd", "curl"]);
+    expect(await labels("cat | c")).toEqual(["cat", "cd", "clear", "curl"]);
   });
 
   test("uses command metadata for options and stops options after --", async () => {
@@ -100,6 +103,24 @@ describe("shell completion", () => {
     );
     expect(await labels("png pro")).toEqual(["profile.png"]);
     expect(await labels("png -")).toEqual(["--", "--radius", "-r"]);
+  });
+
+  test("completes man pages from the registered command names", async () => {
+    expect(await labels("man c")).toEqual(["cat", "cd", "clear", "curl"]);
+    expect(await labels("man -")).toEqual(["--"]);
+    expect(await labels("man -- ")).toEqual([
+      "cat",
+      "cd",
+      "clear",
+      "curl",
+      "exit",
+      "ls",
+      "man",
+      "png",
+      "pwd",
+      "split",
+    ]);
+    expect(await labels("man cat ")).toEqual([]);
   });
 
   test("resolves relative, dot, parent, and absolute paths without home completion", async () => {

@@ -48,6 +48,16 @@ const PwdArgumentsSchema = z.object({}).strict();
 
 const SplitArgumentsSchema = z.object({}).strict();
 
+const ClearArgumentsSchema = z.object({}).strict();
+
+const ExitArgumentsSchema = z.object({}).strict();
+
+const ManArgumentsSchema = z
+  .object({
+    page: z.string().optional(),
+  })
+  .strict();
+
 const CurlArgumentsSchema = z
   .object({
     url: z.string().min(1).max(2_048),
@@ -69,7 +79,7 @@ const CommandArgumentErrorSchema = z
 export type CommandArgumentError = z.infer<typeof CommandArgumentErrorSchema>;
 
 export type CommandCompletionOperand =
-  "none" | "file" | "directory" | "path" | "url";
+  "none" | "command" | "file" | "directory" | "path" | "url";
 
 export type CommandCompletion = Readonly<{
   options: readonly string[];
@@ -78,6 +88,10 @@ export type CommandCompletion = Readonly<{
 
 export type CommandDefinition<Schema extends z.ZodType> = Readonly<{
   usage: string;
+  manual: Readonly<{
+    summary: string;
+    description: string;
+  }>;
   completion: CommandCompletion;
   schema: Schema;
   normalize: (argv: readonly string[]) => unknown;
@@ -198,6 +212,11 @@ const copyMarkdownDescriptor = async (
 
 const catCommand = {
   usage: "cat [--] [FILE ...]",
+  manual: {
+    summary: "concatenate files and print them",
+    description:
+      "Reads files or standard input and writes their contents to standard output.",
+  },
   completion: {
     options: ["--"],
     operand: "file",
@@ -285,6 +304,11 @@ const normalizePngArguments = (argv: readonly string[]): unknown => {
 
 const pngCommand = {
   usage: "png [-r PX] [--radius PX] [--] FILE",
+  manual: {
+    summary: "display a PNG image",
+    description:
+      "Displays one PNG file in the terminal with an optional corner radius.",
+  },
   completion: {
     options: ["--", "--radius", "-r"],
     operand: "file",
@@ -417,6 +441,11 @@ const directoryAction = (path: string, displayName: string): CommandAction => ({
 const lsCommand = {
   usage:
     "ls [-alh1] [--all] [--human-readable] [--one-per-line] [--] [PATH ...]",
+  manual: {
+    summary: "list directory contents",
+    description:
+      "Lists files and directories for each path, with optional hidden, long, human-readable, and one-per-line output.",
+  },
   completion: {
     options: [
       "--",
@@ -525,6 +554,11 @@ const normalizeCdArguments = (argv: readonly string[]): unknown => {
 
 const cdCommand = {
   usage: "cd [DIRECTORY]",
+  manual: {
+    summary: "change the current directory",
+    description:
+      "Changes the shell working directory. With no directory it returns to the initial directory; '-' selects the previous directory.",
+  },
   completion: {
     options: ["--"],
     operand: "directory",
@@ -580,6 +614,10 @@ const normalizePwdArguments = (argv: readonly string[]): unknown => {
 
 const pwdCommand = {
   usage: "pwd",
+  manual: {
+    summary: "print the current directory",
+    description: "Writes the shell's current absolute directory to standard output.",
+  },
   completion: {
     options: ["--"],
     operand: "none",
@@ -602,6 +640,11 @@ const normalizeSplitArguments = (argv: readonly string[]): unknown => {
 
 const splitCommand = {
   usage: "split",
+  manual: {
+    summary: "open a new terminal",
+    description:
+      "Opens a new terminal beside the current one using the same working directory.",
+  },
   completion: {
     options: [],
     operand: "none",
@@ -613,6 +656,60 @@ const splitCommand = {
     effects: [{ kind: "split" }],
   }),
 } satisfies CommandDefinition<typeof SplitArgumentsSchema>;
+
+const normalizeClearArguments = (argv: readonly string[]): unknown => {
+  if (argv.length > 0) {
+    throw commandArgumentError("clear", `unsupported argument: ${argv[0]}`);
+  }
+
+  return {};
+};
+
+const clearCommand = {
+  usage: "clear",
+  manual: {
+    summary: "clear the terminal screen",
+    description:
+      "Removes the current terminal transcript while preserving command history and the working directory.",
+  },
+  completion: {
+    options: [],
+    operand: "none",
+  },
+  schema: ClearArgumentsSchema,
+  normalize: normalizeClearArguments,
+  run: async (): Promise<ProcessExit> => ({
+    exitCode: asExitCode(0),
+    effects: [{ kind: "clear" }],
+  }),
+} satisfies CommandDefinition<typeof ClearArgumentsSchema>;
+
+const normalizeExitArguments = (argv: readonly string[]): unknown => {
+  if (argv.length > 0) {
+    throw commandArgumentError("exit", `unsupported argument: ${argv[0]}`);
+  }
+
+  return {};
+};
+
+const exitCommand = {
+  usage: "exit",
+  manual: {
+    summary: "close the current terminal",
+    description:
+      "Closes the current terminal after the command finishes. The final terminal remains open.",
+  },
+  completion: {
+    options: [],
+    operand: "none",
+  },
+  schema: ExitArgumentsSchema,
+  normalize: normalizeExitArguments,
+  run: async (): Promise<ProcessExit> => ({
+    exitCode: asExitCode(0),
+    effects: [{ kind: "exit" }],
+  }),
+} satisfies CommandDefinition<typeof ExitArgumentsSchema>;
 
 const readPositiveNumber = (
   command: string,
@@ -767,6 +864,11 @@ export const httpClient: HttpClient = {
 
 const curlCommand = {
   usage: "curl [-I] [-i] [--max-time SEC] [--max-filesize BYTES] URL",
+  manual: {
+    summary: "transfer data from an HTTPS URL",
+    description:
+      "Fetches a capped response from a public HTTPS URL and writes text content to standard output.",
+  },
   completion: {
     options: [
       "--",
@@ -915,6 +1017,82 @@ const curlCommand = {
   },
 } satisfies CommandDefinition<typeof CurlArgumentsSchema>;
 
+type AnyCommandDefinition = CommandDefinition<z.ZodType>;
+
+function registeredCommands(): readonly (readonly [string, AnyCommandDefinition])[] {
+  return Object.entries(commands) as [string, AnyCommandDefinition][];
+}
+
+function registeredCommand(name: string): AnyCommandDefinition | undefined {
+  return commands[name as CommandName] as AnyCommandDefinition | undefined;
+}
+
+const normalizeManArguments = (argv: readonly string[]): unknown => {
+  const optionsEnabled = argv[0] !== "--";
+  const pages = optionsEnabled ? argv : argv.slice(1);
+  if (pages.length > 1) {
+    throw commandArgumentError("man", "too many arguments");
+  }
+  if (optionsEnabled && pages[0]?.startsWith("-")) {
+    throw commandArgumentError("man", `unsupported option: ${pages[0]}`);
+  }
+
+  return { page: pages[0] };
+};
+
+const commandIndex = (): string => {
+  const entries = [...registeredCommands()].sort(([left], [right]) =>
+    left.localeCompare(right),
+  );
+  const width = Math.max(...entries.map(([name]) => name.length));
+  const lines = entries.map(
+    ([name, command]) => `    ${name.padEnd(width)}  ${command.manual.summary}`,
+  );
+
+  return `AVAILABLE COMMANDS\n${lines.join("\n")}\n\nRun 'man COMMAND' for details.\n`;
+};
+
+const commandManual = (name: string, command: AnyCommandDefinition): string =>
+  `${name.toUpperCase()}(1)\n\nNAME\n    ${name} - ${command.manual.summary}\n\nSYNOPSIS\n    ${command.usage}\n\nDESCRIPTION\n    ${command.manual.description}\n`;
+
+const manCommand = {
+  usage: "man [--] [COMMAND]",
+  manual: {
+    summary: "display command manuals",
+    description:
+      "Displays an index of available commands or the plain-text manual for one command.",
+  },
+  completion: {
+    options: ["--"],
+    operand: "command",
+  },
+  schema: ManArgumentsSchema,
+  normalize: normalizeManArguments,
+  run: async (context, arguments_): Promise<ProcessExit> => {
+    if (arguments_.page === undefined) {
+      await writeText(context.stdout, commandIndex(), context.signal);
+      return { exitCode: asExitCode(0), effects: [] };
+    }
+
+    const command = registeredCommand(arguments_.page);
+    if (command === undefined) {
+      await writeText(
+        context.stderr,
+        `man: no manual entry for ${arguments_.page}\n`,
+        context.signal,
+      );
+      return { exitCode: asExitCode(1), effects: [] };
+    }
+
+    await writeText(
+      context.stdout,
+      commandManual(arguments_.page, command),
+      context.signal,
+    );
+    return { exitCode: asExitCode(0), effects: [] };
+  },
+} satisfies CommandDefinition<typeof ManArgumentsSchema>;
+
 export type ShellState = {
   cwd: AbsolutePath;
   oldCwd: AbsolutePath;
@@ -931,11 +1109,14 @@ export const createShellState = (
 
 export const commands = {
   cat: catCommand,
-  ls: lsCommand,
   cd: cdCommand,
+  clear: clearCommand,
+  curl: curlCommand,
+  exit: exitCommand,
+  ls: lsCommand,
+  man: manCommand,
   png: pngCommand,
   pwd: pwdCommand,
-  curl: curlCommand,
   split: splitCommand,
 } as const;
 

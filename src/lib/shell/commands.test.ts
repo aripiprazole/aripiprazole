@@ -280,6 +280,65 @@ describe("pwd", () => {
   });
 });
 
+describe("man", () => {
+  test("prints an alphabetized plain-text command index", async () => {
+    const execution = await execute("man");
+    const output = textOf(execution.stdout);
+
+    expect(execution.result.exitCode).toBe(asExitCode(0));
+    expect(output).toContain("AVAILABLE COMMANDS\n");
+    expect(output).toContain("    clear");
+    expect(output).toContain("    exit");
+    expect(output).toContain("    man ");
+    expect(output.indexOf("    cat")).toBeLessThan(output.indexOf("    exit"));
+    expect(output.indexOf("    exit")).toBeLessThan(output.indexOf("    man "));
+    expect(output).toEndWith("Run 'man COMMAND' for details.\n");
+    expect(actionsOf(execution.stdout)).toEqual([]);
+    expect(execution.stdout.every((value) => value.presentation === undefined)).toBe(
+      true,
+    );
+    expect(execution.stderr).toEqual([]);
+  });
+
+  test("prints registered manual pages and preserves them through a pipe", async () => {
+    const direct = await execute("man -- cat");
+    const clear = await execute("man clear");
+    const piped = await execute("man man | cat");
+
+    expect(direct.result.exitCode).toBe(asExitCode(0));
+    expect(textOf(direct.stdout)).toBe(
+      "CAT(1)\n\nNAME\n    cat - concatenate files and print them\n\nSYNOPSIS\n    cat [--] [FILE ...]\n\nDESCRIPTION\n    Reads files or standard input and writes their contents to standard output.\n",
+    );
+    expect(textOf(clear.stdout)).toContain(
+      "CLEAR(1)\n\nNAME\n    clear - clear the terminal screen",
+    );
+    expect(textOf(clear.stdout)).toContain("SYNOPSIS\n    clear\n");
+    expect(textOf(piped.stdout)).toContain("MAN(1)\n\nNAME\n");
+    expect(textOf(piped.stdout)).toContain("    man [--] [COMMAND]\n");
+    expect(piped.result.effects).toEqual([]);
+  });
+
+  test("reports unknown pages and malformed arguments", async () => {
+    const unknown = await execute("man teleport");
+    const literal = await execute("man -- --unknown");
+    const option = await execute("man --unknown");
+    const multiple = await execute("man cat ls");
+
+    expect(unknown.result.exitCode).toBe(asExitCode(1));
+    expect(textOf(unknown.stderr)).toBe(
+      "man: no manual entry for teleport\n",
+    );
+    expect(literal.result.exitCode).toBe(asExitCode(1));
+    expect(textOf(literal.stderr)).toBe(
+      "man: no manual entry for --unknown\n",
+    );
+    expect(option.result.exitCode).toBe(asExitCode(2));
+    expect(textOf(option.stderr)).toBe("man: unsupported option: --unknown\n");
+    expect(multiple.result.exitCode).toBe(asExitCode(2));
+    expect(textOf(multiple.stderr)).toBe("man: too many arguments\n");
+  });
+});
+
 describe("split", () => {
   test("emits a standalone terminal split effect without output", async () => {
     const execution = await execute("split");
@@ -296,6 +355,52 @@ describe("split", () => {
 
     expect(invalid.result.exitCode).toBe(asExitCode(2));
     expect(textOf(invalid.stderr)).toContain("unsupported argument: extra");
+    expect(pipeline.result.exitCode).toBe(asExitCode(0));
+    expect(pipeline.result.effects).toEqual([]);
+  });
+});
+
+describe("exit", () => {
+  test("emits a standalone terminal exit effect without output", async () => {
+    const execution = await execute("exit");
+
+    expect(execution.result.exitCode).toBe(asExitCode(0));
+    expect(execution.result.effects).toEqual([{ kind: "exit" }]);
+    expect(execution.stdout).toEqual([]);
+    expect(execution.stderr).toEqual([]);
+  });
+
+  test("rejects arguments and isolates the exit effect inside a pipeline", async () => {
+    const invalid = await execute("exit extra");
+    const pipeline = await execute("exit | cat");
+
+    expect(invalid.result.exitCode).toBe(asExitCode(2));
+    expect(textOf(invalid.stderr)).toBe(
+      "exit: unsupported argument: extra\n",
+    );
+    expect(pipeline.result.exitCode).toBe(asExitCode(0));
+    expect(pipeline.result.effects).toEqual([]);
+  });
+});
+
+describe("clear", () => {
+  test("emits a standalone terminal clear effect without output", async () => {
+    const execution = await execute("clear");
+
+    expect(execution.result.exitCode).toBe(asExitCode(0));
+    expect(execution.result.effects).toEqual([{ kind: "clear" }]);
+    expect(execution.stdout).toEqual([]);
+    expect(execution.stderr).toEqual([]);
+  });
+
+  test("rejects arguments and isolates the clear effect inside a pipeline", async () => {
+    const invalid = await execute("clear extra");
+    const pipeline = await execute("clear | cat");
+
+    expect(invalid.result.exitCode).toBe(asExitCode(2));
+    expect(textOf(invalid.stderr)).toBe(
+      "clear: unsupported argument: extra\n",
+    );
     expect(pipeline.result.exitCode).toBe(asExitCode(0));
     expect(pipeline.result.effects).toEqual([]);
   });

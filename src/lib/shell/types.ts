@@ -74,6 +74,12 @@ export type ProcessEffect =
 	  }>
 	| Readonly<{
 			kind: 'split';
+	  }>
+	| Readonly<{
+			kind: 'clear';
+	  }>
+	| Readonly<{
+			kind: 'exit';
 	  }>;
 
 export type ProcessExit = Readonly<{
