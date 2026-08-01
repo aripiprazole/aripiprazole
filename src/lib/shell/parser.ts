@@ -13,6 +13,10 @@ export type ParsedPipeline = Readonly<{
 	stages: readonly ParsedCommandStage[];
 }>;
 
+export type ParsedCommandList = Readonly<{
+	pipelines: readonly ParsedPipeline[];
+}>;
+
 export type ShellParseErrorKind =
 	| 'input-too-large'
 	| 'argument-too-large'
@@ -103,7 +107,7 @@ const unsupportedDescription = (character: string): string | undefined =>
 const isSeparator = (character: string): boolean =>
 	character === ' ' || character === '\t';
 
-export const parsePipeline = (source: string): ParsedPipeline => {
+const validateSource = (source: string): void => {
 	const sourceBytes = byteLength(source);
 
 	if (sourceBytes > shellParserLimits.inputBytes) {
@@ -129,6 +133,10 @@ export const parsePipeline = (source: string): ParsedPipeline => {
 	if (nulOffset !== -1) {
 		throw createShellParseError('nul-byte', 'NUL bytes are not supported', nulOffset);
 	}
+};
+
+export const parsePipeline = (source: string): ParsedPipeline => {
+	validateSource(source);
 
 	const stages: string[][] = [[]];
 	let current = '';
@@ -320,4 +328,87 @@ export const parsePipeline = (source: string): ParsedPipeline => {
 	return PipelineSchema.parse({
 		stages: stages.map((argv) => ({ argv }))
 	});
+};
+
+const logicalAndSegments = (
+	source: string
+): readonly Readonly<{ source: string; offset: number }>[] => {
+	const segments: Readonly<{ source: string; offset: number }>[] = [];
+	let quote: Quote = null;
+	let segmentOffset = 0;
+
+	for (let offset = 0; offset < source.length; offset += 1) {
+		const character = source[offset];
+		if (character === undefined) {
+			throw new Error('parser invariant violated: missing source character');
+		}
+
+		if (quote === 'single') {
+			if (character === "'") quote = null;
+			continue;
+		}
+
+		if (quote === 'double') {
+			if (character === '"') {
+				quote = null;
+			} else if (character === '\\') {
+				offset += 1;
+			}
+			continue;
+		}
+
+		if (character === '\\') {
+			offset += 1;
+			continue;
+		}
+
+		if (character === "'" || character === '"') {
+			quote = character === "'" ? 'single' : 'double';
+			continue;
+		}
+
+		if (character === '&' && source[offset + 1] === '&') {
+			segments.push({
+				source: source.slice(segmentOffset, offset),
+				offset: segmentOffset
+			});
+			offset += 1;
+			segmentOffset = offset + 1;
+		}
+	}
+
+	segments.push({
+		source: source.slice(segmentOffset),
+		offset: segmentOffset
+	});
+	return segments;
+};
+
+export const parseCommandList = (source: string): ParsedCommandList => {
+	validateSource(source);
+
+	const pipelines: ParsedPipeline[] = [];
+	let totalStages = 0;
+
+	for (const segment of logicalAndSegments(source)) {
+		let pipeline: ParsedPipeline;
+		try {
+			pipeline = parsePipeline(segment.source);
+		} catch (error: unknown) {
+			if (!isShellParseError(error)) throw error;
+			throw { ...error, offset: segment.offset + error.offset } satisfies ShellParseError;
+		}
+
+		totalStages += pipeline.stages.length;
+		if (totalStages > shellParserLimits.stages) {
+			throw createShellParseError(
+				'too-many-stages',
+				`command list exceeds ${shellParserLimits.stages} total stages`,
+				segment.offset
+			);
+		}
+		pipelines.push(pipeline);
+	}
+
+	return { pipelines };
 };

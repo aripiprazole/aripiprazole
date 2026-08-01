@@ -2,6 +2,7 @@ import { describe, expect, test } from "bun:test";
 
 import {
   isShellParseError,
+  parseCommandList,
   parsePipeline,
   shellParserLimits,
   type ShellParseError,
@@ -10,6 +11,20 @@ import {
 const parseError = (source: string): ShellParseError => {
   try {
     parsePipeline(source);
+  } catch (error: unknown) {
+    if (isShellParseError(error)) {
+      return error;
+    }
+
+    throw error;
+  }
+
+  throw new Error(`expected ${JSON.stringify(source)} to fail parsing`);
+};
+
+const commandListError = (source: string): ShellParseError => {
+  try {
+    parseCommandList(source);
   } catch (error: unknown) {
     if (isShellParseError(error)) {
       return error;
@@ -176,5 +191,52 @@ describe("parsePipeline", () => {
       shellParserLimits.inputBytes,
     );
     expect(parsePipeline(source).stages[0]?.argv).toEqual([first, second]);
+  });
+});
+
+describe("parseCommandList", () => {
+  test("parses logical-AND-separated pipelines", () => {
+    expect(parseCommandList("cd projects/ && ls -la")).toEqual({
+      pipelines: [
+        { stages: [{ argv: ["cd", "projects/"] }] },
+        { stages: [{ argv: ["ls", "-la"] }] },
+      ],
+    });
+  });
+
+  test("keeps quoted and escaped logical-AND characters literal", () => {
+    expect(parseCommandList(String.raw`cat '&&' \&\& && ls`)).toEqual({
+      pipelines: [
+        { stages: [{ argv: ["cat", "&&", "&&"] }] },
+        { stages: [{ argv: ["ls"] }] },
+      ],
+    });
+  });
+
+  test.each(["&& ls", "ls &&", "ls && && cat"])(
+    "rejects an empty logical-AND operand: %p",
+    (source) => {
+      expect(commandListError(source).kind).toBe("empty-stage");
+    },
+  );
+
+  test.each(["ls & cat", "ls || cat"])(
+    "continues to reject unsupported command operators: %p",
+    (source) => {
+      expect(commandListError(source).kind).toBe("unsupported-syntax");
+    },
+  );
+
+  test("bounds total stages across the command list", () => {
+    const exact = Array.from(
+      { length: shellParserLimits.stages },
+      () => "cat",
+    ).join(" && ");
+    const oversized = `${exact} && cat`;
+
+    expect(parseCommandList(exact).pipelines).toHaveLength(
+      shellParserLimits.stages,
+    );
+    expect(commandListError(oversized).kind).toBe("too-many-stages");
   });
 });

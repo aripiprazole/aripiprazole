@@ -434,8 +434,8 @@ const modifiedTime = (isoTimestamp: string): string => {
 
 const directoryAction = (path: string, displayName: string): CommandAction => ({
   label: displayName,
-  command: `cd ${shellQuote(path.endsWith("/") ? path : `${path}/`)}`,
-  behavior: "prefill",
+  command: `cd ${shellQuote(path.endsWith("/") ? path : `${path}/`)} && ls -la`,
+  behavior: "execute",
 });
 
 const lsCommand = {

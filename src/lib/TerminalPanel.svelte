@@ -469,7 +469,7 @@
                       class="terminal-link"
                       type="button"
                       onclick={() => activate(linkedOutput.action)}
-                      aria-label={`Insert ${linkedOutput.action.command}`}
+                      aria-label={`${linkedOutput.action.behavior === "execute" ? "Run" : "Insert"} ${linkedOutput.action.command}`}
                       >{linkedOutput.action.label}</button
                     >{linkedOutput.after}{:else}{output.visibleText}{#if terminalState.cursor.kind === "output" && terminalState.cursor.chunkId === output.id}<span
                         class="terminal-cursor output-cursor"

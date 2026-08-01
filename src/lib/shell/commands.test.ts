@@ -221,8 +221,18 @@ describe("ls", () => {
     expect(actions).toHaveLength(5);
     expect(actions).toContainEqual({
       label: "projects/",
-      command: "cd projects/",
-      behavior: "prefill",
+      command: "cd projects/ && ls -la",
+      behavior: "execute",
+    });
+  });
+
+  test("makes directory links enter the folder and list its contents", async () => {
+    const execution = await execute("ls -1");
+
+    expect(actionsOf(execution.stdout)).toContainEqual({
+      label: "projects/",
+      command: "cd projects/ && ls -la",
+      behavior: "execute",
     });
   });
 

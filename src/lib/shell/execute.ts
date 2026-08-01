@@ -8,7 +8,11 @@ import {
 	type PreparedCommand
 } from './commands';
 import { createPipe } from './filesystem';
-import { isShellParseError, parsePipeline } from './parser';
+import {
+	isShellParseError,
+	parseCommandList,
+	type ParsedPipeline
+} from './parser';
 import { asExitCode, asPid } from './schemas';
 import type {
 	ExitCode,
@@ -57,8 +61,7 @@ const writeError = async (
 	}
 };
 
-const preparePipeline = (source: string): readonly PreparedCommand[] => {
-	const pipeline = parsePipeline(source);
+const preparePipeline = (pipeline: ParsedPipeline): readonly PreparedCommand[] => {
 	return pipeline.stages.map((stage) => prepareCommand(stage.argv));
 };
 
@@ -174,18 +177,52 @@ export const executeShell = (
 	let pipes: readonly Pipe[] = [];
 
 	const completed = (async (): Promise<PipelineExit> => {
+		const processes: ProcessSummary[] = [];
+		const effects: ProcessEffect[] = [];
+		const result = (exitCode: ExitCode): PipelineExit => ({
+			exitCode,
+			processes,
+			effects
+		});
+
 		try {
-			const prepared = preparePipeline(source);
-			pipes = Array.from({ length: Math.max(0, prepared.length - 1) }, () => createPipe());
-			return await runPipeline(prepared, pipes, terminalIO, shellState, controller);
+			const commandList = parseCommandList(source);
+			let exitCode = asExitCode(0);
+
+			for (const pipeline of commandList.pipelines) {
+				if (controller.signal.aborted) return result(asExitCode(130));
+
+				const prepared = preparePipeline(pipeline);
+				pipes = Array.from({ length: Math.max(0, prepared.length - 1) }, () => createPipe());
+				const pipelineResult = await runPipeline(
+					prepared,
+					pipes,
+					terminalIO,
+					shellState,
+					controller
+				);
+				pipes = [];
+				processes.push(...pipelineResult.processes);
+				effects.push(...pipelineResult.effects);
+				exitCode = pipelineResult.exitCode;
+
+				if (
+					exitCode !== 0 ||
+					pipelineResult.effects.some((effect) => effect.kind === 'exit')
+				) {
+					break;
+				}
+			}
+
+			return result(exitCode);
 		} catch (error: unknown) {
 			if (controller.signal.aborted) {
-				return { exitCode: asExitCode(130), processes: [], effects: [] };
+				return result(asExitCode(130));
 			}
 
 			if (isShellParseError(error)) {
 				await writeError(terminalIO.stderr, `bash: ${error.message}`, controller.signal);
-				return { exitCode: asExitCode(2), processes: [], effects: [] };
+				return result(asExitCode(2));
 			}
 
 			if (isCommandArgumentError(error)) {
@@ -195,7 +232,7 @@ export const executeShell = (
 					`${error.command}: ${error.message}`,
 					controller.signal
 				);
-				return { exitCode: asExitCode(exitCode), processes: [], effects: [] };
+				return result(asExitCode(exitCode));
 			}
 
 			if (error instanceof z.ZodError) {
@@ -204,7 +241,7 @@ export const executeShell = (
 					`bash: ${error.issues[0]?.message ?? 'invalid arguments'}`,
 					controller.signal
 				);
-				return { exitCode: asExitCode(2), processes: [], effects: [] };
+				return result(asExitCode(2));
 			}
 
 			await writeError(
@@ -212,7 +249,7 @@ export const executeShell = (
 				`bash: ${processErrorMessage(error)}`,
 				controller.signal
 			);
-			return { exitCode: asExitCode(1), processes: [], effects: [] };
+			return result(asExitCode(1));
 		} finally {
 			await Promise.allSettled([
 				terminalIO.stdin.close(),

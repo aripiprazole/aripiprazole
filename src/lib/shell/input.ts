@@ -79,6 +79,9 @@ const unsupportedUnquotedSyntax = new Set([
 const isSeparator = (character: string): boolean =>
 	character === ' ' || character === '\t';
 
+const isLogicalAnd = (source: string, offset: number): boolean =>
+	source[offset] === '&' && source[offset + 1] === '&';
+
 const token = (
 	source: string,
 	kind: ShellTokenKind,
@@ -126,6 +129,15 @@ const scanShellInput = (source: string): ShellScan => {
 			continue;
 		}
 
+		if (isLogicalAnd(source, offset)) {
+			const end = offset + 2;
+			tokens.push(token(source, 'pipe', offset, end));
+			offset = end;
+			stage += 1;
+			wordIndex = 0;
+			continue;
+		}
+
 		const wordStart = offset;
 		const pieces: TokenPiece[] = [];
 		let value = '';
@@ -133,7 +145,14 @@ const scanShellInput = (source: string): ShellScan => {
 
 		while (offset < source.length) {
 			const current = source[offset];
-			if (current === undefined || isSeparator(current) || current === '|') break;
+			if (
+				current === undefined ||
+				isSeparator(current) ||
+				current === '|' ||
+				isLogicalAnd(source, offset)
+			) {
+				break;
+			}
 
 			if (current === '\\') {
 				hasQuotesOrEscapes = true;
@@ -223,6 +242,7 @@ const scanShellInput = (source: string): ShellScan => {
 					plain === undefined ||
 					isSeparator(plain) ||
 					plain === '|' ||
+					isLogicalAnd(source, offset) ||
 					plain === '\\' ||
 					plain === "'" ||
 					plain === '"' ||

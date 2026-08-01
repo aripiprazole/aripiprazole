@@ -59,6 +59,40 @@ describe("shell input analysis", () => {
     expect(analyzeShellInput("cu").at(0)?.kind).toBe("command");
     expect(analyzeShellInput("teleport projects").at(0)?.kind).toBe("invalid");
   });
+
+  test("treats adjacent logical AND as a command boundary", () => {
+    expect(
+      analyzeShellInput("cd projects/ && ls -la").some(
+        ({ kind }) => kind === "invalid",
+      ),
+    ).toBe(false);
+    expect(
+      analyzeShellInput("cd projects/&&ls -la").map(({ kind, text }) => [
+        kind,
+        text,
+      ]),
+    ).toEqual([
+      ["command", "cd"],
+      ["plain", " "],
+      ["argument", "projects/"],
+      ["pipe", "&&"],
+      ["command", "ls"],
+      ["plain", " "],
+      ["option", "-la"],
+    ]);
+  });
+
+  test("keeps quoted and escaped ampersands inside words", () => {
+    const tokens = analyzeShellInput(
+      String.raw`cat 'single&&quoted' "double&&quoted" escaped\&\&value`,
+    );
+
+    expect(tokens.filter(({ kind }) => kind === "pipe")).toEqual([]);
+    expect(tokens.filter(({ kind }) => kind === "invalid")).toEqual([]);
+    expect(tokens.map(({ text }) => text).join("")).toBe(
+      String.raw`cat 'single&&quoted' "double&&quoted" escaped\&\&value`,
+    );
+  });
 });
 
 describe("shell completion", () => {
@@ -76,6 +110,16 @@ describe("shell completion", () => {
       "split",
     ]);
     expect(await labels("cat | c")).toEqual(["cat", "cd", "clear", "curl"]);
+  });
+
+  test("suggests commands after logical AND with or without spaces", async () => {
+    expect(await labels("cd projects/ && l")).toEqual(["ls"]);
+    expect(await labels("cd projects/&&c")).toEqual([
+      "cat",
+      "cd",
+      "clear",
+      "curl",
+    ]);
   });
 
   test("uses command metadata for options and stops options after --", async () => {
