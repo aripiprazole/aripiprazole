@@ -168,8 +168,8 @@ describe("virtual filesystem paths", () => {
     const cwd = asAbsolutePath("/app/projects");
 
     expect(
-      filesystem.resolve(cwd, "../writing/./gadt-like-types-in-rust.txt"),
-    ).toBe(asAbsolutePath("/app/writing/gadt-like-types-in-rust.txt"));
+      filesystem.resolve(cwd, "../writings/./gadt-like-types-in-rust.txt"),
+    ).toBe(asAbsolutePath("/app/writings/gadt-like-types-in-rust.txt"));
     expect(filesystem.resolve(cwd, "../../../../")).toBe(asAbsolutePath("/"));
   });
 
@@ -204,7 +204,7 @@ describe("virtual portfolio tree", () => {
       "links.md",
       "profile.png",
       "projects",
-      "writing",
+      "writings",
     ]);
     expect(entries.every((entry) => !("mode" in entry))).toBe(true);
   });
@@ -243,7 +243,7 @@ describe("virtual portfolio tree", () => {
 
   test("preserves every portfolio collection and exposes the PNG asset", async () => {
     const collectionSizes = await Promise.all(
-      ["projects", "writing", "accounts"].map(
+      ["projects", "writings", "accounts"].map(
         async (path) =>
           (await filesystem.readDirectory(filesystem.initialDirectory, path))
             .length,

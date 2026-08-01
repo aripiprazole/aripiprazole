@@ -144,7 +144,7 @@ const projectFiles = projects.map((project) => ({
 
 const writingFiles = writing.map((article) => ({
   kind: "file" as const,
-  path: asAbsolutePath(`/app/writing/${article.name}.txt`),
+  path: asAbsolutePath(`/app/writings/${article.name}.txt`),
   content: `${article.title}\n\n${article.description}\n\n${article.url}\n`,
   actions: [
     {
@@ -171,7 +171,7 @@ export const portfolioSeed: readonly PortfolioSeedEntry[] =
     },
     {
       kind: "directory",
-      path: asAbsolutePath("/app/writing"),
+      path: asAbsolutePath("/app/writings"),
       modifiedAt: seedModifiedAt,
     },
     {

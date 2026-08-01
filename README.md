@@ -22,7 +22,7 @@ software engineer, amateur chess player, somewhat autistic and an inherently cur
 - [rinha de compiler](https://github.com/aripiprazole/rinha-de-compiler) -- online hackathon about compilers
 - [andesite](https://github.com/aripiprazole/andesite) -- minecraft protocol lib with [kotlinx.serialization](https://github.com/kotlin/kotlinx.serialization)
 - [bupropion](https://github.com/aripiprazole/bupropion) -- opnionated frontend for [miette](https://crates.io/crates/miette)
-- [niques](https://github.com/aripiprazole/niques) -- not so cool, but still there
+- [niques](https://github.com/aripiprazole/niques) -- not so cool [nix](https://nixos.org/) and [nix-darwin](https://github.com/nix-darwin/nix-darwin) config, but still there
 
 ### \#\# writings
 

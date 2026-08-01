@@ -244,7 +244,7 @@ describe("cd", () => {
     expect(shellState.cwd).toBe(asAbsolutePath("/app/projects"));
     expect(shellState.oldCwd).toBe(asAbsolutePath("/app"));
 
-    const pipeline = await execute("cd ../writing | cat");
+    const pipeline = await execute("cd ../writings | cat");
 
     expect(
       pipeline.result.processes.map((process) => process.exitCode),

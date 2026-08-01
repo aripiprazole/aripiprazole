@@ -2,6 +2,7 @@
   import { onMount, tick } from "svelte";
 
   import HighlightedCommand from "$lib/HighlightedCommand.svelte";
+  import TerminalSuggestion from "$lib/TerminalSuggestion.svelte";
   import type { PanelId, PanelMode, PanelSizing } from "$lib/panel-layout";
   import {
     completeShellInput,
@@ -10,6 +11,10 @@
     type ShellCompletionCandidate,
   } from "$lib/shell/input";
   import type { CommandAction } from "$lib/shell/types";
+  import {
+    shouldShowTerminalSuggestion,
+    terminalSuggestions,
+  } from "$lib/terminal-suggestions";
   import type {
     SubmissionSource,
     TerminalController,
@@ -72,13 +77,24 @@
   let completionSession = $state<CompletionSession | null>(null);
   let activeCompletionIndex = $state<number | null>(null);
   let completionDismissed = $state(false);
+  let suggestionDismissed = $state(false);
   let completionRequest = 0;
   let applyingCompletion = false;
   let completionListId = $derived(`terminal-completions-${id}`);
+  let suggestionDescriptionId = $derived(`terminal-suggestion-${id}`);
   let activeCompletionOptionId = $derived(
     activeCompletionIndex === null
       ? undefined
       : `${completionListId}-option-${activeCompletionIndex}`,
+  );
+  let showSuggestion = $derived(
+    shouldShowTerminalSuggestion({
+      active,
+      mode,
+      phase: terminalState.phase,
+      draft: terminalState.draft,
+      dismissed: suggestionDismissed,
+    }),
   );
 
   const documentFollowsTail = (): boolean =>
@@ -96,6 +112,10 @@
       await tick();
       inputElement?.scrollIntoView({ block: "nearest", inline: "nearest" });
     });
+  };
+
+  const dismissSuggestion = (): void => {
+    suggestionDismissed = true;
   };
 
   const focusInput = async (force = false): Promise<void> => {
@@ -488,11 +508,15 @@
         </div>
       {:else if terminalState.phase === "idle" && mode === "interactive"}
         <div class="prompt-composer">
-          <form class="prompt-row active-prompt" onsubmit={submit}>
+          <form
+            class="prompt-row active-prompt"
+            onpointerdown={dismissSuggestion}
+            onsubmit={submit}
+          >
             <label class="prompt-prefix" for={`terminal-command-${id}`}>
               <span class="prompt-symbol">$</span>
             </label>
-            <div class="prompt-input">
+            <div class="prompt-input" data-suggesting={showSuggestion}>
               <div class="prompt-highlight" aria-hidden="true">
                 <div
                   class="prompt-highlight-scroll"
@@ -501,6 +525,15 @@
                   <HighlightedCommand source={terminalState.draft} />
                 </div>
               </div>
+              {#if showSuggestion}
+                <TerminalSuggestion suggestions={terminalSuggestions} />
+                <span
+                  id={suggestionDescriptionId}
+                  class="screen-reader-status"
+                >
+                  Suggested commands: {terminalSuggestions.join("; ")}
+                </span>
+              {/if}
               <input
                 id={`terminal-command-${id}`}
                 bind:this={inputElement}
@@ -513,6 +546,9 @@
                 type="text"
                 role="combobox"
                 aria-label={`command in ${label} at ${terminalState.cwd}`}
+                aria-describedby={showSuggestion
+                  ? suggestionDescriptionId
+                  : undefined}
                 aria-autocomplete="list"
                 aria-expanded={completionCandidates.length > 0}
                 aria-controls={completionCandidates.length > 0

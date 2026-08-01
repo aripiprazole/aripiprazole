@@ -27,7 +27,7 @@
   --syntax-option: var(--aubergine);
   --syntax-string: var(--ink);
   --syntax-pipe: var(--aubergine);
-  --danger: var(--aubergine);
+  --danger: #8b302d;
   --mono:
     "JetBrains Mono", ui-monospace, SFMono-Regular, "Cascadia Code",
     "Liberation Mono", Menlo, monospace;
@@ -226,7 +226,7 @@ input:focus-visible {
 }
 
 .panel-close:hover:not(:disabled) {
-  color: var(--ink);
+  color: var(--paper);
   background: var(--highlight);
 }
 
@@ -468,6 +468,7 @@ input:focus-visible {
 }
 
 .prompt-highlight,
+.prompt-suggestion,
 .active-prompt input {
   grid-area: 1 / 1;
   line-height: inherit;
@@ -485,6 +486,29 @@ input:focus-visible {
   width: max-content;
   min-width: 100%;
   white-space: pre;
+}
+
+.prompt-suggestion {
+  min-width: 0;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+  pointer-events: none;
+  text-overflow: clip;
+  white-space: pre;
+}
+
+.prompt-suggestion-cursor {
+  display: inline-block;
+  width: 0.58ch;
+  height: 1.05em;
+  margin-left: 0.12ch;
+  vertical-align: -0.14em;
+  background: var(--highlight);
+  animation: terminal-cursor-blink 0.72s steps(1, end) infinite;
+}
+
+.prompt-input[data-suggesting="true"] input {
+  caret-color: transparent;
 }
 
 .active-prompt input {
@@ -735,7 +759,8 @@ input:focus-visible {
     font-size: 16px;
   }
 
-  .prompt-highlight {
+  .prompt-highlight,
+  .prompt-suggestion {
     font-size: 16px;
   }
 
@@ -897,7 +922,8 @@ input:focus-visible {
     scroll-behavior: auto !important;
   }
 
-  .terminal-cursor {
+  .terminal-cursor,
+  .prompt-suggestion-cursor {
     opacity: 1;
     animation: none;
   }

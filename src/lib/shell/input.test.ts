@@ -103,8 +103,8 @@ describe("shell completion", () => {
   });
 
   test("resolves relative, dot, parent, and absolute paths without home completion", async () => {
-    expect(await labels("cat writing/gad")).toEqual([
-      "writing/gadt-like-types-in-rust.txt",
+    expect(await labels("cat writings/gad")).toEqual([
+      "writings/gadt-like-types-in-rust.txt",
     ]);
     expect(await labels("cat ./RE")).toEqual(["./readme.md"]);
     expect(await labels("cat ~/con")).toEqual([]);
@@ -115,7 +115,7 @@ describe("shell completion", () => {
       "cd ../".length,
       asAbsolutePath("/app/projects"),
     );
-    expect(parent.map((candidate) => candidate.label)).toContain("../writing/");
+    expect(parent.map((candidate) => candidate.label)).toContain("../writings/");
   });
 
   test("preserves the surrounding pipeline when completing at the caret", async () => {
