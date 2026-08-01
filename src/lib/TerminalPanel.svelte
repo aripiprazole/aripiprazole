@@ -2,11 +2,7 @@
   import { onMount, tick } from "svelte";
 
   import HighlightedCommand from "$lib/HighlightedCommand.svelte";
-  import type {
-    PanelId,
-    PanelMode,
-    PanelSizing,
-  } from "$lib/panel-layout";
+  import type { PanelId, PanelMode, PanelSizing } from "$lib/panel-layout";
   import {
     completeShellInput,
     cycleCompletionIndex,
@@ -86,17 +82,17 @@
   );
 
   const documentFollowsTail = (): boolean =>
-    document.documentElement.scrollHeight - window.scrollY - window.innerHeight <
+    document.documentElement.scrollHeight -
+      window.scrollY -
+      window.innerHeight <
     72;
 
-  const submitAndReveal = (
-    command: string,
-    source: SubmissionSource,
-  ): void => {
+  const submitAndReveal = (command: string, source: SubmissionSource): void => {
     const shouldReveal = documentFollowsTail();
     const startingScrollY = window.scrollY;
     void controller.submitCommand(command, source).then(async () => {
-      if (!shouldReveal || Math.abs(window.scrollY - startingScrollY) > 2) return;
+      if (!shouldReveal || Math.abs(window.scrollY - startingScrollY) > 2)
+        return;
       await tick();
       inputElement?.scrollIntoView({ block: "nearest", inline: "nearest" });
     });
@@ -392,7 +388,7 @@
       onpointercancel={onDragPointerEnd}
       onkeydown={dragHandleKeydown}
     >
-      <span class="panel-cwd">{terminalState.cwd}</span>
+      <span class="panel-cwd">aripiprazole@web:{terminalState.cwd}</span>
     </button>
     <button
       class="panel-close"
@@ -437,7 +433,9 @@
             {@const linkedOutput = inlineAction(output)}
             <div class:stderr={output.stream === "stderr"} class="output-block">
               {#if output.revealed && output.presentation?.kind === "html"}
-                <div class="terminal-html">{@html output.presentation.html}</div>
+                <div class="terminal-html">
+                  {@html output.presentation.html}
+                </div>
               {:else if output.revealed && output.presentation?.kind === "image"}
                 <figure class="terminal-image-frame">
                   <img
@@ -448,14 +446,14 @@
                 </figure>
               {:else}
                 <pre>{#if linkedOutput}{linkedOutput.before}<button
-                    class="terminal-link"
-                    type="button"
-                    onclick={() => activate(linkedOutput.action)}
-                    aria-label={`Insert ${linkedOutput.action.command}`}
-                    >{linkedOutput.action.label}</button
-                  >{linkedOutput.after}{:else}{output.visibleText}{#if terminalState.cursor.kind === "output" && terminalState.cursor.chunkId === output.id}<span
-                      class="terminal-cursor output-cursor"
-                      aria-hidden="true"></span>{/if}{/if}</pre>
+                      class="terminal-link"
+                      type="button"
+                      onclick={() => activate(linkedOutput.action)}
+                      aria-label={`Insert ${linkedOutput.action.command}`}
+                      >{linkedOutput.action.label}</button
+                    >{linkedOutput.after}{:else}{output.visibleText}{#if terminalState.cursor.kind === "output" && terminalState.cursor.chunkId === output.id}<span
+                        class="terminal-cursor output-cursor"
+                        aria-hidden="true"></span>{/if}{/if}</pre>
               {/if}
 
               {#if output.revealed && output.actions.length > 0 && linkedOutput === null}
@@ -564,7 +562,8 @@
           aria-keyshortcuts="Control+C"
           title="finish process · ctrl+c"
           onclick={() => onClose(id)}
-        >[ click <kbd>ctrl c</kbd> to finish process ]</button>
+          >[ click <kbd>ctrl c</kbd> to finish process ]</button
+        >
       {/if}
     </div>
   </div>

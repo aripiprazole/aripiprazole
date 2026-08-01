@@ -56,10 +56,7 @@
     "png --radius 18 profile.png",
   ]);
   const linksPanelId = createPanel(undefined, ["cat links.md"]);
-  const outputOnlyPanelIds = new Set<PanelId>([
-    profilePanelId,
-    linksPanelId,
-  ]);
+  const outputOnlyPanelIds = new Set<PanelId>([profilePanelId, linksPanelId]);
   let layout = $state<Layout>({
     kind: "split",
     axis: "horizontal",
@@ -250,7 +247,6 @@
     cancelPointerDrag();
     for (const controller of controllers.values()) controller.dispose();
   });
-
 </script>
 
 <svelte:window onkeydown={globalKeydown} />
@@ -273,7 +269,7 @@
     />
     <footer class="workspace-footer" aria-label="terminal controls">
       <span><kbd>tab</kbd> / <kbd>shift+tab</kbd> complete</span>
-      <span>drag and drop panels</span>
+      <span>drag and drop</span>
     </footer>
   </div>
 </main>
