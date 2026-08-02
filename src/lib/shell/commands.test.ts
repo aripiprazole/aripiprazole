@@ -186,6 +186,20 @@ describe("png", () => {
 });
 
 describe("ls", () => {
+  test("groups directories before files and sorts each group alphabetically", async () => {
+    const execution = await execute("ls -1");
+    const allExecution = await execute("ls -a1");
+
+    expect(execution.result.exitCode).toBe(asExitCode(0));
+    expect(allExecution.result.exitCode).toBe(asExitCode(0));
+    expect(textOf(execution.stdout)).toBe(
+      "projects/\nwritings/\nlinks.md\nprofile.png\nreadme.md\nworks.md\n",
+    );
+    expect(textOf(allExecution.stdout)).toBe(
+      "./\n../\nprojects/\nwritings/\nlinks.md\nprofile.png\nreadme.md\nworks.md\n",
+    );
+  });
+
   test("makes -1 and --one-per-line meaningfully different from terminal default output", async () => {
     const defaultExecution = await execute("ls");
     const shortFlagExecution = await execute("ls -1");
@@ -198,7 +212,7 @@ describe("ls", () => {
     expect(longFlagExecution.result.exitCode).toBe(asExitCode(0));
     expect(defaultOutput).not.toBe(onePerLineOutput);
     expect(defaultOutput.trim().split("\n")).toHaveLength(1);
-    expect(onePerLineOutput.trim().split("\n")).toHaveLength(7);
+    expect(onePerLineOutput.trim().split("\n")).toHaveLength(6);
     expect(textOf(longFlagExecution.stdout)).toBe(onePerLineOutput);
     expect(actionsOf(defaultExecution.stdout)).toEqual(
       actionsOf(shortFlagExecution.stdout),
@@ -211,14 +225,14 @@ describe("ls", () => {
     const actions = actionsOf(execution.stdout);
 
     expect(execution.result.exitCode).toBe(asExitCode(0));
-    expect(output).toContain("total 24\n");
+    expect(output).toContain("total 20\n");
     expect(output).toContain("  4.0K Jul 31 00:00 ./\n");
     expect(output).toContain("  4.0K Jul 31 00:00 ../\n");
     expect(output).not.toMatch(/(?:^|\s)[dl-][rwx-]{9}(?:\s|$)/m);
     expect(output).not.toContain("gabi");
     expect(output).toContain("readme.md\n");
-    expect(output.split("\n").filter(Boolean)).toHaveLength(10);
-    expect(actions).toHaveLength(5);
+    expect(output.split("\n").filter(Boolean)).toHaveLength(9);
+    expect(actions).toHaveLength(4);
     expect(actions).toContainEqual({
       label: "projects/",
       command: "cd projects/ && ls -la",

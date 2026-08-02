@@ -474,6 +474,16 @@ const lsCommand = {
             ? [...(await filesystem.readDirectory(context.cwd, path))]
             : [target];
 
+        if (target.kind === "directory") {
+          entries.sort((left, right) => {
+            if (left.kind !== right.kind)
+              return left.kind === "directory" ? -1 : 1;
+            if (left.name < right.name) return -1;
+            if (left.name > right.name) return 1;
+            return 0;
+          });
+        }
+
         if (paths.length > 1) {
           if (pathIndex > 0)
             await writeText(context.stdout, "\n", context.signal);
