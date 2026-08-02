@@ -503,7 +503,7 @@ input:focus-visible {
   height: 1.05em;
   margin-left: 0.12ch;
   vertical-align: -0.14em;
-  background: var(--highlight);
+  background: currentColor;
   animation: terminal-cursor-blink 0.72s steps(1, end) infinite;
 }
 
