@@ -572,6 +572,7 @@ input:focus-visible {
 
 .terminal-html {
   width: 100%;
+  padding-left: 4ch;
   color: var(--ink);
   font-size: 0.92rem;
 }
@@ -595,26 +596,29 @@ input:focus-visible {
 .terminal-html h1::before,
 .terminal-html h2::before,
 .terminal-html h3::before {
-  margin-right: 0.55ch;
   color: var(--accent);
 }
 
 .terminal-html h1::before {
-  content: "#";
+  margin-left: -2ch;
+  content: "# ";
 }
 
 .terminal-html h2::before {
-  content: "##";
+  margin-left: -3ch;
+  content: "## ";
 }
 
 .terminal-html h3::before {
-  content: "###";
+  margin-left: -4ch;
+  content: "### ";
 }
 
 .terminal-html p {
   width: 100%;
   max-width: none;
   margin: 0.75rem 0;
+  text-align: justify;
 }
 
 .terminal-html ul {
@@ -623,20 +627,14 @@ input:focus-visible {
   list-style: none;
 }
 
-.terminal-html li {
-  position: relative;
-  padding-left: 2ch;
-}
-
 .terminal-html li + li {
   margin-top: 0.35rem;
 }
 
 .terminal-html li::before {
-  position: absolute;
-  left: 0;
+  margin-left: -2ch;
   color: var(--muted);
-  content: "-";
+  content: "- ";
 }
 
 .terminal-html code {
