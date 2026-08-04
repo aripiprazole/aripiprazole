@@ -174,7 +174,6 @@ input:focus-visible {
   justify-content: space-between;
   gap: 0.5rem;
   padding: 2px 8px 2px 8px;
-  background: var(--panel-tint);
 }
 
 .panel-drag-handle {
@@ -227,7 +226,6 @@ input:focus-visible {
 
 .panel-close:hover:not(:disabled) {
   color: var(--paper);
-  background: var(--highlight);
 }
 
 .panel-close:focus-visible {
@@ -248,13 +246,13 @@ input:focus-visible {
   align-items: center;
   gap: 0.25rem 1rem;
   padding: 5px 8px;
-  color: var(--ink);
+  color: var(--muted);
   font-size: 0.75rem;
   white-space: normal;
 }
 
 .workspace-footer kbd {
-  color: var(--ink);
+  color: inherit;
   font: inherit;
 }
 
@@ -575,6 +573,7 @@ input:focus-visible {
   padding-left: 4ch;
   color: var(--ink);
   font-size: 0.92rem;
+  line-height: 1.5;
 }
 
 .terminal-html > :first-child {
@@ -616,12 +615,14 @@ input:focus-visible {
 
 .terminal-html p {
   width: 100%;
-  max-width: none;
+  max-width: 76ch;
   margin: 0.75rem 0;
-  text-align: justify;
+  text-align: left;
+  text-wrap: pretty;
 }
 
 .terminal-html ul {
+  max-width: 78ch;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -795,6 +796,7 @@ input:focus-visible {
     display: flex;
     min-height: 0;
     flex-direction: column;
+    gap: 0;
   }
 
   .panel-split > .panel-slot[data-narrow-priority="first"] {
