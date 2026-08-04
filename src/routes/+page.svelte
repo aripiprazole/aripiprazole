@@ -2,6 +2,7 @@
   import { onDestroy } from "svelte";
 
   import PanelLayout from "$lib/PanelLayout.svelte";
+  import TerminalHover from "$lib/TerminalHover.svelte";
   import {
     closePanel,
     movePanel,
@@ -32,6 +33,7 @@
   const controllers = new Map<PanelId, TerminalController>();
   let nextPanelNumber = 1;
   let dragHandle: HTMLElement | null = null;
+  let terminalWorkspaceElement = $state<HTMLElement>();
 
   function createPanel(
     initialCwd?: AbsolutePath,
@@ -253,7 +255,11 @@
 <svelte:window onkeydown={globalKeydown} />
 
 <main class="terminal-page">
-  <div class="terminal-workspace" aria-label="interactive portfolio terminals">
+  <div
+    class="terminal-workspace"
+    aria-label="interactive portfolio terminals"
+    bind:this={terminalWorkspaceElement}
+  >
     <PanelLayout
       node={layout}
       {controllers}
@@ -270,7 +276,10 @@
     />
     <footer class="workspace-footer" aria-label="terminal controls">
       <span><kbd>tab</kbd> / <kbd>shift+tab</kbd> complete</span>
+      <span><kbd>stats</kbd> weekly activity</span>
       <span>drag and drop</span>
     </footer>
   </div>
 </main>
+
+<TerminalHover id="portfolio-terminal-hover" container={terminalWorkspaceElement} />
