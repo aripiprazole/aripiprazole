@@ -14,8 +14,8 @@
   --taupe: #bcaa99;
   --aubergine: #453159;
   --paper: var(--mist);
-  --ink: #0d0d0d;
-  --muted: #333333;
+  --ink: #030303;
+  --muted: #121212;
   --line: var(--plum);
   --line-soft: var(--taupe);
   --panel-tint: color-mix(in srgb, var(--taupe) 20%, var(--paper));
