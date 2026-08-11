@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+import { portfolioApiClient } from "$lib/api/client";
+import { formatStats } from "$lib/api/format-stats";
+
 import { filesystem, FileSystemErrorSchema } from "./filesystem";
 import { renderMarkdown } from "./markdown";
 import { asExitCode, FileDescriptorErrorSchema } from "./schemas";
@@ -51,6 +54,8 @@ const SplitArgumentsSchema = z.object({}).strict();
 const ClearArgumentsSchema = z.object({}).strict();
 
 const ExitArgumentsSchema = z.object({}).strict();
+
+const StatsArgumentsSchema = z.object({}).strict();
 
 const ManArgumentsSchema = z
   .object({
@@ -721,6 +726,45 @@ const exitCommand = {
   }),
 } satisfies CommandDefinition<typeof ExitArgumentsSchema>;
 
+const normalizeStatsArguments = (argv: readonly string[]): unknown => {
+  if (argv.length > 0) {
+    throw commandArgumentError("stats", `unsupported argument: ${argv[0]}`);
+  }
+  return {};
+};
+
+const statsCommand = {
+  usage: "stats",
+  manual: {
+    summary: "show weekly activity across public profiles",
+    description:
+      "Fetches the cached portfolio API summary for GitHub, WakaTime, OpenAI API usage, and Chess.com.",
+  },
+  completion: {
+    options: [],
+    operand: "none",
+  },
+  schema: StatsArgumentsSchema,
+  normalize: normalizeStatsArguments,
+  run: async (context): Promise<ProcessExit> => {
+    try {
+      const stats = await portfolioApiClient.getStats(context.signal);
+      await writeText(context.stdout, formatStats(stats), context.signal);
+      return { exitCode: asExitCode(0), effects: [] };
+    } catch (error: unknown) {
+      if (context.signal.aborted) {
+        return { exitCode: asExitCode(130), effects: [] };
+      }
+      await writeText(
+        context.stderr,
+        `stats: ${errorMessage(error, "weekly activity is unavailable")}\n`,
+        context.signal,
+      );
+      return { exitCode: asExitCode(1), effects: [] };
+    }
+  },
+} satisfies CommandDefinition<typeof StatsArgumentsSchema>;
+
 const readPositiveNumber = (
   command: string,
   flag: string,
@@ -1128,6 +1172,7 @@ export const commands = {
   png: pngCommand,
   pwd: pwdCommand,
   split: splitCommand,
+  stats: statsCommand,
 } as const;
 
 export type CommandName = keyof typeof commands;

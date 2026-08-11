@@ -108,6 +108,7 @@ describe("shell completion", () => {
       "png",
       "pwd",
       "split",
+      "stats",
     ]);
     expect(await labels("cat | c")).toEqual(["cat", "cd", "clear", "curl"]);
   });
@@ -163,6 +164,7 @@ describe("shell completion", () => {
       "png",
       "pwd",
       "split",
+      "stats",
     ]);
     expect(await labels("man cat ")).toEqual([]);
   });

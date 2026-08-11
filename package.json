@@ -4,16 +4,23 @@
 	"version": "0.0.1",
 	"type": "module",
 	"packageManager": "pnpm@11.17.0",
+	"engines": {
+		"node": ">=22.9"
+	},
 	"scripts": {
 		"dev": "bun run --bun vite dev",
+		"dev:stub": "PUBLIC_API_BASE_URL= PORTFOLIO_API_STUB=1 bun run --bun vite dev",
 		"build": "bun run --bun vite build",
+		"build:server": "BUILD_TARGET=server bun run --bun vite build",
 		"preview": "bun run --bun vite preview",
+		"start": "node --env-file-if-exists=.env build",
 		"test": "bun test",
 		"sync": "bun run --bun svelte-kit sync",
 		"precheck": "pnpm sync",
 		"check": "bun run --bun svelte-check --tsconfig ./tsconfig.json"
 	},
 	"devDependencies": {
+		"@sveltejs/adapter-node": "^5.5.7",
 		"@sveltejs/adapter-static": "3.0.10",
 		"@sveltejs/kit": "^2.70.1",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
