@@ -3,6 +3,8 @@
 
 	import {
 		asciiRamp,
+		atlasGlyphs,
+		cellSize,
 		coverTransform,
 		fragmentShader,
 		gridMetrics,
@@ -47,14 +49,14 @@
 
 	const drawAtlas = (metrics: GridMetrics): HTMLCanvasElement => {
 		const atlas = document.createElement('canvas');
-		atlas.width = metrics.cellWidth * asciiRamp.length;
+		atlas.width = metrics.cellWidth * atlasGlyphs.length;
 		atlas.height = metrics.cellHeight;
 		const context = context2d(atlas);
 		context.font = `500 ${metrics.fontSize}px "JetBrains Mono", monospace`;
 		context.textAlign = 'center';
 		context.textBaseline = 'middle';
 		context.fillStyle = '#fff';
-		[...asciiRamp].forEach((glyph, index) => {
+		[...atlasGlyphs].forEach((glyph, index) => {
 			context.fillText(glyph, (index + 0.5) * metrics.cellWidth, metrics.cellHeight / 2);
 		});
 		return atlas;
@@ -115,7 +117,8 @@
 		gl.uniform1i(uniform('image'), 0);
 		gl.uniform1i(uniform('atlas'), 1);
 		gl.uniform1i(uniform('text'), 2);
-		gl.uniform1f(uniform('glyphs'), asciiRamp.length);
+		gl.uniform1f(uniform('glyphs'), atlasGlyphs.length);
+		gl.uniform1f(uniform('levels'), asciiRamp.length);
 
 		// Line boxes of every text node on the page, one texel per grid cell.
 		const textMask = document.createElement('canvas');
@@ -179,7 +182,7 @@
 		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const started = performance.now();
 		const image = loadImage();
-		const font = document.fonts.load('500 11px "JetBrains Mono"').catch(() => []);
+		const font = document.fonts.load(`500 ${cellSize.font}px "JetBrains Mono"`).catch(() => []);
 		let renderer: Renderer | null = null;
 		let disposed = false;
 		let textDirty = true;

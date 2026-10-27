@@ -1,7 +1,12 @@
 // Glyphs ordered from empty to densest ink, sampled by how dark the image is.
 export const asciiRamp = ' .\':-+=itoxs%S8X@';
 
-export const cellSize = Object.freeze({ width: 7, height: 13, font: 11 });
+// Contours drawn over the shading, by the direction the edge runs.
+export const edgeGlyphs = '|-/\\';
+
+export const atlasGlyphs = asciiRamp + edgeGlyphs;
+
+export const cellSize = Object.freeze({ width: 6, height: 11, font: 10 });
 
 export type GridMetrics = Readonly<{
 	ratio: number;
@@ -95,6 +100,7 @@ uniform vec2 resolution;
 uniform vec2 cell;
 uniform vec2 grid;
 uniform float glyphs;
+uniform float levels;
 uniform vec4 cover;
 uniform float time;
 uniform float reveal;
@@ -112,6 +118,10 @@ float noise(vec2 p) {
 		mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
 		u.y
 	);
+}
+
+float lightAt(vec2 uv) {
+	return dot(texture2D(image, uv).rgb, vec3(0.2126, 0.7152, 0.0722));
 }
 
 float textAt(vec2 index) {
@@ -133,47 +143,67 @@ void main() {
 	) - 0.5;
 	uv += wind * 0.014 * canopy;
 
-	vec3 color = texture2D(image, uv).rgb;
-	float light = dot(color, vec3(0.2126, 0.7152, 0.0722));
+	float light = lightAt(uv);
 
 	// Slow sunbeams drifting diagonally through the trees.
 	float beam = noise(vec2((uv.x - uv.y * 0.55) * 5.0 + time * 0.05, time * 0.03));
 	light += smoothstep(0.55, 0.95, beam) * 0.12;
 
-	float ink = smoothstep(0.08, 0.9, 1.0 - light);
-	ink += (noise(index * 0.4 + time * 0.9) - 0.5) * 0.08;
+	// Outline shapes where the light changes sharply, so light things like a
+	// white cloak still show up on the paper.
+	vec2 span = cell / resolution * cover.xy;
+	float tl = lightAt(uv - span);
+	float tr = lightAt(uv + vec2(span.x, -span.y));
+	float bl = lightAt(uv + vec2(-span.x, span.y));
+	float br = lightAt(uv + span);
+	float gx = tr + br - tl - bl + 2.0 * (lightAt(uv + vec2(span.x, 0.0)) - lightAt(uv - vec2(span.x, 0.0)));
+	float gy = bl + br - tl - tr + 2.0 * (lightAt(uv + vec2(0.0, span.y)) - lightAt(uv - vec2(0.0, span.y)));
+	float edge = step(1.9, length(vec2(gx, gy)));
+	float direction = abs(gx) > abs(gy) * 2.414 ? 0.0
+		: abs(gy) > abs(gx) * 2.414 ? 1.0
+		: gx * gy > 0.0 ? 2.0
+		: 3.0;
 
-	// Fade into the paper: soft at the sides, dissolving towards the top.
+	// Shade like ink on paper: shadows get dense glyphs, light gets dots.
+	float tone = smoothstep(0.05, 0.95, 1.0 - light);
+	tone = clamp(tone + (noise(index * 0.4 + time * 0.9) - 0.5) * 0.06, 0.0, 1.0);
+
+	// Fade into the paper towards the edges, mostly at the top.
 	float fade = smoothstep(0.0, 0.1, screen.x) * smoothstep(1.0, 0.9, screen.x);
-	fade *= mix(0.12, 1.0, smoothstep(0.05, 0.85, screen.y));
-	fade *= smoothstep(1.0, 0.97, screen.y);
+	fade *= mix(0.3, 1.0, smoothstep(0.0, 0.3, screen.y));
+	fade *= smoothstep(1.0, 0.95, screen.y);
 
-	// Part around the text so the page stays readable.
+	float seed = hash(index);
+	fade *= clamp(reveal * 1.6 - seed * 0.6 - screen.y * 0.4, 0.0, 1.0);
+	// Where it fades, cells dissolve one by one instead of all at once.
+	if (seed > fade * 1.6) fade = 0.0;
+
+	// Dim the scene behind text, without cutting it out, so the page stays readable.
 	float words = textAt(index) * 0.4
 		+ (textAt(index + vec2(1.0, 0.0)) + textAt(index - vec2(1.0, 0.0))) * 0.15
 		+ (textAt(index + vec2(0.0, 1.0)) + textAt(index - vec2(0.0, 1.0))) * 0.15;
-	fade *= 1.0 - words * 0.94;
+	float presence = fade * (1.0 - words * 0.8);
 
-	float seed = hash(index);
-	float appear = clamp(reveal * 1.6 - seed * 0.6 - screen.y * 0.4, 0.0, 1.0);
-	fade *= appear;
-
-	float level = clamp(ink * fade, 0.0, 1.0);
-	if (seed > fade * 1.15) level = 0.0;
-
-	float glyph = floor(level * (glyphs - 1.0) + 0.5);
+	float level = tone * mix(0.6, 1.0, fade);
+	float glyph = mix(floor(level * (levels - 1.0) + 0.5), levels + direction, edge);
 	float coverage = texture2D(atlas, vec2((glyph + local.x) / glyphs, local.y)).a;
 
-	// Saturate and darken the watercolor so it holds up as ink on paper.
-	vec3 tint = clamp(mix(vec3(light), color, 2.1), 0.0, 1.0) * mix(0.82, 0.5, level);
-	float alpha = coverage * mix(0.5, 0.95, level);
+	// Black and white: darker spots get darker ink.
+	vec3 ink = vec3(mix(mix(0.45, 0.06, tone), 0.12, edge));
+	float alpha = coverage * mix(mix(0.5, 0.9, tone), 0.95, edge) * presence;
 
-	// Dense cells occasionally flip into solid blocks, like a glitching terminal.
-	float flip = step(0.78, level) * step(0.93, hash(index + floor(time * 0.6 + seed * 4.0)));
-	vec2 inset = step(vec2(0.06), local) * step(local, vec2(0.94));
-	float block = flip * inset.x * inset.y;
-	alpha = mix(alpha, (1.0 - coverage) * 0.55, block);
+	// A grey ink wash behind every cell shades the mid tones, so white things
+	// like the cloak stand out from the path around them.
+	float washAlpha = 0.3 * smoothstep(0.02, 0.6, 1.0 - light) * presence;
+	vec4 wash = vec4(0.0, 0.0, 0.0, washAlpha);
 
-	gl_FragColor = vec4(tint * alpha, alpha);
+	// Deep shadows turn into solid blocks with the glyph cut out, and a few
+	// darker cells flicker into one now and then.
+	float flicker = step(0.6, tone) * step(0.96, hash(index + floor(time * 0.6 + seed * 4.0)));
+	float solid = max(step(0.9, level), flicker) * (1.0 - edge);
+	vec2 inset = step(vec2(0.04), local) * step(local, vec2(0.96));
+	alpha = mix(alpha, (1.0 - coverage) * 0.5 * presence, solid * inset.x * inset.y);
+
+	gl_FragColor = vec4(ink * alpha, alpha) + wash * (1.0 - alpha);
 }
 `;

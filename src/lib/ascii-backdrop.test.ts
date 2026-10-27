@@ -1,11 +1,24 @@
 import { describe, expect, test } from 'bun:test';
 
-import { asciiRamp, cellSize, coverTransform, gridMetrics, textCells } from './ascii-backdrop';
+import {
+	asciiRamp,
+	atlasGlyphs,
+	cellSize,
+	coverTransform,
+	edgeGlyphs,
+	gridMetrics,
+	textCells
+} from './ascii-backdrop';
 
 describe('ascii backdrop', () => {
 	test('starts the ramp with an empty glyph', () => {
 		expect(asciiRamp[0]).toBe(' ');
 		expect(new Set(asciiRamp).size).toBe(asciiRamp.length);
+	});
+
+	test('puts the edge glyphs after the shading ramp in the atlas', () => {
+		expect(atlasGlyphs.indexOf(edgeGlyphs)).toBe(asciiRamp.length);
+		expect([...edgeGlyphs]).toEqual(['|', '-', '/', '\\']);
 	});
 
 	test('scales cells to device pixels', () => {
@@ -27,14 +40,15 @@ describe('ascii backdrop', () => {
 	});
 
 	test('pads text boxes by a cell and clamps them to the grid', () => {
-		const metrics = gridMetrics(700, 130, 1);
-		expect(textCells({ left: 70, top: 26, right: 140, bottom: 39 }, metrics)).toEqual([
-			9, 2, 12, 1
-		]);
-		expect(textCells({ left: -20, top: -5, right: 900, bottom: 400 }, metrics)).toEqual([
+		const { width, height } = cellSize;
+		const metrics = gridMetrics(width * 100, height * 10, 1);
+		expect(
+			textCells({ left: width * 10, top: height * 2, right: width * 20, bottom: height * 3 }, metrics)
+		).toEqual([9, 2, 12, 1]);
+		expect(textCells({ left: -20, top: -5, right: width * 200, bottom: height * 20 }, metrics)).toEqual([
 			0, 0, metrics.columns, metrics.rows
 		]);
-		expect(textCells({ left: 10, top: 200, right: 50, bottom: 220 }, metrics)).toBeNull();
+		expect(textCells({ left: 10, top: height * 12, right: 50, bottom: height * 13 }, metrics)).toBeNull();
 	});
 
 	test('crops the height of a wide viewport', () => {
