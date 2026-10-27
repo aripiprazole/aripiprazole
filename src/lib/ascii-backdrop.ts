@@ -140,10 +140,8 @@ void main() {
 	float tone = smoothstep(0.05, 0.95, 1.0 - light);
 	tone = clamp(tone + (noise(index * 0.4 + time * 0.9) - 0.5) * 0.06, 0.0, 1.0);
 
-	// Fade into the paper towards the edges, mostly at the top.
+	// Fade into the paper at the sides.
 	float fade = smoothstep(0.0, 0.1, screen.x) * smoothstep(1.0, 0.9, screen.x);
-	fade *= mix(0.3, 1.0, smoothstep(0.0, 0.3, screen.y));
-	fade *= smoothstep(1.0, 0.95, screen.y);
 
 	float seed = hash(index);
 	fade *= clamp(reveal * 1.6 - seed * 0.6 - screen.y * 0.4, 0.0, 1.0);
@@ -170,6 +168,8 @@ void main() {
 	vec2 inset = step(vec2(0.04), local) * step(local, vec2(0.96));
 	alpha = mix(alpha, (1.0 - coverage) * 0.5 * fade, solid * inset.x * inset.y);
 
-	gl_FragColor = vec4(ink * alpha, alpha) + wash * (1.0 - alpha);
+	// Fainter overall, fading out towards the top.
+	float strength = 0.55 * mix(0.3, 1.0, screen.y);
+	gl_FragColor = (vec4(ink * alpha, alpha) + wash * (1.0 - alpha)) * strength;
 }
 `;
