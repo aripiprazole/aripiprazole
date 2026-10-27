@@ -9,13 +9,10 @@ export const atlasGlyphs = asciiRamp + edgeGlyphs;
 export const cellSize = Object.freeze({ width: 6, height: 11, font: 10 });
 
 export type GridMetrics = Readonly<{
-	ratio: number;
 	width: number;
 	height: number;
 	cellWidth: number;
 	cellHeight: number;
-	columns: number;
-	rows: number;
 	fontSize: number;
 }>;
 
@@ -23,8 +20,6 @@ export type CoverTransform = Readonly<{
 	scale: readonly [number, number];
 	offset: readonly [number, number];
 }>;
-
-export type CellRect = readonly [x: number, y: number, width: number, height: number];
 
 export const gridMetrics = (
 	cssWidth: number,
@@ -37,13 +32,10 @@ export const gridMetrics = (
 	const cellWidth = Math.max(1, Math.round(cellSize.width * ratio));
 	const cellHeight = Math.max(1, Math.round(cellSize.height * ratio));
 	return {
-		ratio,
 		width,
 		height,
 		cellWidth,
 		cellHeight,
-		columns: Math.ceil(width / cellWidth),
-		rows: Math.ceil(height / cellHeight),
 		fontSize: cellSize.font * ratio
 	};
 };
@@ -68,20 +60,6 @@ export const coverTransform = (
 	return { scale: [scaleX, 1], offset: [(1 - scaleX) * focusX, 0] };
 };
 
-// Grid cells covered by a text box given in css pixels, padded by a cell on
-// each side so the art keeps a little air around the words.
-export const textCells = (
-	rect: Readonly<{ left: number; top: number; right: number; bottom: number }>,
-	metrics: GridMetrics
-): CellRect | null => {
-	const left = Math.max(0, Math.floor((rect.left * metrics.ratio) / metrics.cellWidth) - 1);
-	const top = Math.max(0, Math.floor((rect.top * metrics.ratio) / metrics.cellHeight));
-	const right = Math.min(metrics.columns, Math.ceil((rect.right * metrics.ratio) / metrics.cellWidth) + 1);
-	const bottom = Math.min(metrics.rows, Math.ceil((rect.bottom * metrics.ratio) / metrics.cellHeight));
-	if (right <= left || bottom <= top) return null;
-	return [left, top, right - left, bottom - top];
-};
-
 export const vertexShader = `
 attribute vec2 position;
 
@@ -95,10 +73,8 @@ precision highp float;
 
 uniform sampler2D image;
 uniform sampler2D atlas;
-uniform sampler2D text;
 uniform vec2 resolution;
 uniform vec2 cell;
-uniform vec2 grid;
 uniform float glyphs;
 uniform float levels;
 uniform vec4 cover;
@@ -122,10 +98,6 @@ float noise(vec2 p) {
 
 float lightAt(vec2 uv) {
 	return dot(texture2D(image, uv).rgb, vec3(0.2126, 0.7152, 0.0722));
-}
-
-float textAt(vec2 index) {
-	return texture2D(text, (index + 0.5) / grid).a;
 }
 
 void main() {
@@ -178,23 +150,17 @@ void main() {
 	// Where it fades, cells dissolve one by one instead of all at once.
 	if (seed > fade * 1.6) fade = 0.0;
 
-	// Dim the scene behind text, without cutting it out, so the page stays readable.
-	float words = textAt(index) * 0.4
-		+ (textAt(index + vec2(1.0, 0.0)) + textAt(index - vec2(1.0, 0.0))) * 0.15
-		+ (textAt(index + vec2(0.0, 1.0)) + textAt(index - vec2(0.0, 1.0))) * 0.15;
-	float presence = fade * (1.0 - words * 0.8);
-
 	float level = tone * mix(0.6, 1.0, fade);
 	float glyph = mix(floor(level * (levels - 1.0) + 0.5), levels + direction, edge);
 	float coverage = texture2D(atlas, vec2((glyph + local.x) / glyphs, local.y)).a;
 
 	// Black and white: darker spots get darker ink.
 	vec3 ink = vec3(mix(mix(0.45, 0.06, tone), 0.12, edge));
-	float alpha = coverage * mix(mix(0.5, 0.9, tone), 0.95, edge) * presence;
+	float alpha = coverage * mix(mix(0.5, 0.9, tone), 0.95, edge) * fade;
 
 	// A grey ink wash behind every cell shades the mid tones, so white things
 	// like the cloak stand out from the path around them.
-	float washAlpha = 0.3 * smoothstep(0.02, 0.6, 1.0 - light) * presence;
+	float washAlpha = 0.3 * smoothstep(0.02, 0.6, 1.0 - light) * fade;
 	vec4 wash = vec4(0.0, 0.0, 0.0, washAlpha);
 
 	// Deep shadows turn into solid blocks with the glyph cut out, and a few
@@ -202,7 +168,7 @@ void main() {
 	float flicker = step(0.6, tone) * step(0.96, hash(index + floor(time * 0.6 + seed * 4.0)));
 	float solid = max(step(0.9, level), flicker) * (1.0 - edge);
 	vec2 inset = step(vec2(0.04), local) * step(local, vec2(0.96));
-	alpha = mix(alpha, (1.0 - coverage) * 0.5 * presence, solid * inset.x * inset.y);
+	alpha = mix(alpha, (1.0 - coverage) * 0.5 * fade, solid * inset.x * inset.y);
 
 	gl_FragColor = vec4(ink * alpha, alpha) + wash * (1.0 - alpha);
 }

@@ -8,14 +8,12 @@
 		coverTransform,
 		fragmentShader,
 		gridMetrics,
-		textCells,
 		vertexShader,
 		type GridMetrics
 	} from '$lib/ascii-backdrop';
 
 	type Renderer = Readonly<{
 		resize: () => void;
-		paintText: () => void;
 		draw: (now: number) => void;
 	}>;
 
@@ -113,28 +111,19 @@
 		createTexture(gl, 0, gl.LINEAR);
 		upload(gl, 0, image);
 		createTexture(gl, 1, gl.NEAREST);
-		createTexture(gl, 2, gl.NEAREST);
 		gl.uniform1i(uniform('image'), 0);
 		gl.uniform1i(uniform('atlas'), 1);
-		gl.uniform1i(uniform('text'), 2);
 		gl.uniform1f(uniform('glyphs'), atlasGlyphs.length);
 		gl.uniform1f(uniform('levels'), asciiRamp.length);
 
-		// Line boxes of every text node on the page, one texel per grid cell.
-		const textMask = document.createElement('canvas');
-		const textContext = context2d(textMask);
-		const range = document.createRange();
 		const time = uniform('time');
 		const reveal = uniform('reveal');
-		let metrics = gridMetrics(target.clientWidth, target.clientHeight, devicePixelRatio);
 
 		return {
 			resize: () => {
-				metrics = gridMetrics(target.clientWidth, target.clientHeight, devicePixelRatio);
+				const metrics = gridMetrics(target.clientWidth, target.clientHeight, devicePixelRatio);
 				target.width = metrics.width;
 				target.height = metrics.height;
-				textMask.width = metrics.columns;
-				textMask.height = metrics.rows;
 				gl.viewport(0, 0, metrics.width, metrics.height);
 				upload(gl, 1, drawAtlas(metrics));
 				const { scale, offset } = coverTransform(
@@ -147,22 +136,7 @@
 				);
 				gl.uniform2f(uniform('resolution'), metrics.width, metrics.height);
 				gl.uniform2f(uniform('cell'), metrics.cellWidth, metrics.cellHeight);
-				gl.uniform2f(uniform('grid'), metrics.columns, metrics.rows);
 				gl.uniform4f(uniform('cover'), scale[0], scale[1], offset[0], offset[1]);
-			},
-			paintText: () => {
-				textContext.clearRect(0, 0, textMask.width, textMask.height);
-				textContext.fillStyle = '#fff';
-				const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-				for (let node = walker.nextNode(); node !== null; node = walker.nextNode()) {
-					if (node.nodeValue?.trim() === '') continue;
-					range.selectNodeContents(node);
-					for (const rect of range.getClientRects()) {
-						const cells = textCells(rect, metrics);
-						if (cells !== null) textContext.fillRect(...cells);
-					}
-				}
-				upload(gl, 2, textMask);
 			},
 			draw: (now) => {
 				const elapsed = now - started;
@@ -185,7 +159,6 @@
 		const font = document.fonts.load(`500 ${cellSize.font}px "JetBrains Mono"`).catch(() => []);
 		let renderer: Renderer | null = null;
 		let disposed = false;
-		let textDirty = true;
 		let frame = 0;
 		let last = -Infinity;
 
@@ -201,22 +174,13 @@
 				if (now - last < frameInterval) return;
 			}
 			last = now;
-			if (textDirty) {
-				textDirty = false;
-				renderer.paintText();
-			}
 			renderer.draw(now);
-		};
-
-		const invalidate = () => {
-			textDirty = true;
-			schedule();
 		};
 
 		const resize = () => {
 			renderer?.resize();
 			last = -Infinity;
-			invalidate();
+			schedule();
 		};
 
 		const start = () => {
@@ -238,28 +202,16 @@
 
 		const sizes = new ResizeObserver(resize);
 		sizes.observe(target);
-		const mutations = new MutationObserver(invalidate);
-		mutations.observe(document.body, {
-			subtree: true,
-			childList: true,
-			characterData: true,
-			attributes: true
-		});
 		target.addEventListener('webglcontextlost', contextLost);
 		target.addEventListener('webglcontextrestored', start);
-		document.addEventListener('scroll', invalidate, { capture: true, passive: true });
-		document.fonts.addEventListener('loadingdone', invalidate);
 		start();
 
 		return () => {
 			disposed = true;
 			cancelAnimationFrame(frame);
 			sizes.disconnect();
-			mutations.disconnect();
 			target.removeEventListener('webglcontextlost', contextLost);
 			target.removeEventListener('webglcontextrestored', start);
-			document.removeEventListener('scroll', invalidate, { capture: true });
-			document.fonts.removeEventListener('loadingdone', invalidate);
 		};
 	});
 </script>
