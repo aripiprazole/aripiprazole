@@ -673,6 +673,108 @@ input:focus-visible {
   image-rendering: pixelated;
 }
 
+.terminal-hover {
+  position: fixed;
+  z-index: 40;
+  width: min(30rem, calc(100vw - 24px));
+  max-height: min(22rem, calc(100dvh - 24px));
+  overflow: auto;
+  color: var(--ink);
+  font: 0.78rem/1.45 var(--mono);
+  background: color-mix(in srgb, var(--paper) 94%, var(--taupe));
+  border: 1px solid var(--accent);
+}
+
+.terminal-hover-heading {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.42rem 0.65rem;
+  color: var(--accent);
+  background: var(--panel-tint);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.terminal-hover-heading > :first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminal-hover-pending {
+  flex: none;
+  opacity: 0.72;
+}
+
+.terminal-hover-body {
+  padding: 0.7rem 0.75rem 0.8rem;
+}
+
+.terminal-hover-body p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.terminal-hover-body p + p,
+.terminal-hover-body p + dl {
+  margin-top: 0.55rem;
+}
+
+.terminal-hover-title {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.terminal-hover-error {
+  color: var(--danger);
+}
+
+.terminal-hover-loading span {
+  color: var(--accent);
+  animation: terminal-cursor-blink 0.72s steps(1, end) infinite;
+}
+
+.terminal-hover-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0.7rem 0 0;
+  border-top: 1px solid var(--line-soft);
+  border-left: 1px solid var(--line-soft);
+}
+
+.terminal-hover-grid > div {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1ch;
+  padding: 0.35rem 0.45rem;
+  border-right: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.terminal-hover-grid dt,
+.terminal-hover-grid dd {
+  min-width: 0;
+  margin: 0;
+}
+
+.terminal-hover-grid dt {
+  overflow: hidden;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.terminal-hover-grid dd {
+  color: var(--accent);
+  font-weight: 650;
+  text-align: right;
+}
+
 .command-actions {
   display: flex;
   flex-wrap: wrap;
@@ -773,6 +875,10 @@ input:focus-visible {
 
   .command-actions {
     gap: 0.75rem;
+  }
+
+  .terminal-hover-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -923,7 +1029,8 @@ input:focus-visible {
   }
 
   .terminal-cursor,
-  .prompt-suggestion-cursor {
+  .prompt-suggestion-cursor,
+  .terminal-hover-loading span {
     opacity: 1;
     animation: none;
   }

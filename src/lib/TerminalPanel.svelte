@@ -408,7 +408,7 @@
       onpointercancel={onDragPointerEnd}
       onkeydown={dragHandleKeydown}
     >
-      <span class="panel-cwd">aripiprazole@web:{terminalState.cwd}</span>
+      <span class="panel-cwd">root@web:{terminalState.cwd}</span>
     </button>
     <button
       class="panel-close"
@@ -527,10 +527,7 @@
               </div>
               {#if showSuggestion}
                 <TerminalSuggestion suggestions={terminalSuggestions} />
-                <span
-                  id={suggestionDescriptionId}
-                  class="screen-reader-status"
-                >
+                <span id={suggestionDescriptionId} class="screen-reader-status">
                   Suggested commands: {terminalSuggestions.join("; ")}
                 </span>
               {/if}
